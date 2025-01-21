@@ -1,8 +1,9 @@
+'use client';
 import React from "react";
+import { useScreenSizeContext } from "../contexts/screenSizeContext";
 
 type ButtonProps = {
-  variant?: "primary" | "secondary" | "danger";
-  size?: "small" | "medium" | "large";
+  variant?: "primary" | "secondary" | "danger";  
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -10,13 +11,15 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
-  size = "medium",
+  variant = "primary",  
   className = "",
   children,
   onClick,
   disabled = false,
 }) => {
+
+  const { screenSize } = useScreenSizeContext();
+
   const baseStyles =
     "rounded focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-300 ease-in-out";
 
@@ -27,13 +30,13 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const sizeStyles = {
-    small: "px-3 py-1 text-sm",
-    medium: "px-4 py-2 text-base",
-    large: "px-6 py-3 text-lg",
+    mobil: "px-3 py-1 text-sm",
+    table: "px-6 py-4 text-base",
+    desk: "px-12 py-8 text-lg",
   };
 
   const computedStyles = `${baseStyles} ${variantStyles[variant]} ${
-    sizeStyles[size]
+    sizeStyles[screenSize]
   } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`;
 
   return (

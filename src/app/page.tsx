@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import ThemeToggleButton from '@/components/ThemeToggleButton';
 import React from 'react';
 
@@ -15,6 +16,8 @@ const Home: React.FC = () => {
       </h1>
       <div className="flex justify-center">
         <ThemeToggleButton />
+        <Button > 15345435</Button>
+        
       </div>
     </div>
   );
