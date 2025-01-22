@@ -1,0 +1,12 @@
+
+.footer-container {
+    background-color: red;
+    color: var(--text-color);
+}
+
+
+@media (min-width: 768px) {
+    .footer-container {
+        grid-area: footer;        
+    }
+}

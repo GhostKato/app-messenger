@@ -1,0 +1,18 @@
+@media (max-width: 767px) {
+    .sidebar-container {       
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 40;
+        width: 15rem;
+        /* w-60 = 15rem */
+        height: 100vh;
+        /* h-screen = 100vh */
+    }
+}
+
+@media (min-width: 768px) {
+    .sidebar-container {
+    grid-area: sidebar;    
+    }
+}

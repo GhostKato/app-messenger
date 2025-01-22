@@ -2,12 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <div      
-      style={{
-        backgroundColor: 'var(--bg-color)', 
-        color: 'var(--text-color)',           
-      }}
-    >
+    <div className='footer-container'>
       <h1 className="text-3xl font-bold text-center p-8">
         Footer
       </h1>

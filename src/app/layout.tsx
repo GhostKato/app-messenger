@@ -34,7 +34,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
      <ReduxProvider>
     <ScreenSizeProvider>
     <html lang="en" className={roboto.className}>
-        <body>
+        <body className='body-container'>
           <Sidebar />
           <Header />          
           {children}

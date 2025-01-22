@@ -1,0 +1,11 @@
+.home-container {
+    background-color: yellow;
+    color: var(--text-color); 
+    flex: 1;  
+}
+
+@media (min-width: 768px) {
+    .home-container {
+        grid-area: home;         
+    }
+}
