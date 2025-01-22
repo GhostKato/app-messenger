@@ -2,6 +2,7 @@ import React from 'react';
 import './globals.css';
 import { Roboto } from 'next/font/google';
 import { ScreenSizeProvider } from "../contexts/screenSizeContext";
+import Sidebar from '@/components/Sidebar';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -29,7 +30,8 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ScreenSizeProvider>
     <html lang="en" className={roboto.className}>
-      <body>
+        <body>
+         <Sidebar/>
         {children}
       </body>
       </html>
