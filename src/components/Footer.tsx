@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
   }
   
   return (
-    <div className='footer-container'>
+    <div className='footer-container bg-footer'>
       <h1 className="text-3xl font-bold text-center p-8">
         Footer
       </h1>

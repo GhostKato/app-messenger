@@ -36,8 +36,8 @@ export default function Sidebar() {
   };
 
   return (    
-      <aside className="sidebar-container">
-      <div className="flex flex-col h-full overflow-y-auto bg-gray-900">
+      <aside className="sidebar-container bg-sidebar">
+      <div className="flex flex-col h-full overflow-y-auto">
         {screenSize === 'mobil' && (
   <Button onClick={handleSidebarToggle}>
     Close

@@ -12,11 +12,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: 'var(--bg-color)',       
-        primary: "var(--color-primary)",
-        secondary: "var(--color-secondary)",
-        danger: "var(--color-danger)",
-        text: "var(--text-color)",        
+        sidebar: 'var(--bg-sidebar)', 
+        header: 'var(--bg-header)',   
+        main: 'var(--bg-main)',      
+        footer: 'var(--bg-footer)',   
+        color: 'var(--color-text)',   
       },
     },
   },

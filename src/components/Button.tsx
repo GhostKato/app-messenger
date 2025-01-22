@@ -24,9 +24,9 @@ const Button: React.FC<ButtonProps> = ({
     "rounded focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-300 ease-in-out";
 
   const variantStyles = {
-    primary: "bg-primary text-white hover:brightness-110 focus:ring-primary",
-    secondary: "bg-secondary text-white hover:brightness-110 focus:ring-secondary",
-    danger: "bg-danger text-white hover:brightness-110 focus:ring-danger",
+    primary: "bg-primary hover:brightness-110 focus:ring-primary",
+    secondary: "bg-secondary hover:brightness-110 focus:ring-secondary",
+    danger: "bg-danger hover:brightness-110 focus:ring-danger",
   };
 
   const sizeStyles = {

@@ -25,7 +25,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className='header-container'>
+    <div className='header-container bg-header'>
       {screenSize === 'mobil' && (
   <Button onClick={handleSidebarToggle}>
     Open
