@@ -5,11 +5,20 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Button from './Button';
 import { useScreenSizeContext } from "../contexts/screenSizeContext";
+import { usePathname } from 'next/navigation';
 
 const Header: React.FC = () => {
   
   const dispatch = useDispatch();
   const { screenSize } = useScreenSizeContext();
+
+  const pathname = usePathname(); 
+    
+    const showHeader = pathname === '/' || pathname.startsWith('/message');
+  
+    if (!showHeader) {
+      return null;
+    }
   
   const handleSidebarToggle = () => {
     dispatch(toggleModal({ contactId: null, modalType: 'sidebar' }));
