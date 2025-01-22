@@ -1,21 +1,20 @@
 import React from 'react';
 
-const Home: React.FC = () => {
+const Footer: React.FC = () => {
   return (
-    <div
-      className="min-h-screen"
+    <div      
       style={{
         backgroundColor: 'var(--bg-color)', 
         color: 'var(--text-color)',           
       }}
     >
       <h1 className="text-3xl font-bold text-center p-8">
-        Home page
+        Footer
       </h1>
-      <div className="flex justify-center">           
+      <div className="flex justify-center">             
         </div>
     </div>
   );
 }
 
-export default Home;
+export default Footer;

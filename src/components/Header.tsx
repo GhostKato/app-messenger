@@ -1,0 +1,40 @@
+'use client'
+import ThemeToggleButton from '@/components/ThemeToggleButton';
+import { toggleModal } from '@/redux/modal/slice';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import Button from './Button';
+import { useScreenSizeContext } from "../contexts/screenSizeContext";
+
+const Header: React.FC = () => {
+  
+  const dispatch = useDispatch();
+  const { screenSize } = useScreenSizeContext();
+  
+  const handleSidebarToggle = () => {
+    dispatch(toggleModal({ contactId: null, modalType: 'sidebar' }));
+  };
+
+  return (
+    <div      
+      style={{
+        backgroundColor: 'var(--bg-color)', 
+        color: 'var(--text-color)',           
+      }}
+    >
+      {screenSize === 'mobil' && (
+  <Button onClick={handleSidebarToggle}>
+    Open
+  </Button>
+)}
+      <h1 className="text-3xl font-bold text-center p-8">
+        Header
+      </h1>
+      <div className="flex justify-center">
+        <ThemeToggleButton />     
+        </div>
+    </div>
+  );
+}
+
+export default Header;
