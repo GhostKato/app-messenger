@@ -2,9 +2,6 @@ import React from 'react';
 import '../../src/scss/main.scss';
 import { Roboto } from 'next/font/google';
 import { ScreenSizeProvider } from "../contexts/screenSizeContext";
-import Sidebar from '@/components/Sidebar';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import ReduxProvider from '@/components/ReduxProvider';
 
 const roboto = Roboto({
@@ -34,12 +31,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
      <ReduxProvider>
     <ScreenSizeProvider>
     <html lang="en" className={roboto.className}>
-        <body className='body-container'>
-          <Sidebar />
-          <Header />          
+        <body>                
           {children}
-          <Footer/>
-      </body>
+        </body>
       </html>
       </ScreenSizeProvider>
       </ReduxProvider>
