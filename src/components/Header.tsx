@@ -1,42 +1,44 @@
 'use client'
-import ThemeToggleButton from '@/components/ThemeToggleButton';
 import { toggleModal } from '@/redux/modal/slice';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from './Button';
-import { useScreenSizeContext } from "../contexts/screenSizeContext";
-import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import UserMenu from './UserMenu';
+import { selectUserMenu } from '@/redux/modal/selectors';
 
 const Header: React.FC = () => {
   
   const dispatch = useDispatch();
-  const { screenSize } = useScreenSizeContext();
 
-  const pathname = usePathname(); 
-    
-    const showHeader = pathname === '/' || pathname.startsWith('/message');
+  const isOpenUserMenu = useSelector(selectUserMenu); 
   
-    if (!showHeader) {
-      return null;
-    }
-  
-  const handleSidebarToggle = () => {
-    dispatch(toggleModal({ contactId: null, modalType: 'sidebar' }));
+      
+  const handleUserMenuToggle = () => {
+    dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
   };
 
   return (
     <div className='header-container bg-header'>
-      {screenSize === 'mobil' && (
-  <Button onClick={handleSidebarToggle}>
-    Open
-  </Button>
-)}
+
+       {isOpenUserMenu && <UserMenu/>}      
+
+      <Image
+        className="py-8 mb-11 mx-auto"
+          width={122}
+          height={25}
+          src="/icons/logo.svg"
+          alt="logo"
+        />  
+ 
       <h1 className="text-3xl font-bold text-center p-8">
         Header
       </h1>
-      <div className="flex justify-center">
-        <ThemeToggleButton />     
-        </div>
+
+       <Button onClick={handleUserMenuToggle}>
+    Menu
+  </Button>
+      
     </div>
   );
 }

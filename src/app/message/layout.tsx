@@ -1,16 +1,38 @@
-import React from 'react'; 
+'use client';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '@/components/Sidebar';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import { useScreenSizeContext } from '../../contexts/screenSizeContext';
+import { usePathname } from 'next/navigation';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return (           
-        <div className='message-layout'>
+  const { screenSize } = useScreenSizeContext();
+  const pathname = usePathname();
+  const [isHydrated, setIsHydrated] = useState(false);
+  
+  useEffect(() => {
+    setIsHydrated(true);
+  }, []);
+
+  const isMobile = screenSize === 'mobil';
+  const isMessagePage = pathname === '/message';
+  const isMessageDetailPage = pathname.startsWith('/message/');
+  
+  if (!isHydrated) return null;
+
+  return (
+    <div className="message-layout">
+      {isMobile ? (
+        <>
+          {isMessagePage && <Sidebar />}
+          {isMessageDetailPage && children}
+        </>
+      ) : (
+        <>
           <Sidebar />
-          <Header />          
           {children}
-          <Footer/>
-      </div>              
+        </>
+      )}
+    </div>
   );
 };
 

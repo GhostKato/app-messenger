@@ -10,7 +10,7 @@ interface ModalsState {
 
 interface ModalPayload {
   contactId: string | null;
-  modalType: 'sidebar' | 'menuUser';
+  modalType: 'sidebar' | 'userMenu';
 }
 
 const initialState: ModalsState = {};

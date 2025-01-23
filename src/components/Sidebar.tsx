@@ -1,55 +1,28 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 import SidebarItem from './SidebarItem';
 import { usePathname } from 'next/navigation';
-import { useScreenSizeContext } from "../contexts/screenSizeContext";
-import { selectSidebar } from '@/redux/modal/selectors';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from './Button';
-import { toggleModal } from '@/redux/modal/slice';
+import Header from './Header';
 
 export default function Sidebar() {
-
-  const dispatch = useDispatch();
+  
   const pathname = usePathname(); 
   
-  const { screenSize } = useScreenSizeContext();
-
-  const isOpenSidebar = useSelector(selectSidebar);
-
-  const showSidebar = pathname === '/' || pathname.startsWith('/message');
-  
-   if (!showSidebar || (screenSize === 'mobil' && !isOpenSidebar)) {
-    return null;
-  }
-
   const users = [
     { id: 1, name: 'User1', icon: '/icons/squares.svg' },
     { id: 2, name: 'User2', icon: '/icons/briefcase.svg' },
-  ];
-
-  
-  
-  const handleSidebarToggle = () => {
-    dispatch(toggleModal({ contactId: null, modalType: 'sidebar' }));
-  };
+    { id: 3, name: 'User2', icon: '/icons/briefcase.svg' },
+    { id: 4, name: 'User2', icon: '/icons/briefcase.svg' },
+    { id: 5, name: 'User2', icon: '/icons/briefcase.svg' },
+    { id: 6, name: 'User2', icon: '/icons/briefcase.svg' },
+    { id: 7, name: 'User2', icon: '/icons/briefcase.svg' },
+    { id: 8, name: 'User2', icon: '/icons/briefcase.svg' },    
+  ];  
 
   return (    
       <aside className="sidebar-container bg-sidebar">
       <div className="flex flex-col h-full overflow-y-auto">
-        {screenSize === 'mobil' && (
-  <Button onClick={handleSidebarToggle}>
-    Close
-  </Button>
-)}
-          <Image
-            className="py-8 mb-11 mx-auto"
-            width={122}
-            height={25}
-            src="/icons/logo.svg"
-            alt="logo"
-          />
+        <Header/>      
           <ul className="space-y-7">
             {users.map((user) => (
               <SidebarItem
