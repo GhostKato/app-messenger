@@ -1,7 +1,7 @@
 interface Modals {
   [key: string]: {   
     sidebar?: boolean;
-    menuUser?: boolean;
+    userMenu?: boolean;
   };
 }
 
