@@ -13,9 +13,8 @@ export default {
     extend: {
       colors: {
         sidebar: 'var(--bg-sidebar)', 
-        header: 'var(--bg-header)',   
-        main: 'var(--bg-main)',      
-        footer: 'var(--bg-footer)',   
+        main: 'var(--bg-main)',   
+        menu: 'var(--bg-menu)',    
         color: 'var(--color-text)',   
       },
     },

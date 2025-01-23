@@ -19,7 +19,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className='header-container bg-header'>
+    <div className='header-container'>
 
        {isOpenUserMenu && <UserMenu/>}      
 

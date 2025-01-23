@@ -5,18 +5,16 @@
 @tailwind utilities;
 
 :root {
-  --bg-sidebar: #15499e;
-  --bg-header: #15499e;
-  --bg-main: #dbdcde;
-  --bg-footer: #7d7f83;
+  --bg-sidebar: #15499e;  
+  --bg-main: #dbdcde; 
+  --bg-menu: #dbdcde;
   --color-text: black;
 }
 
 .dark {
-  --bg-sidebar: #081f43;
-  --bg-header: #081f43;
+  --bg-sidebar: #081f43; 
   --bg-main: #2a2d32;
-  --bg-footer: #1e2023;  
+  --bg-menu: #2a2d32;
   --color-text: #fff;
 }
 

@@ -13,7 +13,7 @@ const UserMenu: React.FC = () => {
     };
     
   return (
-      <div className='user-menu-container'>
+      <div className='user-menu-container bg-menu'>
           <Button onClick={handleUserMenuToggle}>
     Close
           </Button>
