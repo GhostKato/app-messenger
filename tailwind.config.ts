@@ -14,7 +14,9 @@ export default {
       colors: {
         sidebar: 'var(--bg-sidebar)', 
         main: 'var(--bg-main)',   
-        menu: 'var(--bg-menu)',    
+        menu: 'var(--bg-menu)',
+        button: 'var(--bg-button)',
+        hover: 'var(--bg-button-hover)',
         color: 'var(--color-text)',   
       },
     },

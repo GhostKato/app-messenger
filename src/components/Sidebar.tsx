@@ -9,21 +9,21 @@ export default function Sidebar() {
   const pathname = usePathname(); 
   
   const users = [
-    { id: 1, name: 'User1', icon: '/icons/squares.svg' },
-    { id: 2, name: 'User2', icon: '/icons/briefcase.svg' },
-    { id: 3, name: 'User2', icon: '/icons/briefcase.svg' },
-    { id: 4, name: 'User2', icon: '/icons/briefcase.svg' },
-    { id: 5, name: 'User2', icon: '/icons/briefcase.svg' },
-    { id: 6, name: 'User2', icon: '/icons/briefcase.svg' },
-    { id: 7, name: 'User2', icon: '/icons/briefcase.svg' },
-    { id: 8, name: 'User2', icon: '/icons/briefcase.svg' },    
+    { id: 1, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
+    { id: 2, name: 'Mark Deimon', icon: '/photo.jpg', status:'ofline' },
+    { id: 3, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
+    { id: 4, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
+    { id: 5, name: 'Mark Deimon', icon: '/photo.jpg', status:'ofline' },
+    { id: 6, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
+    { id: 7, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
+    { id: 8, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },    
   ];  
 
   return (    
       <aside className="sidebar-container bg-sidebar">
       <div className="flex flex-col h-full overflow-y-auto">
         <Header/>      
-          <ul className="space-y-7">
+          <ul className="flex flex-col items-center gap-5 pl-5 pr-5">
             {users.map((user) => (
               <SidebarItem
                 key={user.id}
@@ -31,6 +31,7 @@ export default function Sidebar() {
                 pathname={`/message/${user.id}`}
                 src={user.icon}
                 alt={`${user.name} icon`}
+                status={user.status}
               >
                 {user.name}
               </SidebarItem>

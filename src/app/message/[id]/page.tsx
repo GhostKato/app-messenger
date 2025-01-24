@@ -12,8 +12,8 @@ const Message: React.FC = () => {
   };
 
   return (
-    <div>
-      <Button onClick={handleBackClick}>Back</Button>
+    <div className='relative'>
+      <Button variant="back" onClick={handleBackClick}>Back</Button>
       <h1 className="text-3xl font-bold text-center p-8">Message </h1>
     </div>
   );

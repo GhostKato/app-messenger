@@ -1,9 +1,8 @@
 'use client';
 import React from "react";
-import { useScreenSizeContext } from "../contexts/screenSizeContext";
 
 type ButtonProps = {
-  variant?: "primary" | "secondary" | "danger";  
+  variant?: "standard" | "close" | "back";
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -11,32 +10,23 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({
-  variant = "primary",  
+  variant = "standard",  
   className = "",
   children,
   onClick,
   disabled = false,
-}) => {
-
-  const { screenSize } = useScreenSizeContext();
+}) => { 
 
   const baseStyles =
-    "rounded focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-300 ease-in-out";
+    "flex justify-center items-center text-white rounded transition duration-300 ease-in-out";
 
   const variantStyles = {
-    primary: "bg-primary hover:brightness-110 focus:ring-primary",
-    secondary: "bg-secondary hover:brightness-110 focus:ring-secondary",
-    danger: "bg-danger hover:brightness-110 focus:ring-danger",
-  };
-
-  const sizeStyles = {
-    mobil: "px-3 py-1 text-sm",
-    table: "px-6 py-4 text-base",
-    desk: "px-12 py-8 text-lg",
-  };
-
-  const computedStyles = `${baseStyles} ${variantStyles[variant]} ${
-    sizeStyles[screenSize]
+    standard: "bg-button hover:bg-hover focus:bg-hover w-20 h-8 text-sm  md:w-40  md:h-12  md:text-base xl:w-60 xl:h-16 xl:text-lg",
+    close: "absolute top-1 right-1 bg-transparent rounded-full hover:bg-hover focus:bg-hover w-8 h-8 md:w-9  md:h-9  xl:w-9  xl:h-9 ",
+    back: "absolute top-2 left-2 bg-button hover:bg-hover focus:bg-hover w-8 h-8 md:w-12  md:h-12  xl:w-16  xl:h-16 ", 
+  }; 
+   
+  const computedStyles = `${baseStyles} ${variantStyles[variant]} 
   } ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`;
 
   return (

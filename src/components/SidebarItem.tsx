@@ -9,6 +9,7 @@ export interface SidebarItemProps {
   children: React.ReactNode;
   src: string;
   alt: string;
+  status: string;
 }
 
 export default function SidebarItem({
@@ -17,19 +18,21 @@ export default function SidebarItem({
   children,
   src,
   alt,
+  status
 }: SidebarItemProps) {
   return (
-    <li>
+    <li className='bg-red-500 w-[100%] rounded relative'>
       <Link
         href={pathname}
         className={clsx(
-          'flex items-center h-9 mx-1 gap-3.5',
+          'flex items-center mx-1 gap-3.5 justify-around',
           current &&
-            'after:h-full after:ml-auto after:border-2 after:border-purple-200 after:rounded-sm',
+            'after:absolute after:top-0 after:left-0 after:h-full after:w-4 after:bg-purple-200 after:border-2 after:border-purple-200 after:rounded-sm before:absolute before:top-0 before:right-0 before:h-full before:w-4 before:bg-purple-200 before:border-2 before:border-purple-200 before:rounded-sm',
         )}
       >
-        <Image src={src} alt={alt} width={20} height={20} />
+        <Image src={src} alt={alt} width={50} height={50} />
         <span className="font-medium text-zinc-50">{children}</span>
+        <span className="font-medium text-zinc-50">{status}</span>
       </Link>
     </li>
   );

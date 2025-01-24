@@ -2,42 +2,38 @@
 import { toggleModal } from '@/redux/modal/slice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from './Button';
 import Image from 'next/image';
 import UserMenu from './UserMenu';
 import { selectUserMenu } from '@/redux/modal/selectors';
+import SearchBox from './SearchBox';
 
 const Header: React.FC = () => {
   
   const dispatch = useDispatch();
 
-  const isOpenUserMenu = useSelector(selectUserMenu); 
-  
+  const isOpenUserMenu = useSelector(selectUserMenu);    
       
   const handleUserMenuToggle = () => {
     dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
-  };
+  };  
 
   return (
-    <div className='header-container'>
+    <div className='header-container flex justify-around items-center gap-5 p-5'>
 
        {isOpenUserMenu && <UserMenu/>}      
 
-      <Image
-        className="py-8 mb-11 mx-auto"
-          width={122}
-          height={25}
-          src="/icons/logo.svg"
+      <div className="rounded-[8px] overflow-hidden w-[50px]  md:w-[55px] xl:w-[60px]">
+        <Image                    
+          src="/photo.jpg"
           alt="logo"
-        />  
+          onClick={handleUserMenuToggle}
+          width={200} 
+          height={200}
+          layout="intrinsic"
+          />  
+      </div>
  
-      <h1 className="text-3xl font-bold text-center p-8">
-        Header
-      </h1>
-
-       <Button onClick={handleUserMenuToggle}>
-    Menu
-  </Button>
+      <SearchBox/>       
       
     </div>
   );
