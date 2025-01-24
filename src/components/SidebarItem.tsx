@@ -22,7 +22,7 @@ export default function SidebarItem({
 }: SidebarItemProps) {
   return (
     <li className={clsx(
-          'bg-transparent hover:bg-hover w-[100%] rounded-full relative border hover:border-red',
+          'border: border-gray hover:bg-hover w-[100%] rounded-full relative border-2 hover:border-red',
           current &&
             'bg-hover border: border-red',
         )}>
@@ -31,7 +31,7 @@ export default function SidebarItem({
         className={clsx(
           'flex items-center mx-1 gap-3.5 justify-around',
           current &&
-            'after:absolute after:top-4 after:left-1 after:h-4 after:w-4 after:bg-green-500 after:border-red after:border-2  after:rounded-full ',
+            'after:absolute after:top-4 after:left-1 after:h-4 after:w-4 after:bg-one after:border-red after:border-2  after:rounded-full ',
         )}
       >
         <div className='rounded-full overflow-hidden'><Image src={src} alt={alt} width={50} height={50} /></div>
