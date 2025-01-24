@@ -12,12 +12,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        sidebar: 'var(--bg-sidebar)', 
-        main: 'var(--bg-main)',   
-        menu: 'var(--bg-menu)',
-        button: 'var(--bg-button)',
-        hover: 'var(--bg-button-hover)',
-        color: 'var(--color-text)',   
+        one: 'var(--bg-one)',
+        two: 'var(--bg-two)', 
+        transparent: 'var(--bg-transparent)',
+        hover: 'var(--hover)',
+        button: 'var(--text-button)', 
+        text: 'var(--text)',
+        gray: 'var(--border-gray)',
+        red: 'var(--border-red)',     
+              
+      },
+      backgroundImage: {
+        'cool-gradient': 'linear-gradient(to right, #ff7e5f, #feb47b, #6a11cb, #2575fc)',
+      },
+      animation: {
+        'gradient-move': 'gradientMove 30s ease infinite', 
+      },
+      keyframes: {
+        gradientMove: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
       },
     },
   },

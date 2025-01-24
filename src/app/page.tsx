@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className='home-container bg-main'>
+    <div className='home-container bg-cool-gradient bg-[length:200%_200%] animate-gradient-move min-h-screen'>
       <h1>Home page</h1>
       <Button onClick={handleLoginClick}>Login</Button>
       <Button onClick={handleRegistrationClick}>Registration</Button>

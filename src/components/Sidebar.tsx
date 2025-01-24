@@ -20,7 +20,7 @@ export default function Sidebar() {
   ];  
 
   return (    
-      <aside className="sidebar-container bg-sidebar">
+      <aside className="sidebar-container bg-one">
       <div className="flex flex-col h-full overflow-y-auto">
         <Header/>      
           <ul className="flex flex-col items-center gap-5 pl-5 pr-5">

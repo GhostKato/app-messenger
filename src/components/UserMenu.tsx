@@ -14,7 +14,7 @@ const UserMenu: React.FC = () => {
     };
 
     return (
-        <div className="user-menu-container bg-menu w-[200px] h-[200px] rounded-lg shadow-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5">
+        <div className="user-menu-container bg-two w-[200px] h-[200px] rounded-lg shadow-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5">
             <Button variant="close" onClick={handleUserMenuToggle}>
                 <IoCloseOutline className="w-6 h-6 md:w-8 md:h-8 xl:w-10 xl:h-10" />
             </Button>

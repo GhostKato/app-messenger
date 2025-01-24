@@ -12,7 +12,7 @@ const Message: React.FC = () => {
   };
 
   return (
-    <div className='relative'>
+    <div className='relative bg-cool-gradient bg-[length:200%_200%] animate-gradient-move min-h-screen'>
       <Button variant="back" onClick={handleBackClick}>Back</Button>
       <h1 className="text-3xl font-bold text-center p-8">Message </h1>
     </div>

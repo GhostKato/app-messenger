@@ -21,16 +21,20 @@ export default function SidebarItem({
   status
 }: SidebarItemProps) {
   return (
-    <li className='bg-red-500 w-[100%] rounded relative'>
+    <li className={clsx(
+          'bg-transparent hover:bg-hover w-[100%] rounded-full relative border hover:border-red',
+          current &&
+            'bg-hover border: border-red',
+        )}>
       <Link
         href={pathname}
         className={clsx(
           'flex items-center mx-1 gap-3.5 justify-around',
           current &&
-            'after:absolute after:top-0 after:left-0 after:h-full after:w-4 after:bg-purple-200 after:border-2 after:border-purple-200 after:rounded-sm before:absolute before:top-0 before:right-0 before:h-full before:w-4 before:bg-purple-200 before:border-2 before:border-purple-200 before:rounded-sm',
+            'after:absolute after:top-4 after:left-1 after:h-4 after:w-4 after:bg-green-500 after:border-red after:border-2  after:rounded-full ',
         )}
       >
-        <Image src={src} alt={alt} width={50} height={50} />
+        <div className='rounded-full overflow-hidden'><Image src={src} alt={alt} width={50} height={50} /></div>
         <span className="font-medium text-zinc-50">{children}</span>
         <span className="font-medium text-zinc-50">{status}</span>
       </Link>
