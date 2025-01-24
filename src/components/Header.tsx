@@ -22,7 +22,7 @@ const Header: React.FC = () => {
 
        {isOpenUserMenu && <UserMenu/>}      
 
-      <div className="rounded-full overflow-hidden w-[50px]  md:w-[55px] xl:w-[60px]">
+      <div className="rounded-full overflow-hidden w-[50px]  md:w-[55px] xl:w-[60px] shadow-custom">
         <Image                    
           src="/photo.jpg"
           alt="logo"
