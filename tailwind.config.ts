@@ -12,15 +12,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        one: 'var(--bg-one)',
-        two: 'var(--bg-two)', 
+        one: 'var(--bg-one)',        
         transparent: 'var(--bg-transparent)',
         hover: 'var(--hover)',
         button: 'var(--text-button)', 
         text: 'var(--text)',
         gray: 'var(--border-gray)',
-        red: 'var(--border-red)',     
-              
+        red: 'var(--border-red)',   
+          
       },
       backgroundImage: {
         'cool-gradient': 'linear-gradient(to right, #ff7e5f, #feb47b, #6a11cb, #2575fc)',

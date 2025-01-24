@@ -5,21 +5,18 @@
 @tailwind utilities;
 
 :root {
-  --bg-one: #bbbcbd;  
-  --bg-two: #15499e;  
+  --bg-one: #081f43;
   --bg-transparent: transparent;
   --hover: #f87171;
   --text-button: #fff;  
-  --text: black;
+  --text: #fff;
   --border-gray: #6b7280;
   --border-red: #f87171;  
 }
 
 .dark {
-  --bg-one: #2a2d32; 
-  --bg-two: #081f43;   
-  --text: #fff;
-}
+  --bg-one: #2a2d32;  
+  }
 
 body { 
   font-family: 'Roboto', sans-serif;
