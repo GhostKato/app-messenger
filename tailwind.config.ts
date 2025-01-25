@@ -12,13 +12,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        one: 'var(--bg-one)',        
-        transparent: 'var(--bg-transparent)',
-        hover: 'var(--hover)',
-        button: 'var(--text-button)', 
-        text: 'var(--text)',
-        gray: 'var(--border-gray)',
-        red: 'var(--border-red)',   
+        one: 'var(--text-main)',
+        two: 'var(--bg-main)',     
+        three: 'var(--border-main)',        
+        four: 'var(--hover)', 
           
       },
       backgroundImage: {

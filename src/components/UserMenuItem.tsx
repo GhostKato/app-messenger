@@ -12,7 +12,7 @@ export default function UserMenuItem({
  
 }:  UserMenuProps) {
   return (
-    <li className='bg-red-500 w-[100%] list-none rounded-full border border: border-gray hover:border-red shadow-custom-inset'>
+    <li className='bg-two w-[100%] list-none rounded-full border border: border-three hover:bg-four hover:border-four focus:bg-four focus:border-fours shadow-custom-inset'>
       <Link
         href={pathname}
         className='flex items-center justify-around h-9 mx-1 gap-3.5'>        

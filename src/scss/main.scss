@@ -5,22 +5,25 @@
 @tailwind utilities;
 
 :root {
-  --bg-one: #081f43;
-  --bg-transparent: transparent;
-  --hover: #f87171;
-  --text-button: #fff;  
-  --text: #fff;
-  --border-gray: #6b7280;
-  --border-red: #f87171;  
+  --text-main: #fff;
+  --bg-main: #081f43;
+  --border-main: #6b7280;
+  --hover: #ff4b5c;
+  
+
 }
 
-.dark {
-  --bg-one: #2a2d32;  
+.background {
+ --bg-main: #2a2d32;
+ 
+  }
+  .hover {      
+ --hover: #009688;
   }
 
 body { 
   font-family: 'Roboto', sans-serif;
-  color: var(--text);
+  color: var(--text-main);
   width: 100%;
   height: 100vh;
     

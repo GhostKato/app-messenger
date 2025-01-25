@@ -14,17 +14,22 @@ const UserMenu: React.FC = () => {
     };
 
     return (
-        <div className="user-menu-container bg-one w-[200px] h-[200px] rounded-lg shadow-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5 border border: border-gray shadow-custom">
+        <div className="user-menu-container bg-two w-[200px] h-[300px] rounded-lg shadow-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5 border border: border-three shadow-custom">
             <Button variant="close" onClick={handleUserMenuToggle}>
                 <IoCloseOutline className="w-6 h-6 md:w-8 md:h-8 xl:w-10 xl:h-10" />
-            </Button>
-            <ThemeToggleButton />
+            </Button>           
             <UserMenuItem pathname="/message/">
                 Edit user
         </UserMenuItem>
         <UserMenuItem pathname="/">
                 Logaut
-            </UserMenuItem>
+            </UserMenuItem> 
+             <div className='flex flex-col gap-2'>
+                <p className='text-'>Background color</p>
+                 <ThemeToggleButton type="background" toggleColor="bg-two" />
+                 <p>Buttons color</p>
+                <ThemeToggleButton type="hover" toggleColor="bg-four" />
+            </div>
         </div>
     );
 };
