@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => { 
 
   const baseStyles =
-    "flex justify-center items-center bg-transparent rounded-full text-button hover:bg-hover focus:bg-hover border border-red transition duration-300 ease-in-out shadow-custom-inset";
+    "flex justify-center items-center bg-transparent rounded-full text-button hover:bg-hover shadow-custom-inset focus:bg-hover transition duration-300 ease-in-out";
 
   const variantStyles = {
     standard: "w-[100px] h-8 text-sm rounded md:w-40 md:h-12 md:text-base xl:w-60 xl:h-16 xl:text-lg",
