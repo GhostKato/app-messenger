@@ -30,10 +30,12 @@ const Message: React.FC = () => {
 
   return (
     // замінити фон
-    <div className='flex flex-col relative shadow-custom-inset bg-three min-h-screen'> 
+    <div className='flex flex-col relative shadow-custom-inset min-h-screen bg-[url("/background.jpg")] bg-cover bg-center'> 
     {/* ///////////   */}
       <Button variant="back" onClick={handleBackClick}><FaArrowLeft className='text-four group-hover:text-white w-[25px] h-[25px] md:w-[35px] md:h-[35px] xl:w-[45px] xl:h-[45px]'/></Button>
-      <h1 className="bg-cool-gradient bg-[length:200%_200%] animate-gradient-move text-3xl font-bold text-center p-8">Messages</h1>
+      <div  className="bg-cool-gradient bg-[length:200%_200%] animate-gradient-move shadow-custom">
+        <h1 className="text-3xl font-bold text-center p-8">Messages</h1>
+      </div>
       <ul className='flex flex-col flex-grow gap-[30px] overflow-auto p-[10px]'>
         {messages.map((message) => (
           <MessageText key={message.id} message={message.text} from={message.from} />
