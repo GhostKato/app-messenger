@@ -4,13 +4,15 @@ interface FieldInputProps {
   name: string;
   type: string;
   label: string;
+  as?: string;
 }
 
-const FieldInput: React.FC<FieldInputProps> = ({ name, type, label }) => {
+const FieldInput: React.FC<FieldInputProps> = ({ name, type, label, as}) => {
   return (
     <div className="flex flex-col flex-grow relative">
       <label htmlFor={name}>{label}</label>
       <Field
+        as={as}
         id={name}
         name={name}
         type={type}

@@ -16,12 +16,16 @@ export default function Sidebar() {
     { id: 5, name: 'Mark Deimon', icon: '/photo.jpg', status:'ofline' },
     { id: 6, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
     { id: 7, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
-    { id: 8, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },    
+    { id: 8, name: 'Mark Deimon', icon: '/photo.jpg', status: 'online' },
+    { id: 9, name: 'Mark Deimon', icon: '/photo.jpg', status:'ofline' },
+    { id: 10, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
+    { id: 11, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' },
+    { id: 12, name: 'Mark Deimon', icon: '/photo.jpg', status:'online' }, 
   ];  
 
   return (    
-      <aside className="sidebar-container bg-two">
-      <div className="flex flex-col h-full overflow-y-auto">
+      <aside className="sidebar-container bg-two overflow-auto">
+      <div className="flex flex-col h-full">
         <Header/>      
           <ul className="flex flex-col items-center gap-5 pl-5 pr-5">
             {users.map((user) => (
