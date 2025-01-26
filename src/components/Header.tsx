@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   };  
 
   return (
-    <div className='header-container flex justify-around items-center gap-5 p-5'>
+    <div className='md:w-[400px] header-container flex justify-around items-center gap-5 p-5 bg-two shadow-custom border-three'>
 
        {isOpenUserMenu && <UserMenu/>}      
 
