@@ -29,13 +29,13 @@ export default function SidebarItem({
       <Link
         href={pathname}
         className={clsx(
-          'flex justify-around items-center mx-1 gap-3.5 w-[100%]',
+          'flex justify-around items-center mx-1 gap-3.0 w-[100%]',
           current &&
             'after:absolute after:top-5 after:left-1 after:h-4 after:w-4 after:bg-two after:border-two after:border-2  after:rounded-full ',
         )}
       >
         <div className='rounded-full overflow-hidden shadow-custom'><Image src={src} alt={alt} width={50} height={50} /></div>
-        <span className="font-medium text-zinc-50">{children}</span>
+        <span className="text-xl md:text-2xl text-zinc-50">{children}</span>
         <span className="font-medium text-zinc-50">{status}</span>
       </Link>
     </li>
