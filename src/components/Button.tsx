@@ -3,6 +3,7 @@ import React from "react";
 
 type ButtonProps = {
   variant?: "standard" | "close" | "back";
+  type?: "button" | "submit";
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -10,7 +11,8 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({
-  variant = "standard",  
+  variant = "standard",
+  type = "button",
   className = "",
   children,
   onClick,
@@ -31,9 +33,10 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      type={type}
       className={computedStyles}
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled}      
     >
       {children}
     </button>
