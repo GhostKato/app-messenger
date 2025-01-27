@@ -30,7 +30,7 @@ const Message: React.FC = () => {
 
   return (
     // замінити фон
-    <div className='flex flex-col relative shadow-custom-inset min-h-screen bg-[url("/background.jpg")] bg-cover bg-center pb-[15px]'> 
+    <div className='message-id flex flex-col relative shadow-custom-inset min-h-screen bg-cover bg-center pb-[15px]'> 
     {/* ///////////   */}
       <Button variant="back" onClick={handleBackClick}><FaArrowLeft className='text-interaction group-hover:text-white w-[25px] h-[25px] md:w-[35px] md:h-[35px] xl:w-[45px] xl:h-[45px]'/></Button>
       <div  className="bg-cool-gradient bg-[length:200%_200%] animate-gradient-move shadow-custom">

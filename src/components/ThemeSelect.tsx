@@ -5,13 +5,13 @@ import { Formik, Field, FormikHelpers } from 'formik';
 
 // Типи варіантів для вибору
 interface ThemeSelectProps {
-  type: 'sidebar' | 'interaction' | 'receiving'; // Тип для зміни sidebar, interaction чи receiving
+  type: 'sidebar' | 'interaction' | 'receiving' | 'image'; // Тип для зміни sidebar, interaction чи receiving
 }
 
 const handleThemeChange = (
   e: React.ChangeEvent<HTMLSelectElement>, // Вказуємо тип події для select
   setFieldValue: FormikHelpers<{ theme: string }>['setFieldValue'], // Вказуємо правильний тип
-  type: 'sidebar' | 'interaction' | 'receiving'
+  type: 'sidebar' | 'interaction' | 'receiving' | 'image'
 ) => {
   const newValue = e.target.value;
   setFieldValue('theme', newValue);
@@ -42,6 +42,14 @@ const ThemeSelect: React.FC<ThemeSelectProps> = ({ type }) => {
     receiving: [
       { value: '', label: 'Purple' },
       { value: 'green', label: 'Green' },
+      { value: 'yellow', label: 'Yellow' },
+      { value: 'blue', label: 'Blue' },
+    ],
+     image: [
+      { value: '', label: 'One' },
+       { value: 'two', label: 'Two' },
+       { value: 'three', label: 'Three' },
+        { value: 'four', label: 'Four' },      
     ],
   };
 
@@ -54,10 +62,12 @@ const ThemeSelect: React.FC<ThemeSelectProps> = ({ type }) => {
         <div className="theme-select flex flex-col justify-center items-center">
           <label htmlFor={type} className="block mb-2">
             {type === 'sidebar'
-              ? 'Sidebar color'
-              : type === 'interaction'
-              ? 'Interaction color'
-              : 'Receiving color'}
+             ? 'Sidebar color'
+             : type === 'interaction'
+             ? 'Interaction color'
+             : type === 'image'
+             ? 'Image'
+             : 'Receiving color'}
           </label>
           <Field
             as="select"

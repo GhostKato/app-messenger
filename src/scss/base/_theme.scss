@@ -1,0 +1,63 @@
+:root {
+    --text: #fff;
+    --border: #6b7280;
+    --sidebar: #081f43;
+    --interaction: #ff4b5c;
+    --sending: rgba(60, 60, 56, 0.8);
+    --receiving: rgba(105, 16, 105, 0.8);
+    --image: url('/background.jpg');
+}
+
+// Sidebar colors
+[data-sidebar-theme="storm-gray"] {
+    --sidebar: #2a2d32;
+}
+
+[data-sidebar-theme="zest-orange"] {
+    --sidebar: #583b0a;
+}
+
+[data-sidebar-theme="garnet-red"] {
+    --sidebar: #360909;
+}
+
+//  Interaction colors
+[data-interaction-theme="astral-purple"] {
+    --interaction: #960096;
+}
+
+[data-interaction-theme="lightning-yellow"] {
+    --interaction: #a9c016;
+}
+
+[data-interaction-theme="velocity-green"] {
+    --interaction: #009688;
+}
+
+
+//  Receiving colors 
+[data-receiving-theme="green"] {
+    --receiving: rgba(59, 114, 73, 0.8);
+}
+
+[data-receiving-theme="yellow"] {
+    --receiving: rgba(112, 123, 32, 0.8);
+}
+
+[data-receiving-theme="blue"] {
+    --receiving: rgba(56, 56, 120, 0.8);
+}
+
+
+// Images
+[data-image-theme="two"] {
+    --image: url('/background2.jpg');
+}
+
+[data-image-theme="three"] {
+    --image: url('/background3.jpg');
+}
+
+[data-image-theme="four"] {
+    --image: url('/background4.jpg');
+}
