@@ -22,16 +22,16 @@ export default function SidebarItem({
 }: SidebarItemProps) {
   return (
     <li className={clsx(
-          'flex border: border-three hover:border-four h-[60px] w-[100%] rounded-full relative border-2 shadow-custom-inset',
+          'flex border: border-border hover:border-interaction h-[60px] w-[100%] rounded-full relative border-2 shadow-custom-inset',
           current &&
-            'bg-four border: border-four',
+            'bg-interaction border: border-interaction',
         )}>
       <Link
         href={pathname}
         className={clsx(
           'flex justify-around items-center mx-1 gap-3.0 w-[100%]',
           current &&
-            'after:absolute after:top-5 after:left-1 after:h-4 after:w-4 after:bg-two after:border-two after:border-2  after:rounded-full ',
+            'after:absolute after:top-4 after:left-0 after:h-4 after:w-4 after:bg-sidebar after:border-sidebar after:border-2  after:rounded-full ',
         )}
       >
         <div className='rounded-full overflow-hidden shadow-custom'><Image src={src} alt={alt} width={50} height={50} /></div>

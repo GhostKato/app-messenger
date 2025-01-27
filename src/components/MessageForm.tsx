@@ -12,9 +12,7 @@ const MessageForm: React.FC = () => {
           .required("Username required"),
   });
 
-  return (
-    <div className="">
-      <div className="">        
+  return (          
         <Formik
           initialValues={{ message: '' }}
           validationSchema={validationSchema}
@@ -24,8 +22,8 @@ const MessageForm: React.FC = () => {
           }}
         >
           {({ isSubmitting }) => (
-              <Form className="flex justify-center items-center flex-col w-full gap-5">
-              <FieldInput name="message" type="text" label="New message" as="textarea"/>                          
+              <Form className="flex justify-center items-center w-full space-x-2">
+              <FieldInput className='bg-sending' name="message" type="text" label="New message" as="textarea"/>                          
               <Button
                 type="submit"
                 disabled={isSubmitting}                
@@ -35,8 +33,7 @@ const MessageForm: React.FC = () => {
             </Form>
           )}
         </Formik>
-      </div>
-    </div>
+     
   );
 };
 

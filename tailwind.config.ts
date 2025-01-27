@@ -12,14 +12,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        one: 'var(--text-main)',
-        two: 'var(--bg-main)',     
-        three: 'var(--border-main)',        
-        four: 'var(--hover)', 
+        text: 'var(--text)',
+        sidebar: 'var(--sidebar)',     
+        border: 'var(--border)',        
+        interaction: 'var(--interaction)', 
+        sending: 'var(--sending)',
+        receiving: 'var(--receiving)',       
           
       },
       backgroundImage: {
-        'cool-gradient': 'linear-gradient(to right, #ff7e5f, #feb47b, #6a11cb, #2575fc)',
+        'cool-gradient': 'linear-gradient(to right, #ff7e5f, #feb47b, #6a11cb, #2575fc)',       
       },
       animation: {
         'gradient-move': 'gradientMove 30s ease infinite', 

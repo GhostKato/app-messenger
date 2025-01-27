@@ -15,7 +15,7 @@ const MessageText: React.FC<MessageTextProps> = ({ message, from }) => {
   const isFromUser = user[0].id === parseInt(from);
 
   return (  
-    <li className={`p-5 rounded-full ${isFromUser ? 'ml-auto bg-two' : 'mr-auto bg-four'}`}>
+    <li className={`p-5 rounded-full ${isFromUser ? 'ml-auto bg-sending' : 'mr-auto bg-receiving'}`}>
       <p className="text-xl md:text-2xl">{message}</p>
     </li>
   );

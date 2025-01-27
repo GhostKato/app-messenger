@@ -12,7 +12,7 @@ const roboto = Roboto({
 
 export const metadata = {
   title: 'App messenger',
-  description: 'This is the root layout.',
+  description: 'This is an application for communication.',
   icons: {
     icon: '/favicon.png',
   },
@@ -21,7 +21,7 @@ export const metadata = {
     locale: 'en_US',
     url: 'https://www.example.com/',
     title: 'App messenger',
-    description: 'This is the root layout.',
+    description: 'This is an application for communication.',
     site_name: 'App messenger',
   },
 };

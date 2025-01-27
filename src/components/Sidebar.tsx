@@ -25,7 +25,7 @@ export default function Sidebar() {
   ];  
 
   return (    
-      <aside className="sidebar-container bg-two h-screen">
+      <aside className="sidebar-container bg-sidebar h-screen">
   <div className="flex flex-col h-full">
     <Header />
     <ul className="flex flex-col items-center gap-[13px] pl-5 pb-[10px] pr-5 pt-[10px] overflow-auto flex-grow">
