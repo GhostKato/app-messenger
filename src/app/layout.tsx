@@ -3,6 +3,7 @@ import '../../src/scss/main.scss';
 import { Roboto } from 'next/font/google';
 import { ScreenSizeProvider } from "../contexts/screenSizeContext";
 import ReduxProvider from '@/components/ReduxProvider';
+import InstallTheme from '@/components/InstallTheme';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -29,7 +30,8 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
      <ReduxProvider>
-    <ScreenSizeProvider>
+      <ScreenSizeProvider>
+        <InstallTheme/>
     <html lang="en" className={roboto.className}>
         <body>                
           {children}
