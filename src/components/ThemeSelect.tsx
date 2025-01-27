@@ -9,7 +9,7 @@ interface ThemeSelectProps {
 }
 
 const handleThemeChange = (
-  e: React.ChangeEvent<HTMLSelectElement>,
+  e: React.ChangeEvent<HTMLSelectElement>, // Вказуємо тип події для select
   setFieldValue: FormikHelpers<{ theme: string }>['setFieldValue'], // Вказуємо правильний тип
   type: 'sidebar' | 'interaction' | 'receiving'
 ) => {
@@ -43,7 +43,7 @@ const ThemeSelect: React.FC<ThemeSelectProps> = ({ type }) => {
       { value: '', label: 'Purple' },
       { value: 'green', label: 'Green' },
     ],
-  };  
+  };
 
   return (
     <Formik
@@ -64,7 +64,7 @@ const ThemeSelect: React.FC<ThemeSelectProps> = ({ type }) => {
             id={type}
             name="theme"
             className="rounded-full  w-[140px] p-[5px] text-center border-2 border-border hover:border-interaction"
-            onChange={(e) => handleThemeChange(e, setFieldValue, type)}
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleThemeChange(e, setFieldValue, type)} 
           >
             {themeOptions[type].map((option) => (
               <option key={option.value} value={option.value} className='bg-sidebar border-2'>
