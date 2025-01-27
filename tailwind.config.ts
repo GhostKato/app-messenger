@@ -1,4 +1,6 @@
+import plugin from 'tailwind-scrollbar';
 import type { Config } from 'tailwindcss';
+
 
 export default {
   darkMode: 'class',
@@ -42,5 +44,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [plugin],
 } satisfies Config;

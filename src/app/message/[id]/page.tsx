@@ -3,7 +3,7 @@ import Button from '@/components/Button';
 import MessageForm from '@/components/MessageForm';
 import MessageText from '@/components/MessageText';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FaArrowLeft } from "react-icons/fa";
 
 const Message: React.FC = () => {  
@@ -22,6 +22,14 @@ const Message: React.FC = () => {
     { id: 12, text: 'She decided to pursue her career in law despite the challenges ahead.', from: '2', for: '1' },
   ];
 
+   const listRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    if (listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
+  }, []);
+
   const router = useRouter();
 
   const handleBackClick = () => {
@@ -34,7 +42,7 @@ const Message: React.FC = () => {
       <div  className="bg-cool-gradient bg-[length:200%_200%] animate-gradient-move shadow-custom p-[10px] md:p-[29px]">
         <h1 className="text-3xl font-bold text-center">Messages</h1>
       </div>
-      <ul className='flex flex-col flex-grow gap-[30px] overflow-auto p-[10px]'>
+      <ul  ref={listRef} className='flex flex-col flex-grow gap-[30px] overflow-auto p-[10px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-black'>
         {messages.map((message) => (
           <MessageText key={message.id} message={message.text} from={message.from} />
         ))}        
