@@ -11,14 +11,14 @@ export default function Sidebar() {
   
   const users = [
     { id: 1, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 2, name: 'William Murray', icon: '/photo.jpg', status:'ofline' },
+    { id: 2, name: 'William Murray', icon: '/photo.jpg', status:'offline' },
     { id: 3, name: 'William Murray', icon: '/photo.jpg', status:'online' },
     { id: 4, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 5, name: 'William Murray', icon: '/photo.jpg', status:'ofline' },
+    { id: 5, name: 'William Murray', icon: '/photo.jpg', status:'offline' },
     { id: 6, name: 'William Murray', icon: '/photo.jpg', status:'online' },
     { id: 7, name: 'William Murray', icon: '/photo.jpg', status:'online' },
     { id: 8, name: 'William Murray', icon: '/photo.jpg', status: 'online' },
-    { id: 9, name: 'William Murray', icon: '/photo.jpg', status:'ofline' },
+    { id: 9, name: 'William Murray', icon: '/photo.jpg', status:'offline' },
     { id: 10, name: 'William Murray', icon: '/photo.jpg', status:'online' },
     { id: 11, name: 'William Murray', icon: '/photo.jpg', status:'online' },
     { id: 12, name: 'William Murray', icon: '/photo.jpg', status:'online' }, 

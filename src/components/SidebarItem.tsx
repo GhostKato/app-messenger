@@ -36,7 +36,7 @@ export default function SidebarItem({
       >
         <div className='rounded-full overflow-hidden shadow-custom'><Image src={src} alt={alt} width={50} height={50} /></div>
         <span className="text-xl md:text-2xl text-zinc-50">{children}</span>
-        <span className="font-medium text-zinc-50">{status}</span>
+        <span className={`font-medium ${status === 'online' ? 'text-green-500' : 'text-red-100'}`}>{status}</span>
       </Link>
     </li>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import FieldInput from './FieldInput';
 import Button from './Button';
+import { BsFillSendFill } from "react-icons/bs";
 
 const MessageForm: React.FC = () => {
   
@@ -22,13 +22,14 @@ const MessageForm: React.FC = () => {
           }}
         >
           {({ isSubmitting }) => (
-              <Form className="flex justify-center items-center w-full space-x-2">
-              <FieldInput className='bg-sending' name="message" type="text" label="New message" as="textarea"/>                          
+              <Form className="flex justify-between items-center gap-2 p-2">
+              <Field className='resize-none overflow-y-auto break-words bg-sending w-full h-[100px] px-6 text-sm md:text-base xl:text-lg rounded-full border-2 border: border-border hover:border-interaction shadow-custom-inset focus:border-interaction transition duration-300 ease-in-out' name="message" type="text" label="New message" as="textarea"/>                          
               <Button
                 type="submit"
-                disabled={isSubmitting}                
+               disabled={isSubmitting}
+               variant="sendMessage"
               >
-                {isSubmitting ? 'Sending...' : 'Send'}
+                <BsFillSendFill className='text-interaction group-hover:text-white w-[40px] h-[40px] xl:w-[60px]  xl:h-[60px]'/>
               </Button>
             </Form>
           )}

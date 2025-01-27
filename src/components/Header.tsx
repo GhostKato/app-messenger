@@ -18,11 +18,11 @@ const Header: React.FC = () => {
   };  
 
   return (
-    <div className='md:w-[400px] header-container flex justify-around items-center gap-5 p-5 shadow-custom'>
+    <div className='md:w-[400px] header-container flex justify-around items-center gap-5 p-2 md:p-5 shadow-custom'>
 
        {isOpenUserMenu && <UserMenu/>}      
 
-      <div className="rounded-full overflow-hidden w-[50px]  md:w-[55px] xl:w-[60px] shadow-custom border-2 border-border hover:border-interaction">
+      <div className="rounded-full overflow-hidden w-[45px]  md:w-[55px] xl:w-[60px] shadow-custom border-2 border-border hover:border-interaction">
         <Image                    
           src="/photo.jpg"
           alt="logo"

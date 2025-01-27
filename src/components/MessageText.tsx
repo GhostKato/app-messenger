@@ -16,7 +16,7 @@ const MessageText: React.FC<MessageTextProps> = ({ message, from }) => {
 
   return (  
     <li className={`p-5 rounded-full ${isFromUser ? 'ml-auto bg-sending' : 'mr-auto bg-receiving'}`}>
-      <p className="text-xl md:text-2xl">{message}</p>
+      <p className="text-xl xl:text-2xl">{message}</p>
     </li>
   );
 }
