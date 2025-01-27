@@ -14,20 +14,20 @@ const UserMenu: React.FC = () => {
     };
 
     return (
-        <div className="user-menu-container bg-sidebar w-[200px] h-[470px] rounded-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5 border border: border-border shadow-custom">
+        <div className="absolute top-[20px] left-[20px] z-[100] bg-sidebar w-[200px] h-[470px] rounded-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5 border border-border shadow-custom">
             <Button variant="close" onClick={handleUserMenuToggle}>
                 <IoCloseOutline className="w-6 h-6 md:w-8 md:h-8 xl:w-10 xl:h-10" />
             </Button>            
-            <div className='flex flex-col gap-2'>               
+            <div className="flex flex-col gap-2">               
                 <ThemeSelect type="sidebar" />
-                 <ThemeSelect type="receiving"/>
+                <ThemeSelect type="receiving" />
                 <ThemeSelect type="interaction" />
                 <ThemeSelect type="image" />
             </div>
             <UserMenuItem pathname="/message/">
                 Edit user
-        </UserMenuItem>     
-            </div>
+            </UserMenuItem>     
+        </div>
     );
 };
 
