@@ -1,6 +1,6 @@
 'use client';
 import Button from '@/components/Button';
-import Image from 'next/image';
+import Slider from '@/components/Slider';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -19,14 +19,8 @@ const Home: React.FC = () => {
   return (
     <div className='flex flex-col justify-center items-center gap-10 bg-cool-gradient bg-[length:200%_200%] animate-gradient-move min-h-screen'>
       <h1 className='text-[30px] md:text-[50px]'>App messenger</h1>
-      <div className='rounded-full overflow-hidden w-[250px]  md:w-[450px] xl:w-[500px] border-4 border-interaction shadow-custom'>
-        <Image                    
-                  src="/photo2.jpg"
-                  alt="logo"                
-                  width={500} 
-                  height={500}
-                  layout="intrinsic"
-                  />
+      <div className='flex justify-center items-center rounded-full overflow-hidden w-[250px] h-[136px] md:w-[450px] md:h-[248px] xl:w-[500px] xl:h-[276px] border-4 border-interaction shadow-custom'>
+        <Slider/>
       </div>  
       <div className='flex flex-col justify-center items-center gap-3 md:flex-row md:gap-5'>        
         <Button onClick={handleRegistrationClick}>Registration</Button>

@@ -5,7 +5,7 @@
     --interaction: #ff4b5c;
     --sending: rgba(60, 60, 56, 0.8);
     --receiving: rgba(105, 16, 105, 0.8);
-    --image: url('/background.jpg');
+    --image: url('/message/background.jpg');
 }
 
 // Sidebar colors
@@ -51,13 +51,13 @@
 
 // Images
 [data-image-theme="two"] {
-    --image: url('/background2.jpg');
+    --image: url('/message/background2.jpg');
 }
 
 [data-image-theme="three"] {
-    --image: url('/background3.jpg');
+    --image: url('/message/background3.jpg');
 }
 
 [data-image-theme="four"] {
-    --image: url('/background4.jpg');
+    --image: url('/message/background4.jpg');
 }

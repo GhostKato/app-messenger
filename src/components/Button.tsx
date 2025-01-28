@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
     "flex justify-center items-center rounded-full hover:bg-interaction shadow-custom-inset focus:bg-interaction transition duration-300 ease-in-out";
 
   const variantStyles = {
-    standard: "w-[100px] h-8 text-sm rounded md:w-40 md:h-12 md:text-base xl:w-60 xl:h-16 xl:text-lg",
+    standard: "w-[100px] h-8 md:w-40 text-sm rounded md:h-12 md:text-base xl:text-lg",
     close: "absolute top-1 right-1 rounded-full w-8 h-8 md:w-9 md:h-9 xl:w-9  xl:h-9 ",
     back: "absolute top-1 right-1 md:top-5 md:right-5 rounded-full w-[50px] h-[50px] md:w-[55px]  md:h-[55px]  xl:w-[60px]  xl:h-[60px] group", 
     logout: "rounded-full w-[45px] h-[45px] md:w-[55px] md:h-[55px]  xl:w-[60px]  xl:h-[60px] group",

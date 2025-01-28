@@ -44,5 +44,5 @@ export default {
       },
     },
   },
-  plugins: [plugin],
+  plugins: [plugin ],
 } satisfies Config;

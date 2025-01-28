@@ -39,7 +39,7 @@ const Message: React.FC = () => {
   return (   
     <div className='message-id flex flex-col relative shadow-custom-inset min-h-screen bg-cover bg-center pb-[15px]'>     
       <Button variant="back" onClick={handleBackClick}><FaArrowLeft className='text-interaction group-hover:text-white w-[25px] h-[25px] md:w-[35px] md:h-[35px] xl:w-[45px] xl:h-[45px]'/></Button>
-      <div  className="bg-cool-gradient bg-[length:200%_200%] animate-gradient-move shadow-custom p-[10px] md:p-[29px]">
+      <div  className="bg-cool-gradient bg-[length:200%_200%] animate-gradient-move shadow-custom p-[10px] md:p-[29px] xl:p-[32px]">
         <h1 className="text-3xl font-bold text-center">Messages</h1>
       </div>
       <ul  ref={listRef} className='flex flex-col flex-grow gap-[30px] overflow-auto p-[10px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-black'>
