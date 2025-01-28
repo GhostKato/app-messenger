@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Individual project: app messenger
 
-## Getting Started
+### Description:
 
-First, run the development server:
+The app messenger is a digital communication tool that allows you to always be in touch. This project aims to create a convenient, intuitive application for quick access to the messages of important people in your life or business.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![Home](/public/readme/home.jpg)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Features:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Interface:**
 
-## Learn More
+   - Simple and convenient design.
+   - Search by name.
+   - Ability to write messages to other users of the application.
+   - Access the chat with each user.
 
-To learn more about Next.js, take a look at the following resources:
+![Sidebar](/public/readme/sidebar.jpg)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Add photos:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   - Each user can set his own photo, which makes it easier to search and recognize.
 
-## Deploy on Vercel
+![Message](/public/readme/message.jpg)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Editing and deleting:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   - Easily edit or delete your posts.
+
+4. **Safety:**
+
+   - Protection of personal data through encryption and access to the application by password.
+   - The ability to change user data through a special form that allows you to edit the name, email and photo.
+
+5. **Adaptive design:**
+
+   - The application is optimized for various devices such as smartphones, tablets and desktops. Thanks to the adaptive design, users can comfortably use the application on any screen, while maintaining convenience and functionality.
+
+6. **Authorization through Google:**
+
+   - Users can log in to the app via Google, which facilitates the authorization and registration process. This saves time because you do not need to create a new account manually.
+
+---
+
+### Stages of implementation:
+
+1. **Interface design:**
+
+   - Developing interface layouts, choosing colors and fonts, creating a convenient menu and navigation.
+
+2. **Development of functionality:**
+
+   - Implement basic features such as searching, writing, editing and deleting messages.
+
+3. **Testing:**
+
+   - Conducting tests to ensure stable operation of the application on different devices.
+
+4. **Launch and support:**
+
+   - Publish the application and then update to improve functionality based on user feedback.
+
+---
+
+### Advantages of using:
+
+- Easy access to chats with important people.
+- Improve the organization of personal and working contacts.
+- Saving time in communication.
+- The ability to quickly respond thanks to a convenient interface.
+
+---
+
+### Technologies used:
+
+1. **Programming languages:**
+
+   - **JavaScript**
+
+2. **Frameworks and Libraries:**
+   - **Next.js**
+   - **App Router**
+   - **Redux**
+   - **SASS**
+   - **Tailwind CSS**
+   -
+3. **Databases:**
+
+   - **MongoDB**
+
+4. **API Integration:**
+
+   - **SMTP**
+
+5. **Safety:**
+
+   - **OAuth 2.0**
+   - **JWT**
+   - **HTTPS**
+     **bcrypt**
+
+6. **Other technologies:**
+
+   - **Git**
+   - **Cloudinary**
+
+7. **Adaptability:**
+   - **CSS Media Queries**
+   - **Flexbox**
+   - **Grid**
+   - **Tailwind CSS Utilities**
+
+---
+
+The project involves the creation of a convenient and secure tool for storing communication with the ability to add photos, edit and quickly access chats. The program provides high security through encryption and authorization through Google, as well as adaptive design for various devices. The project includes stages of interface development, functionality, testing and support.
