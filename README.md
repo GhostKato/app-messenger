@@ -78,6 +78,7 @@ The app messenger is a digital communication tool that allows you to always be i
 1. **Programming languages:**
 
    - **JavaScript**
+   - **TypeScript**  
 
 2. **Frameworks and Libraries:**
    - **Next.js**
