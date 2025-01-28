@@ -10,19 +10,19 @@ export default function Sidebar() {
   const pathname = usePathname(); 
   
   const users = [
-    { id: 1, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 2, name: 'William Murray', icon: '/photo.jpg', status:'offline' },
-    { id: 3, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 4, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 5, name: 'William Murray', icon: '/photo.jpg', status:'offline' },
-    { id: 6, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 7, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 8, name: 'William Murray', icon: '/photo.jpg', status: 'online' },
-    { id: 9, name: 'William Murray', icon: '/photo.jpg', status:'offline' },
-    { id: 10, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 11, name: 'William Murray', icon: '/photo.jpg', status:'online' },
-    { id: 12, name: 'William Murray', icon: '/photo.jpg', status:'online' }, 
-  ];  
+  { id: 1, name: 'Bram Cohen', icon: '/users/photo.jpg', status: 'offline' },
+  { id: 2, name: 'Brendan Eich', icon: '/users/photo2.jpg', status: 'offline' },
+  { id: 3, name: 'Donald Knuth', icon: '/users/photo3.jpg', status: 'online' },
+  { id: 4, name: 'Elon Musk', icon: '/users/photo4.jpg', status: 'online' },
+  { id: 5, name: 'Jeffrey Preston', icon: '/users/photo5.jpg', status: 'offline' },
+  { id: 6, name: 'John D. Carmack', icon: '/users/photo6.jpg', status: 'online' },
+  { id: 7, name: 'Linus Torvalds', icon: '/users/photo7.jpg', status: 'online' },
+  { id: 8, name: 'Mark Zuckerberg', icon: '/users/photo8.jpg', status: 'offline' },
+  { id: 9, name: 'Pichai Sundararajan', icon: '/users/photo9.jpg', status: 'online' },
+  { id: 10, name: 'Sir Timothy John', icon: '/users/photo10.jpg', status: 'offline' },
+  { id: 11, name: 'Solomon Hykes', icon: '/users/photo11.jpg', status: 'offline' },
+  { id: 12, name: 'Tim Cook', icon: '/users/photo12.jpg', status: 'online' },
+];  
 
   return (    
     <aside className="sidebar-container bg-sidebar h-screen">      

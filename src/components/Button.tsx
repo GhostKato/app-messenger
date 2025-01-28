@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
     close: "absolute top-1 right-1 rounded-full w-8 h-8 md:w-9 md:h-9 xl:w-9  xl:h-9 ",
     back: "absolute top-1 right-1 md:top-5 md:right-5 rounded-full w-[50px] h-[50px] md:w-[55px]  md:h-[55px]  xl:w-[60px]  xl:h-[60px] group", 
     logout: "rounded-full w-[45px] h-[45px] md:w-[55px] md:h-[55px]  xl:w-[60px]  xl:h-[60px] group",
-    sendMessage: "rounded-full w-[70px] h-[100px] xl:w-[100px]  xl:h-[100px] group border-2 border: border-interaction",
+    sendMessage: "rounded-[20px] w-[70px] h-[85px] xl:w-[92px] xl:h-[92px] group border-2 border: border-interaction",
   }; 
    
   const computedStyles = `${baseStyles} ${variantStyles[variant]} 
