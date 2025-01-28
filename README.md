@@ -86,7 +86,7 @@ The app messenger is a digital communication tool that allows you to always be i
    - **Redux**
    - **SASS**
    - **Tailwind CSS**
-   -
+  
 3. **Databases:**
 
    - **MongoDB**
