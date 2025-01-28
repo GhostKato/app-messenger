@@ -16,6 +16,12 @@ The app messenger is a digital communication tool that allows you to always be i
    - Search by name.
    - Ability to write messages to other users of the application.
    - Access the chat with each user.
+   - Display of user status (online/offline).
+   - Customizable appearance of the app, including:
+     - Changing the sidebar color.
+     - Modifying the message background color.
+     - Setting a background image for the chat.
+     - Personalizing the color scheme of interactive elements.
 
 ![Sidebar](/public/readme/sidebar.jpg)
 
@@ -23,11 +29,13 @@ The app messenger is a digital communication tool that allows you to always be i
 
    - Each user can set his own photo, which makes it easier to search and recognize.
 
-![Message](/public/readme/message.jpg)
+![Themes](/public/readme/themes.jpg)
 
 3. **Editing and deleting:**
 
    - Easily edit or delete your posts.
+
+![Message](/public/readme/message.jpg)
 
 4. **Safety:**
 
@@ -53,6 +61,8 @@ The app messenger is a digital communication tool that allows you to always be i
 2. **Development of functionality:**
 
    - Implement basic features such as searching, writing, editing and deleting messages.
+   - Displaying user status (online/offline).
+   - Personalization of the app’s appearance, including color schemes and background images.
 
 3. **Testing:**
 
@@ -70,6 +80,7 @@ The app messenger is a digital communication tool that allows you to always be i
 - Improve the organization of personal and working contacts.
 - Saving time in communication.
 - The ability to quickly respond thanks to a convenient interface.
+- Personalization options for a more comfortable user experience.
 
 ---
 
@@ -78,7 +89,7 @@ The app messenger is a digital communication tool that allows you to always be i
 1. **Programming languages:**
 
    - **JavaScript**
-   - **TypeScript**  
+   - **TypeScript**
 
 2. **Frameworks and Libraries:**
    - **Next.js**
@@ -86,7 +97,7 @@ The app messenger is a digital communication tool that allows you to always be i
    - **Redux**
    - **SASS**
    - **Tailwind CSS**
-  
+   -
 3. **Databases:**
 
    - **MongoDB**
@@ -115,4 +126,4 @@ The app messenger is a digital communication tool that allows you to always be i
 
 ---
 
-The project involves the creation of a convenient and secure tool for storing communication with the ability to add photos, edit and quickly access chats. The program provides high security through encryption and authorization through Google, as well as adaptive design for various devices. The project includes stages of interface development, functionality, testing and support.
+The project involves the creation of a convenient and secure tool for storing communication with the ability to add photos, edit and quickly access chats. The program provides high security through encryption and authorization through Google, as well as adaptive design for various devices. The project includes stages of interface development, functionality, testing, and support, along with personalization options and user status features to enhance the user experience.
