@@ -2,23 +2,27 @@
     --text: #fff;
     --border: #6b7280;
     --sidebar: #081f43;
+    --form: rgba(8, 31, 67, 0.9);
     --interaction: #ff4b5c;
     --sending: rgba(60, 60, 56, 0.8);
     --receiving: rgba(105, 16, 105, 0.8);
     --image: url('/message/background.jpg');
 }
 
-// Sidebar colors
+// Main colors
 [data-sidebar-theme="storm-gray"] {
     --sidebar: #2a2d32;
+    --form: rgba(42, 45, 50, 0.9);
 }
 
 [data-sidebar-theme="zest-orange"] {
     --sidebar: #583b0a;
+    --form: rgba(88, 59, 10, 0.9);
 }
 
 [data-sidebar-theme="garnet-red"] {
     --sidebar: #360909;
+    --form: rgba(54, 9, 9, 0.9);
 }
 
 //  Interaction colors

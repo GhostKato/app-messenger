@@ -62,12 +62,12 @@ const ThemeSelect: React.FC<ThemeSelectProps> = ({ type }) => {
         <div className="theme-select flex flex-col justify-center items-center">
           <label htmlFor={type} className="block mb-2">
             {type === 'sidebar'
-             ? 'Sidebar color'
+             ? 'Main color'
              : type === 'interaction'
              ? 'Interaction color'
              : type === 'image'
              ? 'Image'
-             : 'Receiving color'}
+             : 'Message color'}
           </label>
           <Field
             as="select"
