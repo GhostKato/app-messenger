@@ -18,7 +18,7 @@ const UserMenu: React.FC = () => {
     };
 
     return (
-        <div className="absolute flex flex-col items-center top-[20px] left-[20px] z-[100] bg-main w-[200px] h-[470px] rounded-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5 border border-border shadow-custom">
+        <div className="absolute flex flex-col items-center top-[20px] left-[20px] z-[100] bg-main w-[200px] h-[470px] rounded-lg gap-4 pt-[50px] pl-5 pr-5 border border-border shadow-custom">
             <Button variant="close" onClick={handleUserMenuToggle}>
                 <IoCloseOutline className="w-6 h-6 md:w-8 md:h-8 xl:w-10 xl:h-10" />
             </Button>            
