@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import FieldInput from './FieldInput';
 import Button from './Button';
 
-const RegistrationForm: React.FC = () => {
+const UserEditForm: React.FC = () => {
   
   const validationSchema = Yup.object({
     username: Yup.string()
@@ -18,7 +18,7 @@ const RegistrationForm: React.FC = () => {
       .required('Password required'),
   });
 
-  return (               
+  return (                 
         <Formik
           initialValues={{ email: '', username: '', password: '' }}
           validationSchema={validationSchema}
@@ -40,8 +40,8 @@ const RegistrationForm: React.FC = () => {
               </Button>
             </Form>
           )}
-        </Formik>    
-     );
+        </Formik>      
+  );
 };
 
-export default RegistrationForm;
+export default UserEditForm;

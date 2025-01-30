@@ -10,7 +10,7 @@ interface FieldInputProps {
 
 const FieldInput: React.FC<FieldInputProps> = ({ name, type, label, className = "", as }) => {
   
-  const computedStyles = `flex-grow w-60 h-10 md:w-80 md:h-14 pl-3 text-sm  md:text-base xl:text-lg rounded-full border-2 border: border-border hover:border-interaction shadow-custom-inset focus:border-interaction transition duration-300 ease-in-out ${className}`;
+  const computedStyles = `flex-grow w-60 h-10 md:w-80 md:h-14 pl-3 text-sm  md:text-base xl:text-lg rounded-[15px] md:rounded-[20px] border-2 border: border-border hover:border-interaction shadow-custom-inset focus:border-interaction transition duration-300 ease-in-out ${className}`;
   
   return (
     <div className="flex flex-col flex-grow relative">

@@ -77,7 +77,7 @@ const ThemeSelect: React.FC<ThemeSelectProps> = ({ type }) => {
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => handleThemeChange(e, setFieldValue, type)} 
           >
             {themeOptions[type].map((option) => (
-              <option key={option.value} value={option.value} className='bg-sidebar border-2'>
+              <option key={option.value} value={option.value} className='bg-main border-2'>
                 {option.label}
               </option>
             ))}

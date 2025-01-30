@@ -1,7 +1,8 @@
 :root {
     --text: #fff;
     --border: #6b7280;
-    --sidebar: #081f43;
+    --main: #081f43;
+    --bg: rgba(19, 19, 18, 0.937);
     --form: rgba(8, 31, 67, 0.9);
     --interaction: #ff4b5c;
     --sending: rgba(60, 60, 56, 0.8);
@@ -11,17 +12,17 @@
 
 // Main colors
 [data-sidebar-theme="storm-gray"] {
-    --sidebar: #2a2d32;
+    --main: #2a2d32;
     --form: rgba(42, 45, 50, 0.9);
 }
 
 [data-sidebar-theme="zest-orange"] {
-    --sidebar: #583b0a;
+    --main: #583b0a;
     --form: rgba(88, 59, 10, 0.9);
 }
 
 [data-sidebar-theme="garnet-red"] {
-    --sidebar: #360909;
+    --main: #360909;
     --form: rgba(54, 9, 9, 0.9);
 }
 

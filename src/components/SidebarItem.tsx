@@ -31,7 +31,7 @@ export default function SidebarItem({
         className={clsx(
           'flex justify-between items-center mx-1 gap-3.0 w-[100%] px-[15px]',
           current &&
-            'after:absolute after:top-4 after:left-0 after:h-4 after:w-4 after:bg-sidebar after:border-sidebar after:border-2  after:rounded-full ',
+            'after:absolute after:top-4 after:left-0 after:h-4 after:w-4 after:bg-main after:border-main after:border-2  after:rounded-full ',
         )}
       >
         <div className='rounded-full w-[50px] h-[50px] overflow-hidden shadow-custom'>

@@ -1,6 +1,6 @@
 interface Modals {
   [key: string]: {   
-    sidebar?: boolean;
+    userEdit?: boolean;
     userMenu?: boolean;
   };
 }
@@ -12,14 +12,14 @@ interface RootState {
 export const selectModalState = (
   state: RootState,
   contactId: string | null,
-  modalType: 'sidebar' | 'userMenu'
+  modalType: 'userEdit' | 'userMenu'
 ): boolean => {
   const id = contactId === null ? modalType : contactId;
   return state.modals[id] ? state.modals[id][modalType] ?? false : false;
 };
 
-export const selectSidebar = (state: RootState): boolean =>
-  selectModalState(state, null, 'sidebar');
-
 export const selectUserMenu = (state: RootState): boolean =>
   selectModalState(state, null, 'userMenu');
+
+export const selectUserEdit = (state: RootState): boolean =>
+  selectModalState(state, null, 'userEdit');

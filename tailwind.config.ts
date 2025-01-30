@@ -15,7 +15,8 @@ export default {
     extend: {
       colors: {
         text: 'var(--text)',
-        sidebar: 'var(--sidebar)',
+        main: 'var(--main)',
+         bg: 'var(--bg)',
         form: 'var(--form)',
         border: 'var(--border)',        
         interaction: 'var(--interaction)', 
