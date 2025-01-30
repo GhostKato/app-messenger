@@ -4,7 +4,7 @@
 
 The app messenger is a digital communication tool that allows you to always be in touch. This project aims to create a convenient, intuitive application for quick access to the messages of important people in your life or business.
 
-![Home](/public/readme/home.jpg)
+![Welcome](/public/readme/welcome.jpg)
 
 ---
 
@@ -23,13 +23,13 @@ The app messenger is a digital communication tool that allows you to always be i
      - Setting a background image for the chat.
      - Personalizing the color scheme of interactive elements.
 
-![Sidebar](/public/readme/sidebar.jpg)
+![Registration](/public/readme/registration.jpg)
 
 2. **Add photos:**
 
    - Each user can set his own photo, which makes it easier to search and recognize.
 
-![Themes](/public/readme/themes.jpg)
+![Login](/public/readme/login.jpg)
 
 3. **Editing and deleting:**
 
@@ -42,9 +42,13 @@ The app messenger is a digital communication tool that allows you to always be i
    - Protection of personal data through encryption and access to the application by password.
    - The ability to change user data through a special form that allows you to edit the name, email and photo.
 
+![Sidebar](/public/readme/sidebar.jpg)
+
 5. **Adaptive design:**
 
    - The application is optimized for various devices such as smartphones, tablets and desktops. Thanks to the adaptive design, users can comfortably use the application on any screen, while maintaining convenience and functionality.
+
+![Registration-variant](/public/readme/registration-variant.jpg)
 
 6. **Authorization through Google:**
 
@@ -52,11 +56,15 @@ The app messenger is a digital communication tool that allows you to always be i
 
 ---
 
+![Login-variant](/public/readme/login-variant.jpg)
+
 ### Stages of implementation:
 
 1. **Interface design:**
 
    - Developing interface layouts, choosing colors and fonts, creating a convenient menu and navigation.
+
+![Themes](/public/readme/themes.jpg)
 
 2. **Development of functionality:**
 
