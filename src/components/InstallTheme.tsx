@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 const InstallTheme = () => {
   // Масив типів тем
-  const themeTypes: ('sidebar' | 'interaction' | 'receiving')[] = ['sidebar', 'interaction', 'receiving'];
+  const themeTypes: ('sidebar' | 'interaction' | 'receiving' | 'image')[] = ['sidebar', 'interaction', 'receiving', 'image'];
 
   useEffect(() => {
     // Перебираємо всі типи тем і застосовуємо їх
