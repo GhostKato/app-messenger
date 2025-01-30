@@ -28,8 +28,7 @@ const Header: React.FC = () => {
           alt="logo"
           onClick={handleUserMenuToggle}
           width={200} 
-          height={200}
-          layout="intrinsic"
+          height={200}          
           />  
       </div>
  

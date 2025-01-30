@@ -40,8 +40,7 @@ export default function SidebarItem({
             src={src}
             alt={alt}
             width={50} 
-            height={50}
-            layout="intrinsic"
+            height={50}            
           />
         </div>
         <span className="text-xl md:text-2xl text-zinc-50">{children}</span>
