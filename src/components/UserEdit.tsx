@@ -17,7 +17,7 @@ const UserEdit: React.FC = () => {
 
   return (
     <div className='fixed top-0 left-0 z-[100] w-screen h-screen flex justify-center items-center bg-bg'>
-      <div className='bg-main relative w-[300px] md:w-[400px] h-[440px] rounded-lg flex flex-col gap-4 pt-[50px] pl-5 pr-5 border border-border shadow-custom'>
+      <div className='bg-main relative w-[300px] md:w-[400px] h-[620px] md:h-[770px] rounded-lg flex flex-col gap-4 pt-[20px] pl-5 pr-5 border border-border shadow-custom'>
          <Button variant="close" onClick={handleUserEditToggle}>
                   <IoCloseOutline className="w-6 h-6 md:w-8 md:h-8 xl:w-10 xl:h-10" />
               </Button> 
