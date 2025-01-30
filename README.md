@@ -42,13 +42,13 @@ The app messenger is a digital communication tool that allows you to always be i
    - Protection of personal data through encryption and access to the application by password.
    - The ability to change user data through a special form that allows you to edit the name, email and photo.
 
-![Sidebar](/public/readme/sidebar.jpg)
+![Registration-variant](/public/readme/registration-variant.jpg)
 
 5. **Adaptive design:**
 
    - The application is optimized for various devices such as smartphones, tablets and desktops. Thanks to the adaptive design, users can comfortably use the application on any screen, while maintaining convenience and functionality.
 
-![Registration-variant](/public/readme/registration-variant.jpg)
+![Login-variant](/public/readme/login-variant.jpg)
 
 6. **Authorization through Google:**
 
@@ -56,7 +56,7 @@ The app messenger is a digital communication tool that allows you to always be i
 
 ---
 
-![Login-variant](/public/readme/login-variant.jpg)
+![Sidebar](/public/readme/sidebar.jpg)
 
 ### Stages of implementation:
 
@@ -71,6 +71,8 @@ The app messenger is a digital communication tool that allows you to always be i
    - Implement basic features such as searching, writing, editing and deleting messages.
    - Displaying user status (online/offline).
    - Personalization of the app’s appearance, including color schemes and background images.
+
+![Modal](/public/readme/modal.jpg)
 
 3. **Testing:**
 
