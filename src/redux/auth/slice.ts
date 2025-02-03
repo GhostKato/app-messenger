@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "@/types/userTypes";
 import {
   register,
   logIn,
@@ -9,13 +10,6 @@ import {
   exchangeAuthCodeForToken,
   // updateUser
 } from "./operations";
-
-interface User {
-  name: string | null;
-  email: string | null;
-  photo: string | null;
-  id: string | null;
-}
 
 interface AuthState {
   user: User;

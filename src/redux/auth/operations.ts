@@ -2,13 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi, setToken, clearToken, getToken } from "../../config/messagesApi";
 import { AxiosError } from 'axios';
 import { createUserFormData } from "../../utils/formDataUtils";
-
-interface User {
-  id: string;
-  name: string | null;
-  email: string | null;
-  photo: string | null;
-}
+import { UserFormDataBody, User } from "@/types/userTypes";
 
 interface AuthResponse {
   data: {
@@ -28,13 +22,6 @@ interface AxiosErrorWithResponse extends Error {
       message?: string;
     };
   };
-}
-
-interface UserFormDataBody {
-  name: string;
-  email: string;
-  password?: string;
-  photo?: File | null;
 }
 
 interface UpdateUserParams {

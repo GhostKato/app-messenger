@@ -1,21 +1,15 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
 import Button from './Button';
 import { BsFillSendFill } from "react-icons/bs";
+import MessageSchema from '../validation/MessageSchema';
 
-const MessageForm: React.FC = () => {
+const MessageForm: React.FC = () => { 
   
-  const validationSchema = Yup.object({   
-    message: Yup.string()
-          .min(3, 'Must be at least 3 characters')
-          .required("Username required"),
-  });
-
   return (          
         <Formik
           initialValues={{ message: '' }}
-          validationSchema={validationSchema}
+          validationSchema={MessageSchema}
           onSubmit={(values, { resetForm }) => {
             console.log('Форма надіслана:', values);
             resetForm();

@@ -1,26 +1,17 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import FieldInput from './FieldInput';
 import Button from './Button';
+import loginUserSchema from '../validation/loginUserSchema';
 
-const LoginForm: React.FC = () => {
-  
-  const validationSchema = Yup.object({   
-    email: Yup.string()
-      .email('Incorrect e-mail format')
-      .required('Email is required'),
-    password: Yup.string()
-      .min(6, 'Password must be at least 6 characters long')
-      .required('Password required'),
-  });
+const LoginForm: React.FC = () => {   
 
   return (
     <div className="">
       <div className="">        
         <Formik
           initialValues={{ email: '', password: '' }}
-          validationSchema={validationSchema}
+          validationSchema={loginUserSchema}
           onSubmit={(values, { resetForm }) => {
             console.log('Форма надіслана:', values);
             resetForm();

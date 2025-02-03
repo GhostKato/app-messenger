@@ -1,9 +1,4 @@
-type UserFormDataBody = {
-  name: string;
-  email: string;
-  password?: string;
-  photo?: File | null;
-};
+import { UserFormDataBody } from "@/types/userTypes";
 
 export const createUserFormData = (body: UserFormDataBody): FormData => {
   const formData = new FormData();  
