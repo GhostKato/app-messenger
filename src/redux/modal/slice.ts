@@ -10,7 +10,7 @@ interface ModalsState {
 
 interface ModalPayload {
   contactId: string | null;
-  modalType: 'userEdit' | 'userMenu';
+  modalType: 'userUpdate' | 'userMenu';
 }
 
 const initialState: ModalsState = {};

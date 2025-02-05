@@ -2,21 +2,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi, setToken, clearToken, getToken } from "../../config/messagesApi";
 import { AxiosError } from 'axios';
 import { createUserFormData } from "../../utils/formDataUtils";
-import { UserFormDataBody, User } from "@/types/userTypes";
+import { UpdateUserParams, User, UserFormValues } from "@/types/userTypes";
 
-interface AuthResponse {
+type AuthResponse = {
   data: {
-    accessToken: string;
+    accessToken?: string;
     user: User;
   };
 }
 
-interface AuthCredentials {
-  email: string;
-  password: string;
-}
-
-interface AxiosErrorWithResponse extends Error {
+type AxiosErrorWithResponse = Error & {
   response?: {
     data?: {
       message?: string;
@@ -24,27 +19,20 @@ interface AxiosErrorWithResponse extends Error {
   };
 }
 
-interface UpdateUserParams {
-  id: string;
-  body: UserFormDataBody;
-}
 
-interface Users {
-  _id: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;  
-}
-
-export const register = createAsyncThunk<AuthResponse['data'], AuthCredentials, { rejectValue: string }>(
+export const register = createAsyncThunk<AuthResponse['data'], UserFormValues, { rejectValue: string }>(
   'auth/register',
-  async (credentials: AuthCredentials, thunkApi) => {
+  async (credentials: UserFormValues, thunkApi) => {
     try {
       await messagesApi.post('/auth/register', credentials);
       const { email, password } = credentials;
       try {
         const loginResponse: AuthResponse = await messagesApi.post('/auth/login', { email, password });
-        setToken(loginResponse.data.accessToken);
+        const { accessToken } = loginResponse.data;
+
+        if (accessToken) {
+          setToken(accessToken); 
+        }
         return loginResponse.data;
       } catch (loginError: unknown) {
         if ((loginError as AxiosErrorWithResponse).response) {
@@ -61,12 +49,16 @@ export const register = createAsyncThunk<AuthResponse['data'], AuthCredentials, 
   }
 );
 
-export const logIn = createAsyncThunk<AuthResponse['data'], AuthCredentials, { rejectValue: string }>(
+export const logIn = createAsyncThunk<AuthResponse['data'], UserFormValues, { rejectValue: string }>(
   'auth/login',
-  async (credentials: AuthCredentials, thunkAPI) => {
+  async (credentials: UserFormValues, thunkAPI) => {
     try {
       const { data }: AuthResponse = await messagesApi.post('auth/login', credentials);
-      setToken(data.accessToken);
+      const { accessToken } = data;
+
+      if (accessToken) {
+        setToken(accessToken);
+      }
       return data;
     } catch (err: unknown) {
       if ((err as AxiosErrorWithResponse).response) {
@@ -104,7 +96,12 @@ export const refreshUser = createAsyncThunk<AuthResponse['data'], void, { reject
     }
     try {
       const { data }: AuthResponse = await messagesApi.post('auth/refresh');
-      setToken(data.accessToken);
+      const { accessToken } = data;
+
+      if (accessToken) {
+        setToken(accessToken); 
+      }
+
       return data;
     } catch (err: unknown) {
       if ((err as AxiosErrorWithResponse).response) {
@@ -118,8 +115,8 @@ export const refreshUser = createAsyncThunk<AuthResponse['data'], void, { reject
   }
 );
 
-export const updateUser = createAsyncThunk<Users, UpdateUserParams, { rejectValue: string }>(
-  'user/updateUser', 
+export const updateUser = createAsyncThunk<User, UpdateUserParams, { rejectValue: string }>(
+  'user/updateUser',
   async ({ id, body }: UpdateUserParams, thunkAPI) => {
     try {
       const formData = createUserFormData(body);
@@ -134,79 +131,6 @@ export const updateUser = createAsyncThunk<Users, UpdateUserParams, { rejectValu
         return thunkAPI.rejectWithValue(error.message);
       }
       return thunkAPI.rejectWithValue('Сталася невідома помилка');
-    }
-  }
-);
-
-export const sendResetEmail = createAsyncThunk<void, string, { rejectValue: string }>(
-  'auth/sendResetEmail',
-  async (email: string, { rejectWithValue }) => {
-    try {
-      const response = await messagesApi.post('/auth/send-reset-email', { email });
-      return response.data;
-    } catch (error: unknown) {
-      if ((error as AxiosErrorWithResponse).response) {
-        return rejectWithValue((error as AxiosErrorWithResponse).response?.data?.message || 'Unable to send a password reset email');
-      }
-      if (error instanceof Error) {
-        return rejectWithValue(error.message);
-      }
-      return rejectWithValue('Unexpected error occurred');
-    }
-  }
-);
-
-export const resetPassword = createAsyncThunk<void, { token: string; password: string }, { rejectValue: string }>(
-  'auth/resetPassword',
-  async ({ token, password }, { rejectWithValue }) => {
-    try {
-      const response = await messagesApi.post('/auth/reset-pwd', { token, password });
-      return response.data;
-    } catch (error: unknown) {
-      if ((error as AxiosErrorWithResponse).response) {
-        return rejectWithValue((error as AxiosErrorWithResponse).response?.data?.message || 'Could not reset password');
-      }
-      if (error instanceof Error) {
-        return rejectWithValue(error.message);
-      }
-      return rejectWithValue('Unexpected error occurred');
-    }
-  }
-);
-
-export const getGoogleAuthUrl = async (): Promise<string> => {
-  try {
-    const res = await messagesApi.get('/auth/get-oauth-url');
-    if (res.status !== 200) {
-      throw new Error('Unable to get authorization URL');
-    }
-    return res.data.data.url;
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      throw new Error(`Error getting Google Auth URL: ${error.message}`);
-    }
-    throw new Error('Unexpected error occurred');
-  }
-};
-
-export const exchangeAuthCodeForToken = createAsyncThunk<void, string, { rejectValue: string }>(
-  'auth/exchangeAuthCodeForToken',
-  async (code: string, { rejectWithValue }) => {
-    try {
-      const res = await messagesApi.post('/auth/confirm-oauth', { code });
-      if (res.status !== 200) {
-        throw new Error('Error exchanging code for token');
-      }
-      setToken(res.data.data.accessToken);
-      return res.data.data;
-    } catch (error: unknown) {
-      if ((error as AxiosErrorWithResponse).response) {
-        return rejectWithValue('Error sending code to server');
-      }
-      if (error instanceof Error) {
-        return rejectWithValue(error.message);
-      }
-      return rejectWithValue('Unexpected error occurred');
     }
   }
 );

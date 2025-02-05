@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react';
 
-export interface FormMenuProps {
+type FormMenuProps = {
   current?: boolean;
   pathname: string;
   children: React.ReactNode;

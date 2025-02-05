@@ -1,12 +1,12 @@
 import { Field, ErrorMessage } from 'formik';
 
-interface FieldInputProps {
+type FieldInputProps = {
   name: string;
   type: string;
   label: string;
   className?: string;
   as?: string;
-}
+};
 
 const FieldInput: React.FC<FieldInputProps> = ({ name, type, label, className = "", as }) => {
   

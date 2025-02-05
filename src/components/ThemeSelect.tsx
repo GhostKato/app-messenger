@@ -4,7 +4,7 @@ import React from 'react';
 import { Formik, Field, FormikHelpers } from 'formik';
 
 // Типи варіантів для вибору
-interface ThemeSelectProps {
+type ThemeSelectProps = {
   type: 'sidebar' | 'interaction' | 'receiving' | 'image'; // Тип для зміни sidebar, interaction чи receiving
 }
 

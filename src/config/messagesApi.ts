@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 type Token = string;
 
 export const messagesApi: AxiosInstance = axios.create({
-     // baseURL: "http://localhost:3000",
+    //  baseURL: "http://localhost:3000",
   baseURL: "https://server-messenger.onrender.com",
   withCredentials: true,
 });

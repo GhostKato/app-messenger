@@ -3,11 +3,12 @@ import { MdAddPhotoAlternate } from "react-icons/md";
 import { ErrorMessage } from "formik";
 import { handleFileChange } from "../utils/fileUtils";
 
-interface FileInputProps {
+type FileInputProps = {
   setFieldValue: (field: string, value: File) => void;
-setPreview: (value: string | ArrayBuffer | null) => void;
+  setPreview: (value: string | ArrayBuffer | null) => void;
+  name: string;
   className?: string;  
-}
+};
 
 const FileInput: React.FC<FileInputProps> = ({ setFieldValue, setPreview, className = ""}) => {
   return (

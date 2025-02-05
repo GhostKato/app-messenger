@@ -1,21 +1,43 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import FieldInput from './FieldInput';
 import Button from './Button';
 import loginUserSchema from '../validation/loginUserSchema';
+import { useDispatch} from 'react-redux';
+import { AppDispatch } from '../redux/store';
+import { useRouter } from 'next/navigation';
+import { logIn } from '../redux/auth/operations';
+import { UserFormValues } from "@/types/userTypes";
 
-const LoginForm: React.FC = () => {   
 
-  return (
-    <div className="">
-      <div className="">        
+const LoginForm: React.FC = () => {  
+  
+  const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();  
+
+  const initialValues: UserFormValues = {   
+    email: '',
+    password: '',
+  };
+
+  const handleSubmit = async (
+      values: UserFormValues,
+      actions: FormikHelpers<UserFormValues>
+    ) => {
+      try {
+        await dispatch(logIn(values));
+        actions.resetForm();
+         router.push('/message');
+      } catch (error) {
+        console.error(error);
+      }
+    };     
+
+  return (               
         <Formik
-          initialValues={{ email: '', password: '' }}
+          initialValues={initialValues}
           validationSchema={loginUserSchema}
-          onSubmit={(values, { resetForm }) => {
-            console.log('Форма надіслана:', values);
-            resetForm();
-          }}
+         onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
               <Form className="flex justify-center items-center flex-col w-full gap-5">
@@ -29,9 +51,7 @@ const LoginForm: React.FC = () => {
               </Button>
             </Form>
           )}
-        </Formik>
-      </div>
-    </div>
+        </Formik>     
   );
 };
 

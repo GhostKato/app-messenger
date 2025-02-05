@@ -12,8 +12,8 @@ const UserMenu: React.FC = () => {
         dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
     };
 
-    const handleEditUserToggle = () => {
-        dispatch(toggleModal({ contactId: null, modalType: 'userEdit' }));
+    const handleUpdateUserToggle = () => {
+        dispatch(toggleModal({ contactId: null, modalType: 'userUpdate' }));
         dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
     };
 
@@ -28,8 +28,8 @@ const UserMenu: React.FC = () => {
                 <ThemeSelect type="interaction" />
                 <ThemeSelect type="image" />
             </div>
-            <Button onClick={handleEditUserToggle}>
-               Edit user
+            <Button onClick={handleUpdateUserToggle}>
+               Update user
             </Button>     
         </div>
     );
