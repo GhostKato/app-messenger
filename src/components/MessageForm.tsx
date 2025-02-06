@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import Button from './Button';
 import { BsFillSendFill } from "react-icons/bs";
-import messageSchema from '../validation/messageSchema1';
+import messageSchema from '../validation/messageSchema';
 
 const MessageForm: React.FC = () => { 
   
