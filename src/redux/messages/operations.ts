@@ -1,45 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { messagesApi } from '../../config/messagesApi';
 
-
-type Message = {
-  _id: string;
-  message: string;
-  from: string;
-  to: string;
-  createdAt: string;
-  updatedAt: string; 
-}
-
-type AddMessageRequest = {
-  message: string; 
-}
-
-type UpdateMessageRequest = {
-  _id: string;
-  body: {
-    message: string;    
-  };
-}
-
-type AddMessageResponse = {
-  _id: string;
-  message: string;  
-}
-
-type UpdateMessageResponse = {
-  _id: string;
-  message: string;  
-}
-
-export const fetchMessages = createAsyncThunk<Message[], void, { rejectValue: string }>(
+export const fetchMessages = createAsyncThunk(
   'message/fetchMessages', 
-  async (_, thunkAPI) => {
+  async (toId: string, thunkAPI) => {  
     try {
-      const { data } = await messagesApi.get('message');
+      const { data } = await messagesApi.get(`message/${toId}`);
       return data;
-    } catch (error: unknown) {
-      
+    } catch (error) {
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);
       }
@@ -48,14 +16,13 @@ export const fetchMessages = createAsyncThunk<Message[], void, { rejectValue: st
   }
 );
 
-
-export const addMessages = createAsyncThunk<AddMessageResponse, AddMessageRequest, { rejectValue: string }>(
-  'message/addMessage', 
+export const addMessages = createAsyncThunk(
+  'message/addMessage',
   async (body, thunkAPI) => {
     try {
       const { data } = await messagesApi.post('message', body);
       return data;
-    } catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);
       }
@@ -64,14 +31,13 @@ export const addMessages = createAsyncThunk<AddMessageResponse, AddMessageReques
   }
 );
 
-
-export const updateMessages = createAsyncThunk<UpdateMessageResponse, UpdateMessageRequest, { rejectValue: string }>(
+export const updateMessages = createAsyncThunk(
   'message/updateMessage',
-  async ({ id, body }, thunkAPI) => {
+  async ({ _id, body }, thunkAPI) => {
     try {
-      const { data } = await messagesApi.patch(`message/${id}`, body);
+      const { data } = await messagesApi.patch(`message/${_id}`, body);
       return data;
-    } catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);
       }
@@ -80,14 +46,13 @@ export const updateMessages = createAsyncThunk<UpdateMessageResponse, UpdateMess
   }
 );
 
-
-export const deleteMessages = createAsyncThunk<number, number, { rejectValue: string }>(
+export const deleteMessages = createAsyncThunk(
   'messages/deleteMessage',
   async (id, thunkAPI) => {
     try {
       await messagesApi.delete(`message/${id}`);
       return id;
-    } catch (error: unknown) {
+    } catch (error) {
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);
       }

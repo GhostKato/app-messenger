@@ -1,14 +1,14 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchUsers} from './operations';
 import { logOut } from '../auth/operations';
-import { User } from "@/types/userTypes";
+import { UserType } from "@/types/userTypes";
 
 interface FetchUsersResponse {
-  data: User[]; 
+  data: UserType[]; 
 }
 
 interface UsersState {
-  users: User[];
+  users: UserType[];
   isLoading: boolean;
   isError: boolean;
 }

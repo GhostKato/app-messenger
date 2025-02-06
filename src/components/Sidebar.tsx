@@ -34,7 +34,7 @@ export default function Sidebar() {
               key={user._id}
               current={pathname === `/message/${user._id}`}
               pathname={`/message/${user._id}`}
-              src={user.photo}
+              src={user.photo || '/photo.jpg'}
               alt={`${user.name} icon`}
               status="online"
             >

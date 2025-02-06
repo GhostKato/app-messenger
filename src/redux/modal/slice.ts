@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ModalState {
+type ModalState = {
   [modalType: string]: boolean;
 }
 
-interface ModalsState {
+type ModalsState = {
   [key: string]: ModalState;
 }
 
-interface ModalPayload {
+type ModalPayload = {
   contactId: string | null;
   modalType: 'userUpdate' | 'userMenu';
 }

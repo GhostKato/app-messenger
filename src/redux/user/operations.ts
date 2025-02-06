@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi } from "../../config/messagesApi";
-import { User } from "@/types/userTypes";
+import { UserType } from "@/types/userTypes";
 
 type FetchUsersResponse = {
-  data: User[]; 
+  data: UserType[]; 
 }
 
 export const fetchUsers = createAsyncThunk<FetchUsersResponse, void, { rejectValue: string }>(

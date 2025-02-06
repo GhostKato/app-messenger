@@ -2,14 +2,14 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import Button from './Button';
 import { BsFillSendFill } from "react-icons/bs";
-import MessageSchema from '../validation/MessageSchema';
+import messageSchema from '../validation/messageSchema1';
 
 const MessageForm: React.FC = () => { 
   
   return (          
         <Formik
           initialValues={{ message: '' }}
-          validationSchema={MessageSchema}
+          validationSchema={messageSchema}
           onSubmit={(values, { resetForm }) => {
             console.log('Форма надіслана:', values);
             resetForm();

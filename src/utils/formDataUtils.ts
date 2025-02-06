@@ -1,6 +1,6 @@
-import { UserFormDataBody } from "@/types/userTypes";
+import { UserFormDataType } from "@/types/userTypes";
 
-export const createUserFormData = (body: UserFormDataBody): FormData => {
+export const createUserFormData = (body: UserFormDataType): FormData => {
   const formData = new FormData();  
   
   formData.append('name', body.name);

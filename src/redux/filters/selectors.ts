@@ -1,13 +1,13 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { selectUsers } from "../user/selectors";
 import { RootState } from '../store';
-import { User } from "@/types/userTypes";
+import { UserType } from "@/types/userTypes";
 
 export const selectNameFilter = (state: RootState) => state.filters.name;
 
 export const selectFilteredUsers = createSelector(
-  [selectUsers as (state: RootState) => User[], selectNameFilter],
-  (users: User[], nameFilter: string) => {
+  [selectUsers as (state: RootState) => UserType[], selectNameFilter],
+  (users: UserType[], nameFilter: string) => {
     if (!nameFilter) {
       return users;
     }

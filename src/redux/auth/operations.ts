@@ -3,12 +3,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi, setToken, clearToken, getToken } from "../../config/messagesApi";
 import { AxiosError } from 'axios';
 import { createUserFormData } from "../../utils/formDataUtils";
-import { UpdateUserParams, User, UserFormValues } from "@/types/userTypes";
+import { UpdateUserType, UserType, UserFormType } from "@/types/userTypes";
 
 type AuthResponse = {
   data: {
     accessToken?: string;
-    user: User;
+    user: UserType;
   };
 }
 
@@ -16,7 +16,7 @@ type AuthResponseLogin = {
   data: { 
     data: {
       accessToken?: string;
-      user: User;
+      user: UserType;
     }
   };
 };
@@ -30,9 +30,9 @@ type AxiosErrorWithResponse = Error & {
 }
 
 
-export const register = createAsyncThunk<AuthResponse['data'], UserFormValues, { rejectValue: string }>(
+export const register = createAsyncThunk<AuthResponse['data'], UserFormType, { rejectValue: string }>(
   'auth/register',
-  async (credentials: UserFormValues, thunkApi) => {
+  async (credentials: UserFormType, thunkApi) => {
     try {
       await messagesApi.post('/auth/register', credentials);
       const { email, password } = credentials;
@@ -60,9 +60,9 @@ export const register = createAsyncThunk<AuthResponse['data'], UserFormValues, {
   }
 );
 
-export const logIn = createAsyncThunk<AuthResponse['data'], UserFormValues, { rejectValue: string }>(
+export const logIn = createAsyncThunk<AuthResponse['data'], UserFormType, { rejectValue: string }>(
   'auth/login',
-  async (credentials: UserFormValues, thunkAPI) => {
+  async (credentials: UserFormType, thunkAPI) => {
     try {
       const { data }: AuthResponseLogin = await messagesApi.post('auth/login', credentials);
       const { accessToken } = data.data;
@@ -126,9 +126,9 @@ export const refreshUser = createAsyncThunk<AuthResponse['data'], void, { reject
   }
 );
 
-export const updateUser = createAsyncThunk<User, UpdateUserParams, { rejectValue: string }>(
+export const updateUser = createAsyncThunk<UserType, UpdateUserType, { rejectValue: string }>(
   'user/updateUser',
-  async ({ id, body }: UpdateUserParams, thunkAPI) => {
+  async ({ id, body }: UpdateUserType, thunkAPI) => {
     try {
       const formData = createUserFormData(body);
       const { data } = await messagesApi.patch(`user/${id}`, formData, {

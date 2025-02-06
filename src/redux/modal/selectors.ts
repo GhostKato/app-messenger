@@ -1,11 +1,11 @@
-interface Modals {
+type Modals = {
   [key: string]: {   
     userUpdate?: boolean;
     userMenu?: boolean;
   };
 }
 
-interface RootState {
+type RootState = {
   modals: Modals;
 }
 

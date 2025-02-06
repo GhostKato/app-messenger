@@ -1,27 +1,27 @@
-export type User = {
+export type UserType = {
   name: string | null;
   email: string | null;
   photo: string | null;
   _id: string | null;
 };
 
-export type UserFormValues = {
+export type UserFormType = {
   name?: string; 
   email?: string;
   password?: string;
   photo?: File | string | null; 
 }
 
-export type UserFormDataBody = {
+export type UserFormDataType = {
   name: string;
   email: string;
   password?: string;
   photo?: File | null;
 };
 
-export type UpdateUserParams = {
+export type UpdateUserType = {
   id: string;
-  body: UserFormDataBody;
+  body: UserFormDataType;
 }
 
 

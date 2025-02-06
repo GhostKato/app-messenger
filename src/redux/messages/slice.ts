@@ -2,34 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { addMessages, deleteMessages, fetchMessages, updateMessages } from './operations';
 import { logOut } from '../auth/operations';
 
-type Message = {
-  _id: string;
-  message: string;
-  from: string;
-  to: string;
-  createdAt: string;
-  updatedAt: string; 
-}
-
-type FetchMessagesResponse = {
-  data: Message[]; 
-}
-
-type AddMessageResponse = {
-  data: Message; 
-}
-
-type UpdateMessageResponse = {
-  message: Message; 
-}
-
-type MessagesState = {
-  messages: Message[];
-  isLoading: boolean;
-  isError: boolean;
-}
-
-const initialState: MessagesState = {
+const initialState = {
   messages: [],
   isLoading: false,
   isError: false,
@@ -38,33 +11,33 @@ const initialState: MessagesState = {
 const messagesSlice = createSlice({
   name: 'messages',
   initialState,
-  reducers: {}, 
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(fetchMessages.fulfilled, (state, action) => {
-        
-        const payload = action.payload as unknown as FetchMessagesResponse;
-        state.messages = payload.data || [];
+        if (Array.isArray(action.payload.data)) {
+          state.messages = action.payload.data.data;
+        } else {
+          state.messages = [];
+        }
       })
       .addCase(addMessages.fulfilled, (state, action) => {
-        
-        const payload = action.payload as unknown as AddMessageResponse;
-        state.messages.push(payload.data); 
+        const payload = action.payload;
+        state.messages.push(payload);  
       })
       .addCase(updateMessages.fulfilled, (state, action) => {
-        
-        const payload = action.payload as unknown as UpdateMessageResponse;
-        const index = state.messages.findIndex(message => message._id === payload.message._id);
+        const payload = action.payload;
+        const index = state.messages.findIndex(message => message._id === payload._id);
         if (index !== -1) {
-          state.messages[index] = payload.message; 
+          state.messages[index] = payload;
         }
       })
       .addCase(deleteMessages.fulfilled, (state, action) => {
-        const id = action.payload as string | number; 
-        state.messages = state.messages.filter(message => message._id !== id.toString()); 
+        const id = action.payload;
+        state.messages = state.messages.filter(message => message._id !== id.toString());
       })
       .addCase(logOut.fulfilled, () => {
-        return initialState; 
+        return initialState;
       })
       .addMatcher(
         isAnyOf(fetchMessages.pending, deleteMessages.pending, addMessages.pending, updateMessages.pending),

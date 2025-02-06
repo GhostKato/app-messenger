@@ -3,14 +3,13 @@
 import React from 'react';
 import { Formik, Field, FormikHelpers } from 'formik';
 
-// Типи варіантів для вибору
 type ThemeSelectProps = {
-  type: 'sidebar' | 'interaction' | 'receiving' | 'image'; // Тип для зміни sidebar, interaction чи receiving
+  type: 'sidebar' | 'interaction' | 'receiving' | 'image'; 
 }
 
 const handleThemeChange = (
-  e: React.ChangeEvent<HTMLSelectElement>, // Вказуємо тип події для select
-  setFieldValue: FormikHelpers<{ theme: string }>['setFieldValue'], // Вказуємо правильний тип
+  e: React.ChangeEvent<HTMLSelectElement>, 
+  setFieldValue: FormikHelpers<{ theme: string }>['setFieldValue'], 
   type: 'sidebar' | 'interaction' | 'receiving' | 'image'
 ) => {
   const newValue = e.target.value;
@@ -25,7 +24,7 @@ const handleThemeChange = (
 };
 
 const ThemeSelect: React.FC<ThemeSelectProps> = ({ type }) => {
-  // Варіанти sidebar, interaction та receiving
+  
   const themeOptions = {
     sidebar: [
       { value: '', label: 'Midnight Blue' },

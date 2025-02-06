@@ -6,7 +6,7 @@ import Button from './Button';
 import FileInput from './FileInput';
 import Image from 'next/image';
 import updateUserSchema from '../validation/registrationUserSchema';
-import { UserFormValues, UpdateUserParams } from "@/types/userTypes";
+import { UserFormType, UpdateUserType } from "@/types/userTypes";
 import { updateUser } from '@/redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../redux/store';
@@ -23,7 +23,7 @@ const UserUpdateForm: React.FC = () => {
     return <div>Loading...</div>;
   }
   
-  const initialValues: UserFormValues = {
+  const initialValues: UserFormType = {
     name: user.name || '',
     email: user.email || '',
     password: '', 
@@ -31,8 +31,8 @@ const UserUpdateForm: React.FC = () => {
   };
 
   const handleSubmit = async (
-    values: UserFormValues,
-    actions: FormikHelpers<UserFormValues>
+    values: UserFormType,
+    actions: FormikHelpers<UserFormType>
   ) => {
     try {
       const newUser = {
@@ -42,7 +42,7 @@ const UserUpdateForm: React.FC = () => {
         photo: values.photo,
       };
       
-      await dispatch(updateUser({ id: user._id, body: newUser } as UpdateUserParams));
+      await dispatch(updateUser({ id: user._id, body: newUser } as UpdateUserType));
       actions.resetForm();
     } catch (error) {
       console.error(error);

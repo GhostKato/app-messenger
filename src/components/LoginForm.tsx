@@ -7,7 +7,7 @@ import { useDispatch} from 'react-redux';
 import { AppDispatch } from '../redux/store';
 import { useRouter } from 'next/navigation';
 import { logIn } from '../redux/auth/operations';
-import { UserFormValues } from "@/types/userTypes";
+import { UserFormType } from "@/types/userTypes";
 
 
 const LoginForm: React.FC = () => {  
@@ -15,14 +15,14 @@ const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();  
 
-  const initialValues: UserFormValues = {   
+  const initialValues: UserFormType = {   
     email: '',
     password: '',
   };
 
   const handleSubmit = async (
-      values: UserFormValues,
-      actions: FormikHelpers<UserFormValues>
+      values: UserFormType,
+      actions: FormikHelpers<UserFormType>
     ) => {
       try {
         await dispatch(logIn(values));

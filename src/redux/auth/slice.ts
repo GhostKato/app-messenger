@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "@/types/userTypes";
+import { UserType } from "@/types/userTypes";
 import {
   register,
   logIn,
@@ -11,11 +11,11 @@ import {
 
 type AuthResponse = { 
   accessToken?: string;
-  user: User;
+  user: UserType;
 };
 
-interface AuthState {
-  user: User;
+type AuthState = {
+  user: UserType;
   isLoggedIn: boolean;
   isRefreshing: boolean;
   isError: boolean;
@@ -35,7 +35,7 @@ const initialState: AuthState = {
   isLoading: false,
 };
 
-// Функція для оновлення даних користувача
+
 const updateUserData = (state: AuthState, action: PayloadAction<AuthResponse>) => {
   const user = action.payload.user;
   
@@ -43,7 +43,7 @@ const updateUserData = (state: AuthState, action: PayloadAction<AuthResponse>) =
 
   const { name = null, email = null, photo = null, _id = null } = user;
   state.user = { name, email, photo, _id };
-  state.isLoggedIn = true; // Встановлюємо isLoggedIn в true
+  state.isLoggedIn = true; 
 };
 
 const authSlice = createSlice({
@@ -52,22 +52,22 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Коли реєстрація успішна
+      
       .addCase(register.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         updateUserData(state, action);
       })
-      // Коли логін успішний
+      
       .addCase(logIn.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         updateUserData(state, action);
       })
-      // Коли оновлення користувача успішне
-      .addCase(updateUser.fulfilled, (state, action: PayloadAction<User>) => {
+      
+      .addCase(updateUser.fulfilled, (state, action: PayloadAction<UserType>) => {
         const { name, email, photo, _id } = action.payload;
         state.user = { name, email, photo, _id };
       })
-      // Коли лог-аут успішний
+      
       .addCase(logOut.fulfilled, () => initialState)
-      // Коли оновлення користувача після рефреша успішне
+      
       .addCase(refreshUser.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         updateUserData(state, action);
         state.isRefreshing = false;
