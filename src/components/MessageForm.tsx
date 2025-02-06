@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import Button from './Button';
 import { BsFillSendFill } from "react-icons/bs";
-import addMessageSchema from '@/validation/MessageSchema';
+import messagesSchema from '@/validation/messagesSchema';
 
 
 const MessageForm: React.FC = () => { 
@@ -10,7 +10,7 @@ const MessageForm: React.FC = () => {
   return (          
         <Formik
           initialValues={{ message: '' }}
-          validationSchema={addMessageSchema}
+          validationSchema={messagesSchema}
           onSubmit={(values, { resetForm }) => {
             console.log('Форма надіслана:', values);
             resetForm();
