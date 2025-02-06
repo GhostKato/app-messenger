@@ -8,7 +8,6 @@ import { fetchUsers } from '../redux/user/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredUsers } from '../redux/filters/selectors';
 import { AppDispatch } from '../redux/store';
-import { selectUser } from '@/redux/auth/selectors';
 
 export default function Sidebar() {
   const dispatch = useDispatch<AppDispatch>(); 
