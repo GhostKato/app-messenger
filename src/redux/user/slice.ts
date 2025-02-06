@@ -1,13 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { fetchUsers} from './operations';
 import { logOut } from '../auth/operations';
-
-interface User {
-  _id: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string; 
-}
+import { User } from "@/types/userTypes";
 
 interface FetchUsersResponse {
   data: User[]; 

@@ -7,7 +7,7 @@ type SidebarItemProps = {
   current?: boolean;
   pathname: string;
   children: React.ReactNode;
-  src: string;
+  src: string | null;
   alt: string;
   status: string;
 }

@@ -3,15 +3,17 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { RiLogoutCircleLine } from "react-icons/ri";
-
-
+import { logOut } from '../redux/auth/operations';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/redux/store';
 
 const Footer: React.FC = () => {
-  
+  const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     
-const handleLogautClick = () => {
+  const handleLogautClick = () => {
+    dispatch(logOut());
     router.push('/');
   };   
        

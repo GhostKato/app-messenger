@@ -1,14 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { selectUsers } from "../user/selectors";
 import { RootState } from '../store';
-
-interface User {
-  _id: string;
-  name: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string; 
-}
+import { User } from "@/types/userTypes";
 
 export const selectNameFilter = (state: RootState) => state.filters.name;
 
@@ -19,7 +12,7 @@ export const selectFilteredUsers = createSelector(
       return users;
     }
     const filteredUsers = users.filter(user =>
-      user.name.toLowerCase().includes(nameFilter.toLowerCase())
+      user.name?.toLowerCase().includes(nameFilter.toLowerCase())
     );
     return filteredUsers;
   }

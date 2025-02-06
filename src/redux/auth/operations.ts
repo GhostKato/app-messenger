@@ -31,7 +31,8 @@ export const register = createAsyncThunk<AuthResponse['data'], UserFormValues, {
         const { accessToken } = loginResponse.data;
 
         if (accessToken) {
-          setToken(accessToken); 
+          setToken(accessToken);
+          console.log(accessToken);
         }
         return loginResponse.data;
       } catch (loginError: unknown) {
