@@ -2,26 +2,28 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { addMessages, deleteMessages, fetchMessages, updateMessages } from './operations';
 import { logOut } from '../auth/operations';
 
-interface Message {
+type Message = {
   _id: string;
-  content: string;
+  message: string;
+  from: string;
+  to: string;
   createdAt: string;
   updatedAt: string; 
 }
 
-interface FetchMessagesResponse {
+type FetchMessagesResponse = {
   data: Message[]; 
 }
 
-interface AddMessageResponse {
+type AddMessageResponse = {
   data: Message; 
 }
 
-interface UpdateMessageResponse {
+type UpdateMessageResponse = {
   message: Message; 
 }
 
-interface MessagesState {
+type MessagesState = {
   messages: Message[];
   isLoading: boolean;
   isError: boolean;

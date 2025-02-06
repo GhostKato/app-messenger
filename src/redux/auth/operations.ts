@@ -1,3 +1,4 @@
+'use client'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi, setToken, clearToken, getToken } from "../../config/messagesApi";
 import { AxiosError } from 'axios';
@@ -10,6 +11,15 @@ type AuthResponse = {
     user: User;
   };
 }
+
+type AuthResponseLogin = { 
+  data: { 
+    data: {
+      accessToken?: string;
+      user: User;
+    }
+  };
+};
 
 type AxiosErrorWithResponse = Error & {
   response?: {
@@ -27,14 +37,14 @@ export const register = createAsyncThunk<AuthResponse['data'], UserFormValues, {
       await messagesApi.post('/auth/register', credentials);
       const { email, password } = credentials;
       try {
-        const loginResponse: AuthResponse = await messagesApi.post('/auth/login', { email, password });
-        const { accessToken } = loginResponse.data;
+        const loginResponse: AuthResponseLogin = await messagesApi.post('/auth/login', { email, password });
+        const { accessToken } = loginResponse.data.data;
 
         if (accessToken) {
           setToken(accessToken);
           console.log(accessToken);
         }
-        return loginResponse.data;
+        return loginResponse.data.data;
       } catch (loginError: unknown) {
         if ((loginError as AxiosErrorWithResponse).response) {
           return thunkApi.rejectWithValue((loginError as AxiosErrorWithResponse).response?.data?.message || 'Login failed');
@@ -54,13 +64,13 @@ export const logIn = createAsyncThunk<AuthResponse['data'], UserFormValues, { re
   'auth/login',
   async (credentials: UserFormValues, thunkAPI) => {
     try {
-      const { data }: AuthResponse = await messagesApi.post('auth/login', credentials);
-      const { accessToken } = data;
+      const { data }: AuthResponseLogin = await messagesApi.post('auth/login', credentials);
+      const { accessToken } = data.data;
 
       if (accessToken) {
         setToken(accessToken);
       }
-      return data;
+      return data.data;
     } catch (err: unknown) {
       if ((err as AxiosErrorWithResponse).response) {
         return thunkAPI.rejectWithValue((err as AxiosErrorWithResponse).response?.data?.message || 'Login failed');

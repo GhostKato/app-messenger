@@ -2,30 +2,34 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { messagesApi } from '../../config/messagesApi';
 
 
-interface Message {
-  id: number;
-  name: string;  
+type Message = {
+  _id: string;
+  message: string;
+  from: string;
+  to: string;
+  createdAt: string;
+  updatedAt: string; 
 }
 
-interface AddMessageRequest {
-  name: string; 
+type AddMessageRequest = {
+  message: string; 
 }
 
-interface UpdateMessageRequest {
-  id: number;
+type UpdateMessageRequest = {
+  _id: string;
   body: {
-    name: string;    
+    message: string;    
   };
 }
 
-interface AddMessageResponse {
-  id: number;
-  name: string;  
+type AddMessageResponse = {
+  _id: string;
+  message: string;  
 }
 
-interface UpdateMessageResponse {
-  id: number;
-  name: string;  
+type UpdateMessageResponse = {
+  _id: string;
+  message: string;  
 }
 
 export const fetchMessages = createAsyncThunk<Message[], void, { rejectValue: string }>(
