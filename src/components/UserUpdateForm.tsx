@@ -5,18 +5,19 @@ import FieldInput from './FieldInput';
 import Button from './Button';
 import FileInput from './FileInput';
 import Image from 'next/image';
-import updateUserSchema from '../validation/registrationUserSchema';
+import updateUserSchema from '../validation/updateUserSchema';
 import { UserFormType, UpdateUserType } from "@/types/userTypes";
 import { updateUser } from '@/redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../redux/store';
 import { selectUser } from '@/redux/auth/selectors';
+import { BASE_PHOTO_URL } from '../constants/сonstants';
 
 const UserUpdateForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   
-  const defaultPreview = user?.photo || '/photo.jpg';
+  const defaultPreview = user?.photo || BASE_PHOTO_URL;
   const [preview, setPreview] = useState<string | ArrayBuffer | null>(defaultPreview);
   
   if (!user) {
@@ -67,7 +68,7 @@ const UserUpdateForm: React.FC = () => {
             <div>
               <Image
                 alt="Preview image"
-                src={typeof preview === 'string' ? preview : '/photo.jpg'}  
+                src={typeof preview === 'string' ? preview : BASE_PHOTO_URL}  
                 className="w-[240px] h-[240px] md:w-[320px] md:h-[320px] object-cover rounded-[20px]"
                 width={320}
                 height={320}

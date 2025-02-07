@@ -12,10 +12,10 @@ const Footer: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
     
-  const handleLogoutClick = () => {
-    dispatch(logOut());
-    router.push('/');
-  };   
+  const handleLogoutClick = async () => {
+  await dispatch(logOut()); 
+  router.push('/');           
+};   
        
   return (
     <div className='md:w-[400px]  header-container flex justify-between items-center gap-5 p-2 md:p-5 bg-two shadow-custom border-border'>        

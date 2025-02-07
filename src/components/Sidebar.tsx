@@ -8,6 +8,7 @@ import { fetchUsers } from '../redux/user/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredUsers } from '../redux/filters/selectors';
 import { AppDispatch } from '../redux/store';
+import { BASE_PHOTO_URL } from '../constants/сonstants';
 
 export default function Sidebar() {
   const dispatch = useDispatch<AppDispatch>(); 
@@ -34,7 +35,7 @@ export default function Sidebar() {
               key={user._id}
               current={pathname === `/message/${user._id}`}
               pathname={`/message/${user._id}`}
-              src={user.photo || '/photo.jpg'}
+              src={user.photo || BASE_PHOTO_URL}
               alt={`${user.name} icon`}
               status="online"
             >

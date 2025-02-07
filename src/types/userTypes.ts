@@ -13,8 +13,8 @@ export type UserFormType = {
 }
 
 export type UserFormDataType = {
-  name: string;
-  email: string;
+  name?: string;
+  email?: string;
   password?: string;
   photo?: File | null;
 };

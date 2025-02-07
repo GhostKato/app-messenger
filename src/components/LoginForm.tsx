@@ -39,13 +39,13 @@ const LoginForm: React.FC = () => {
           validationSchema={loginUserSchema}
          onSubmit={handleSubmit}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, dirty}) => (
               <Form className="flex justify-center items-center flex-col w-full gap-5">
               <FieldInput name="email" type="email" label="Email" />                           
               <FieldInput name="password" type="password" label="Password" />
               <Button
                 type="submit"
-                disabled={isSubmitting}                
+                disabled={isSubmitting || !dirty}                
               >
                 {isSubmitting ? 'Sending...' : 'Send'}
               </Button>

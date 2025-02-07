@@ -1,0 +1,1 @@
+export const BASE_PHOTO_URL = '/photo.jpg';
