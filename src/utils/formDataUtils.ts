@@ -1,6 +1,5 @@
 import { UserFormDataType } from "@/types/userTypes";
 
-
 export function createFormData(body: UserFormDataType): FormData {
   const formData = new FormData();
 

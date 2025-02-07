@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi, setToken, clearToken, getToken } from "../../config/messagesApi";
 import { AxiosError } from 'axios';
-import { createUserFormData } from "../../utils/formDataUtils";
+import { createFormData } from "../../utils/formDataUtils";
 import { UpdateUserType, UserType, UserFormType } from "@/types/userTypes";
 
 type AuthResponse = {
@@ -145,7 +145,7 @@ export const updateUser = createAsyncThunk<UserType, UpdateUserType, { rejectVal
   'user/updateUser',
   async ({ id, body }: UpdateUserType, thunkAPI) => {
     try {
-      const formData = createUserFormData(body);
+      const formData = createFormData(body);
       const { data } = await messagesApi.patch(`user/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
