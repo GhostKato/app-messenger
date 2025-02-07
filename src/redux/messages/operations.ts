@@ -4,10 +4,9 @@ import { MessageType } from "@/types/messageTypes";
 
 
 type AddMessagePayload = {
-  message: string;
-  fromId: string;
   toId: string;
-}
+  message: string;
+};
 
 type UpdateMessagePayload = {
   _id: string;
@@ -39,14 +38,15 @@ export const fetchMessages = createAsyncThunk<
 
 export const addMessages = createAsyncThunk<
   MessageType, 
-  AddMessagePayload, 
+  AddMessagePayload,  
   { rejectValue: string } 
 >(
   'message/addMessage',
-  async (body, thunkAPI) => {
+  async ({ toId, message }, thunkAPI) => {  
     try {
-      const { data } = await messagesApi.post('message', body);
-      return data;
+      const { data } = await messagesApi.post(`message/${toId}`, { message });
+      
+      return data.data;
     } catch (error) {
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);
@@ -55,6 +55,7 @@ export const addMessages = createAsyncThunk<
     }
   }
 );
+
 
 export const updateMessages = createAsyncThunk<
   MessageType, 

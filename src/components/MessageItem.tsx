@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux';
 import { UserType } from '@/types/userTypes';
 
 
-type MessageTextProps = {  
+type MessageItemProps = {  
   message: string;
   from: string;
 };
 
-const MessageText: React.FC<MessageTextProps> = ({ message, from }) => {
+const MessageItem: React.FC<MessageItemProps> = ({ message, from }) => {
 
   const user = useSelector(selectUser) as UserType;
  
@@ -23,4 +23,4 @@ const MessageText: React.FC<MessageTextProps> = ({ message, from }) => {
   );
 }
 
-export default MessageText;
+export default MessageItem;

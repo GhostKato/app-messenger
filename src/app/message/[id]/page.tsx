@@ -1,7 +1,7 @@
 'use client';
 import Button from '@/components/Button';
 import MessageForm from '@/components/MessageForm';
-import MessageText from '@/components/MessageText';
+import MessageItem from '@/components/MessageItem';
 import { fetchMessages } from '@/redux/messages/operations';
 import { AppDispatch } from '@/redux/store';
 import { useRouter, useParams } from 'next/navigation';
@@ -16,8 +16,8 @@ const Message: React.FC = () => {
   const messages = useSelector(selectMessages) as MessageType[];
   const router = useRouter();
   
-  const { id } = useParams();  
-  
+  const { id } = useParams(); 
+    
   const toId = Array.isArray(id) ? id[0] : id;
 
   useEffect(() => {
@@ -27,12 +27,12 @@ const Message: React.FC = () => {
   }, [dispatch, toId]); 
 
   const listRef = useRef<HTMLUListElement>(null);
-
+  
   useEffect(() => {
     if (listRef.current) {
       listRef.current.scrollTop = listRef.current.scrollHeight;
     }
-  }, []);
+  }, [messages]); 
 
   const handleBackClick = () => {
     router.push('/message');
@@ -48,7 +48,7 @@ const Message: React.FC = () => {
       <ul ref={listRef} className='flex flex-col flex-grow gap-[30px] overflow-auto p-[10px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-black'>
         {Array.isArray(messages) && messages.length > 0 ? (
           messages.map((message) => (
-            <MessageText key={message._id} message={message.message} from={message.fromId} />
+            <MessageItem key={message._id} message={message.message} from={message.fromId} />
           ))
         ) : (
           <li className="text-center text-while text-2xl">No messages yet</li>  
