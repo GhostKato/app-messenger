@@ -21,6 +21,15 @@ type AuthResponseLogin = {
   };
 };
 
+type AuthResponseRefresh = {
+  data: { 
+    data: {
+      accessToken?: string;
+      user: UserType;
+    }
+  };
+}
+
 type AxiosErrorWithResponse = Error & {
   response?: {
     data?: {
@@ -41,8 +50,7 @@ export const register = createAsyncThunk<AuthResponse['data'], UserFormType, { r
         const { accessToken } = loginResponse.data.data;
 
         if (accessToken) {
-          setToken(accessToken);
-          console.log(accessToken);
+          setToken(accessToken);          
         }
         return loginResponse.data.data;
       } catch (loginError: unknown) {
@@ -59,6 +67,7 @@ export const register = createAsyncThunk<AuthResponse['data'], UserFormType, { r
     }
   }
 );
+
 
 export const logIn = createAsyncThunk<AuthResponse['data'], UserFormType, { rejectValue: string }>(
   'auth/login',
@@ -83,6 +92,7 @@ export const logIn = createAsyncThunk<AuthResponse['data'], UserFormType, { reje
   }
 );
 
+
 export const logOut = createAsyncThunk<void, void, { rejectValue: string }>('auth/logout', async (_, thunkAPI) => {
   try {
     await messagesApi.post('auth/logout');
@@ -98,7 +108,8 @@ export const logOut = createAsyncThunk<void, void, { rejectValue: string }>('aut
   }
 });
 
-export const refreshUser = createAsyncThunk<AuthResponse['data'], void, { rejectValue: string }>(
+
+export const refreshUser = createAsyncThunk<AuthResponseRefresh['data'], void, { rejectValue: string }>(
   'auth/refresh',
   async (_, thunkAPI) => {
     const savedToken = getToken();
@@ -106,13 +117,16 @@ export const refreshUser = createAsyncThunk<AuthResponse['data'], void, { reject
       return thunkAPI.rejectWithValue('Token is not exist!');
     }
     try {
-      const { data }: AuthResponse = await messagesApi.post('auth/refresh');
-      const { accessToken } = data;
-
-      if (accessToken) {
-        setToken(accessToken); 
+      const { data }: AuthResponseRefresh = await messagesApi.post('auth/refresh');
+      
+      const token: string = data.data.accessToken || '';       
+      
+      if (token) {
+        setToken(token); 
+      } else {
+        return thunkAPI.rejectWithValue('No accessToken in response');
       }
-
+      
       return data;
     } catch (err: unknown) {
       if ((err as AxiosErrorWithResponse).response) {
@@ -125,6 +139,7 @@ export const refreshUser = createAsyncThunk<AuthResponse['data'], void, { reject
     }
   }
 );
+
 
 export const updateUser = createAsyncThunk<UserType, UpdateUserType, { rejectValue: string }>(
   'user/updateUser',

@@ -1,17 +1,19 @@
 import axios, { AxiosInstance } from "axios";
 import Cookies from 'js-cookie';
+import { refreshUser } from '../redux/auth/operations'; 
+import { store } from '../redux/store'; // твій Redux store
 
 type Token = string;
 
 export const messagesApi: AxiosInstance = axios.create({
-    //  baseURL: "http://localhost:3000",
-  baseURL: "https://server-messenger.onrender.com",
+  // baseURL: "http://localhost:3000",
+  baseURL: "https://server-messenger.onrender.com", 
   withCredentials: true,
 });
 
 export const setToken = (token: Token): void => {  
-   Cookies.set('accessToken', token, { expires: 7, secure: true, sameSite: 'Strict' });
-  messagesApi.defaults.headers.common['Authorization'] = `Bearer ${token}`; 
+  Cookies.set('accessToken', token, { expires: 7, secure: true, sameSite: 'Strict' });
+  messagesApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
 export const clearToken = (): void => { 
@@ -20,5 +22,33 @@ export const clearToken = (): void => {
 };
 
 export const getToken = (): Token | undefined => {
-  return Cookies.get('accessToken') as Token | undefined; 
+  return Cookies.get('accessToken') as Token | undefined;
 };
+
+messagesApi.interceptors.request.use(
+  async (config) => {
+    const token = getToken();
+    
+    if (!token) {
+      try {
+        
+        await store.dispatch(refreshUser());
+        
+        const newToken = getToken();
+        if (newToken) {
+          config.headers['Authorization'] = `Bearer ${newToken}`;
+        }
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    } else {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+

@@ -14,6 +14,15 @@ type AuthResponse = {
   user: UserType;
 };
 
+type AuthResponseRefresh = {
+  data: { 
+    data: {
+      accessToken?: string;
+      user: UserType;
+    }
+  };
+}
+
 type AuthState = {
   user: UserType;
   isLoggedIn: boolean;
@@ -68,9 +77,9 @@ const authSlice = createSlice({
       
       .addCase(logOut.fulfilled, () => initialState)
       
-      .addCase(refreshUser.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
-        updateUserData(state, action);
-        state.isRefreshing = false;
+      .addCase(refreshUser.fulfilled, (state, action: PayloadAction<AuthResponseRefresh['data']>) => {
+      state.user = action.payload.data.user; 
+      state.isRefreshing = false; 
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;

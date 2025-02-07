@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../redux/store';
 import { selectUser } from '@/redux/auth/selectors';
 import { BASE_PHOTO_URL } from '../constants/сonstants';
+import { toggleModal } from '@/redux/modal/slice';
 
 const UserUpdateForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -44,6 +45,7 @@ const UserUpdateForm: React.FC = () => {
       };
       
       await dispatch(updateUser({ id: user._id, body: newUser } as UpdateUserType));
+      dispatch(toggleModal({ contactId: null, modalType: 'userUpdate' }));
       actions.resetForm();
     } catch (error) {
       console.error(error);
