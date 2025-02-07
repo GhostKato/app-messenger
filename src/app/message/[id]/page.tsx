@@ -16,8 +16,7 @@ const Message: React.FC = () => {
   const messages = useSelector(selectMessages) as MessageType[];
   const router = useRouter();
   
-  const { id } = useParams();
-  console.log(messages);
+  const { id } = useParams();  
   
   const toId = Array.isArray(id) ? id[0] : id;
 
@@ -47,9 +46,13 @@ const Message: React.FC = () => {
       </div>
       
       <ul ref={listRef} className='flex flex-col flex-grow gap-[30px] overflow-auto p-[10px] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-black'>
-        {Array.isArray(messages) && messages.map((message) => (
-          <MessageText key={message._id} message={message.message} from={message.fromId} />
-        ))}        
+        {Array.isArray(messages) && messages.length > 0 ? (
+          messages.map((message) => (
+            <MessageText key={message._id} message={message.message} from={message.fromId} />
+          ))
+        ) : (
+          <li className="text-center text-while text-2xl">No messages yet</li>  
+        )}
       </ul>
 
       <MessageForm/>

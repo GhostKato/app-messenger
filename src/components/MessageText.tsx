@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
+import { selectUser } from '../redux/auth/selectors';
+import { useSelector } from 'react-redux';
+import { UserType } from '@/types/userTypes';
 
-const user = [
-  { id: 1, name: 'Mark Deimon', icon: '/photo.jpg', status: 'online' },
-];
 
 type MessageTextProps = {  
   message: string;
@@ -11,8 +11,10 @@ type MessageTextProps = {
 };
 
 const MessageText: React.FC<MessageTextProps> = ({ message, from }) => {
+
+  const user = useSelector(selectUser) as UserType;
  
-  const isFromUser = user[0].id === parseInt(from);
+  const isFromUser = user._id === from;
 
   return (  
     <li className={`p-5 w-[300px] lg:w-[520px] xl:w-[800px] rounded-[20px] ${isFromUser ? 'ml-auto bg-sending' : 'mr-auto bg-receiving'}`}>

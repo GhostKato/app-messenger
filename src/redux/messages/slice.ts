@@ -1,9 +1,16 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { addMessages, deleteMessages, fetchMessages, updateMessages } from './operations';
 import { logOut } from '../auth/operations';
+import { MessageType } from "@/types/messageTypes"; 
 
-const initialState = {
-  messages: [],
+type MessagesState = {
+  messages: MessageType[]; 
+  isLoading: boolean;
+  isError: boolean;
+}
+
+const initialState: MessagesState = {
+  messages: [], 
   isLoading: false,
   isError: false,
 };
@@ -15,26 +22,26 @@ const messagesSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchMessages.fulfilled, (state, action) => {
-        if (Array.isArray(action.payload.data)) {
-          state.messages = action.payload.data.data;
+        if (Array.isArray(action.payload)) {
+          state.messages = action.payload; 
         } else {
           state.messages = [];
         }
       })
       .addCase(addMessages.fulfilled, (state, action) => {
-        const payload = action.payload;
+        const payload: MessageType = action.payload; 
         state.messages.push(payload);  
       })
       .addCase(updateMessages.fulfilled, (state, action) => {
-        const payload = action.payload;
+        const payload: MessageType = action.payload; 
         const index = state.messages.findIndex(message => message._id === payload._id);
         if (index !== -1) {
           state.messages[index] = payload;
         }
       })
       .addCase(deleteMessages.fulfilled, (state, action) => {
-        const id = action.payload;
-        state.messages = state.messages.filter(message => message._id !== id.toString());
+        const id: string = action.payload; 
+        state.messages = state.messages.filter(message => message._id !== id);
       })
       .addCase(logOut.fulfilled, () => {
         return initialState;
