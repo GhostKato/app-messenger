@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import UserMenu from './UserMenu';
 import { selectUserUpdate, selectUserMenu } from '@/redux/modal/selectors';
+import { selectUser } from '@/redux/auth/selectors';
 import SearchBox from './SearchBox';
 import UserUpdate from './UserUpdate';
 
@@ -14,6 +15,9 @@ const Header: React.FC = () => {
 
   const isOpenUserMenu = useSelector(selectUserMenu);
   const isOpenUserEdit = useSelector(selectUserUpdate);
+  const user = useSelector(selectUser);
+
+  const userPhoto = user?.photo || "/photo.jpg";
       
   const handleUserMenuToggle = () => {
     dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
@@ -27,7 +31,7 @@ const Header: React.FC = () => {
 
       <div className="rounded-full overflow-hidden w-[45px]  md:w-[55px] xl:w-[60px] shadow-custom border-2 border-border hover:border-interaction">
         <Image                    
-          src="/photo.jpg"
+          src={userPhoto}
           alt="logo"
           onClick={handleUserMenuToggle}
           width={200} 
