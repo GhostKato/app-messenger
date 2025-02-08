@@ -151,7 +151,8 @@ export const updateUser = createAsyncThunk<UserType, UpdateUserType, { rejectVal
           'Content-Type': 'multipart/form-data',
         },
       });
-      return data;
+      console.log(data);
+      return data.user;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return thunkAPI.rejectWithValue(error.message);

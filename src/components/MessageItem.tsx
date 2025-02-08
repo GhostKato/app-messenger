@@ -16,6 +16,8 @@ const MessageItem: React.FC<MessageItemProps> = ({ message, from }) => {
  
   const isFromUser = user._id === from;
 
+  console.log(user);
+
   return (  
     <li className={`p-5 w-[300px] lg:w-[520px] xl:w-[800px] rounded-[20px] ${isFromUser ? 'ml-auto bg-sending' : 'mr-auto bg-receiving'}`}>
       <p className="text-xl xl:text-2xl">{message}</p>

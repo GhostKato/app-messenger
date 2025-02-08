@@ -72,6 +72,7 @@ const authSlice = createSlice({
       
       .addCase(updateUser.fulfilled, (state, action: PayloadAction<UserType>) => {
         const { name, email, photo, _id } = action.payload;
+        console.log(action.payload);
         state.user = { name, email, photo, _id };
       })
       

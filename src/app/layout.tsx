@@ -4,7 +4,6 @@ import { Roboto } from 'next/font/google';
 import { ScreenSizeProvider } from "../contexts/screenSizeContext";
 import ReduxProvider from '@/components/ReduxProvider';
 import InstallTheme from '@/components/InstallTheme';
-import RefreshUser from '@/components/RefreshUser';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -32,7 +31,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
      <ReduxProvider>
       <ScreenSizeProvider>
-        <RefreshUser/>
+        
         <InstallTheme/>
     <html lang="en" className={roboto.className}>
         <body>                

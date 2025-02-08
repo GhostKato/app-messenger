@@ -1,7 +1,5 @@
 import axios, { AxiosInstance } from "axios";
 import Cookies from 'js-cookie';
-import { refreshUser } from '../redux/auth/operations'; 
-import { store } from '../redux/store'; // твій Redux store
 
 type Token = string;
 
@@ -24,31 +22,4 @@ export const clearToken = (): void => {
 export const getToken = (): Token | undefined => {
   return Cookies.get('accessToken') as Token | undefined;
 };
-
-messagesApi.interceptors.request.use(
-  async (config) => {
-    const token = getToken();
-    
-    if (!token) {
-      try {
-        
-        await store.dispatch(refreshUser());
-        
-        const newToken = getToken();
-        if (newToken) {
-          config.headers['Authorization'] = `Bearer ${newToken}`;
-        }
-      } catch (error) {
-        return Promise.reject(error);
-      }
-    } else {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
 

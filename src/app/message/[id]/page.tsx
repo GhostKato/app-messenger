@@ -10,6 +10,8 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMessages } from '../../../redux/messages/selectors';
 import { MessageType} from "@/types/messageTypes";
+import { refreshUser } from '@/redux/auth/operations';
+import { fetchUsers } from '@/redux/user/operations';
 
 const Message: React.FC = () => {  
   const dispatch = useDispatch<AppDispatch>();
@@ -21,12 +23,26 @@ const Message: React.FC = () => {
   const toId = Array.isArray(id) ? id[0] : id;
 
   useEffect(() => {
-    if (toId) {
-      dispatch(fetchMessages(toId));
-    }
-  }, [dispatch, toId]); 
+      const refreshAndFetch = async () => {
+        try {
+          
+          await dispatch(refreshUser());
+  
+           if (toId) {
+                dispatch(fetchMessages(toId));
+              }
+          
+          dispatch(fetchUsers());
+        } catch (error) {
+          console.error("Помилка при рефрешу токена або запиті користувачів:", error);
+        }
+      };
+  
+      refreshAndFetch(); 
+  
+    }, [dispatch, toId]); 
 
-  const listRef = useRef<HTMLUListElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);  
   
   useEffect(() => {
     if (listRef.current) {

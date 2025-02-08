@@ -8,6 +8,7 @@ import { selectUserUpdate, selectUserMenu } from '@/redux/modal/selectors';
 import { selectUser } from '@/redux/auth/selectors';
 import SearchBox from './SearchBox';
 import UserUpdate from './UserUpdate';
+import { BASE_PHOTO_URL } from '../constants/сonstants';
 
 const Header: React.FC = () => {
   
@@ -16,8 +17,9 @@ const Header: React.FC = () => {
   const isOpenUserMenu = useSelector(selectUserMenu);
   const isOpenUserEdit = useSelector(selectUserUpdate);
   const user = useSelector(selectUser);
+  
 
-  const userPhoto = user?.photo || "/photo.jpg";
+  const userPhoto = user?.photo || BASE_PHOTO_URL;
       
   const handleUserMenuToggle = () => {
     dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
