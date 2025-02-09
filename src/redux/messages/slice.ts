@@ -40,8 +40,8 @@ const messagesSlice = createSlice({
         }
       })
       .addCase(deleteMessages.fulfilled, (state, action) => {
-        const id: string = action.payload; 
-        state.messages = state.messages.filter(message => message._id !== id);
+  const id: string = action.payload;
+  state.messages = state.messages.filter(message => message._id !== id);
       })
       .addCase(logOut.fulfilled, () => {
         return initialState;

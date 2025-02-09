@@ -2,7 +2,7 @@
 import React from "react";
 
 type ButtonProps = {
-  variant?: "standard" | "close" | "back" | "logout" | "messageSendForm" | "messageUpdateForm" |"updateMessage";
+  variant?: "standard" | "close" | "back" | "logout" | "messageSendForm" | "messageUpdateForm" |"updateMessage" | "menuMessage";
   type?: "button" | "submit";
   className?: string;
   children: React.ReactNode;
@@ -30,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({
     messageSendForm: "rounded-[20px] w-[70px] h-[85px] xl:w-[92px] xl:h-[92px] group border-2 border: border-interaction",
     messageUpdateForm: "rounded-[20px] w-[70px] h-[85px] xl:w-[92px] xl:h-[92px] bg-black group border-2 border: border-interaction",
     updateMessage: "absolute top-1 right-1 rounded-full w-8 h-8 md:w-10 md:h-10 xl:w-12  xl:h-12 group hover:bg-transparent focus:bg-transparent shadow-none",
+    menuMessage: "bg-black rounded-[12px] w-10 h-10 md:w-12 md:h-12 xl:w-14 xl:h-14 group hover:bg-interaction focus:bg-interaction border-2 border: border-interaction",
   }; 
    
   const computedStyles = `${baseStyles} ${variantStyles[variant]} 
