@@ -36,7 +36,7 @@ const messagesSlice = createSlice({
         const payload: MessageType = action.payload; 
         const index = state.messages.findIndex(message => message._id === payload._id);
         if (index !== -1) {
-          state.messages[index] = payload;
+          state.messages[index] = payload; 
         }
       })
       .addCase(deleteMessages.fulfilled, (state, action) => {

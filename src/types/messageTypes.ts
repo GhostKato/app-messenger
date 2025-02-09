@@ -3,6 +3,6 @@ export type MessageType = {
   message: string;
   fromId: string;
   toId: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }

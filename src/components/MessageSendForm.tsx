@@ -52,7 +52,7 @@ const MessageSendForm: React.FC = () => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            variant="sendMessage"
+            variant="messageSendForm"
           >
             <BsFillSendFill className='text-interaction group-hover:text-white w-[40px] h-[40px] xl:w-[60px]  xl:h-[60px]' />
           </Button>

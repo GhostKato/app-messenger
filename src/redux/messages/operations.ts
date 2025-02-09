@@ -8,11 +8,6 @@ type AddMessagePayload = {
   message: string;
 };
 
-type UpdateMessagePayload = {
-  messageId: string;
-  message: string;
-}
-
 type DeleteMessagePayload = {
   id: string;
 }
@@ -58,15 +53,15 @@ export const addMessages = createAsyncThunk<
 
 
 export const updateMessages = createAsyncThunk<
-  UpdateMessagePayload, 
-  UpdateMessagePayload, 
-  { rejectValue: string } 
+  MessageType, 
+  { messageId: string; message: string }, 
+  { rejectValue: string }
 >(
   'message/updateMessage',
   async ({ messageId, message }, thunkAPI) => {
     try {
       const response = await messagesApi.patch(`/message/${messageId}`, { message });
-      return { messageId, message: response.data.message };
+      return response.data.updatedMessage; 
     } catch (error) {
       if (error instanceof Error) {
         return thunkAPI.rejectWithValue(error.message);

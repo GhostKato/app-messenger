@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import Button from './Button';
-import { BsFillSendFill } from "react-icons/bs";
+import { FaCheck } from "react-icons/fa";
 import messagesSchema from '@/validation/messagesSchema';
 import { updateMessages } from '@/redux/messages/operations';
 import { AppDispatch } from '@/redux/store';
@@ -50,9 +50,9 @@ const MessageUpdateForm: React.FC<MessageUpdateProps> = ({ messageId, message })
           <Button
             type="submit"
             disabled={isSubmitting}
-            variant="sendMessage"
+            variant="messageUpdateForm"
           >
-            <BsFillSendFill className='text-interaction group-hover:text-white w-[40px] h-[40px] xl:w-[60px]  xl:h-[60px]' />
+            <FaCheck className='text-interaction group-hover:text-white w-[40px] h-[40px] xl:w-[60px]  xl:h-[60px]' />
           </Button>
         </Form>
       )}
