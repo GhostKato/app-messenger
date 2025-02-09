@@ -11,7 +11,7 @@ import { useParams } from 'next/navigation';
 type MessageType = {
   message: string;}
 
-const MessageForm: React.FC = () => {
+const MessageSendForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams();
   
@@ -62,4 +62,4 @@ const MessageForm: React.FC = () => {
   );
 };
 
-export default MessageForm;
+export default MessageSendForm;

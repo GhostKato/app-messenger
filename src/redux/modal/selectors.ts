@@ -2,6 +2,7 @@ type Modals = {
   [key: string]: {   
     userUpdate?: boolean;
     userMenu?: boolean;
+    messageUpdate?: boolean;
   };
 }
 
@@ -11,10 +12,10 @@ type RootState = {
 
 export const selectModalState = (
   state: RootState,
-  contactId: string | null,
-  modalType: 'userUpdate' | 'userMenu'
+  modalId: string | null,
+  modalType: 'userUpdate' | 'userMenu' | 'messageUpdate'
 ): boolean => {
-  const id = contactId === null ? modalType : contactId;
+  const id = modalId === null ? modalType : modalId;
   return state.modals[id] ? state.modals[id][modalType] ?? false : false;
 };
 
@@ -23,3 +24,5 @@ export const selectUserMenu = (state: RootState): boolean =>
 
 export const selectUserUpdate = (state: RootState): boolean =>
   selectModalState(state, null, 'userUpdate');
+
+

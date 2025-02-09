@@ -9,12 +9,12 @@ const UserMenu: React.FC = () => {
     const dispatch = useDispatch();
 
     const handleUserMenuToggle = () => {
-        dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
+        dispatch(toggleModal({ modalId: null, modalType: 'userMenu' }));
     };
 
     const handleUpdateUserToggle = () => {
-        dispatch(toggleModal({ contactId: null, modalType: 'userUpdate' }));
-        dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
+        dispatch(toggleModal({ modalId: null, modalType: 'userUpdate' }));
+        dispatch(toggleModal({ modalId: null, modalType: 'userMenu' }));
     };
 
     return (

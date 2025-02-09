@@ -9,8 +9,8 @@ type ModalsState = {
 }
 
 type ModalPayload = {
-  contactId: string | null;
-  modalType: 'userUpdate' | 'userMenu';
+  modalId: string | null;
+  modalType: 'userUpdate' | 'userMenu' | 'messageUpdate';
 }
 
 const initialState: ModalsState = {};
@@ -20,20 +20,20 @@ const modalsSlice = createSlice({
   initialState,
   reducers: {    
     openModal(state, action: PayloadAction<ModalPayload>) {
-      const { contactId, modalType } = action.payload;
-      const id = contactId === null ? modalType : contactId;
+      const { modalId, modalType } = action.payload;
+      const id = modalId === null ? modalType : modalId;
       state[id] = { ...state[id], [modalType]: true };
     },    
     closeModal(state, action: PayloadAction<ModalPayload>) {
-      const { contactId, modalType } = action.payload;
-      const id = contactId === null ? modalType : contactId;
+      const { modalId, modalType } = action.payload;
+      const id = modalId === null ? modalType : modalId;
       if (state[id]) {
         state[id] = { ...state[id], [modalType]: false };
       }
     },    
     toggleModal(state, action: PayloadAction<ModalPayload>) {
-      const { contactId, modalType } = action.payload;
-      const id = contactId === null ? modalType : contactId;
+      const { modalId, modalType } = action.payload;
+      const id = modalId === null ? modalType : modalId;
       if (state[id]) {
         state[id] = { ...state[id], [modalType]: !state[id][modalType] };
       } else {

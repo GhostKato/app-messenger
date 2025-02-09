@@ -45,7 +45,7 @@ const UserUpdateForm: React.FC = () => {
       };
       
       await dispatch(updateUser({ id: user._id, body: newUser } as UpdateUserType));
-      dispatch(toggleModal({ contactId: null, modalType: 'userUpdate' }));
+      dispatch(toggleModal({ modalId: null, modalType: 'userUpdate' }));
       actions.resetForm();
     } catch (error) {
       console.error(error);

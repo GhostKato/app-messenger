@@ -22,7 +22,7 @@ const Header: React.FC = () => {
   const userPhoto = user?.photo || BASE_PHOTO_URL;
       
   const handleUserMenuToggle = () => {
-    dispatch(toggleModal({ contactId: null, modalType: 'userMenu' }));
+    dispatch(toggleModal({ modalId: null, modalType: 'userMenu' }));
   };  
 
   return (

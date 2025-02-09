@@ -12,7 +12,7 @@ const UserUpdate: React.FC = () => {
    const dispatch = useDispatch();  
 
   const handleUserUpdateToggle = () => {
-          dispatch(toggleModal({ contactId: null, modalType: 'userUpdate' }));
+          dispatch(toggleModal({ modalId: null, modalType: 'userUpdate' }));
       };
 
   return (
