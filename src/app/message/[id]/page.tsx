@@ -57,7 +57,7 @@ const Message: React.FC = () => {
   };
 
   const handleMessageClick = (message: MessageType) => {
-    setSelectedMessage(message);        
+    setSelectedMessage(message);    
   };
 
   return (

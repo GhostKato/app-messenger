@@ -10,7 +10,7 @@ type ModalsState = {
 
 type ModalPayload = {
   modalId: string | null;
-  modalType: 'userUpdate' | 'userMenu' | 'messageUpdate';
+  modalType: 'userUpdate' | 'userMenu' | 'messageUpdate' | string; 
 }
 
 const initialState: ModalsState = {};
@@ -40,9 +40,16 @@ const modalsSlice = createSlice({
         state[id] = { [modalType]: true };
       }
     },
+    closeDynamicModal(state, action: PayloadAction<{ modalType: string }>) {
+      
+      const { modalType } = action.payload;
+      if (state[modalType]) {
+        state[modalType] = { [modalType]: false };
+      }
+    }
   },
 });
 
-export const { openModal, closeModal, toggleModal } = modalsSlice.actions;
+export const { openModal, closeModal, toggleModal, closeDynamicModal } = modalsSlice.actions;
 
 export default modalsSlice.reducer;

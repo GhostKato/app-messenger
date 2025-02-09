@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserType } from '@/types/userTypes';
 import Button from './Button';
 import { FaEdit } from "react-icons/fa";
-import { closeModal, toggleModal } from '@/redux/modal/slice';
+import { closeDynamicModal, closeModal, toggleModal } from '@/redux/modal/slice';
 
 type MessageItemProps = {
   messageId: string;
@@ -15,13 +15,13 @@ type MessageItemProps = {
 };
 
 const MessageItem: React.FC<MessageItemProps> = ({ messageId, message, from, onClick }) => {
-  const dispatch = useDispatch();  
-
+  const dispatch = useDispatch();
   
   const user = useSelector(selectUser) as UserType;
   const isFromUser = user?._id === from;
 
   const handleUpdateClick = () => {
+    dispatch(closeDynamicModal({ modalType: 'messageUpdate' }));
     dispatch(toggleModal({ modalId: messageId, modalType: 'messageUpdate' }));
     dispatch(closeModal({ modalId: null, modalType: 'userMenu' }));   
         

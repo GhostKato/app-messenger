@@ -26,7 +26,7 @@ const MessageUpdateForm: React.FC<MessageUpdateProps> = ({ messageId, message })
 
   const handleSendMessageClick = (values: MessageType, { resetForm }: { resetForm: () => void }) => {
     
-    dispatch(updateMessages({ messageId, message: values.message }));
+    dispatch(updateMessages({ messageId, message: values.message }));    
     dispatch(toggleModal({ modalId: messageId, modalType: 'messageUpdate' }));
     resetForm();  
   };   
@@ -44,7 +44,7 @@ const MessageUpdateForm: React.FC<MessageUpdateProps> = ({ messageId, message })
             name="message"
             type="text"
             label="New message"
-            as="textarea"
+            as="textarea"            
           />                           
 
           <Button
