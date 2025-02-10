@@ -4,7 +4,7 @@ import {
   register,
   logIn,
   logOut,
-  refreshUser,
+  refresh,
   updateUser,
 } from "./operations";
 
@@ -51,8 +51,7 @@ const updateUserData = (state: AuthState, action: PayloadAction<AuthResponse>) =
   if (!user) return;
 
   const { name = null, email = null, photo = null, _id = null } = user;
-  state.user = { name, email, photo, _id };
-  state.isLoggedIn = true; 
+  state.user = { name, email, photo, _id };   
 };
 
 const authSlice = createSlice({
@@ -64,28 +63,26 @@ const authSlice = createSlice({
       
       .addCase(register.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         updateUserData(state, action);
-      })
-      
+      })      
       .addCase(logIn.fulfilled, (state, action: PayloadAction<AuthResponse>) => {
         updateUserData(state, action);
-      })
-      
+      })      
       .addCase(updateUser.fulfilled, (state, action: PayloadAction<UserType>) => {
-        const { name, email, photo, _id } = action.payload;
-        console.log(action.payload);
+        const { name, email, photo, _id } = action.payload;        
         state.user = { name, email, photo, _id };
-      })
-      
-      .addCase(logOut.fulfilled, () => initialState)
-      
-      .addCase(refreshUser.fulfilled, (state, action: PayloadAction<AuthResponseRefresh['data']>) => {
+      })      
+      .addCase(logOut.fulfilled, () => ({
+       ...initialState,
+      isLoggedIn: false,
+      }))     
+      .addCase(refresh.fulfilled, (state, action: PayloadAction<AuthResponseRefresh['data']>) => {
       state.user = action.payload.data.user; 
-      state.isRefreshing = false; 
+        state.isRefreshing = false;         
       })
-      .addCase(refreshUser.pending, (state) => {
+      .addCase(refresh.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.rejected, (state) => {
+      .addCase(refresh.rejected, (state) => {
         state.isRefreshing = false;
         state.isLoggedIn = false;
         state.user = { name: null, email: null, photo: null, _id: null };
@@ -94,7 +91,7 @@ const authSlice = createSlice({
         isAnyOf(
           register.pending,
           logIn.pending,
-          refreshUser.pending,
+          refresh.pending,
         ),
         (state) => {
           state.isLoading = true;
@@ -105,22 +102,24 @@ const authSlice = createSlice({
         isAnyOf(
           register.rejected,
           logIn.rejected,
-          refreshUser.rejected,
+          refresh.rejected,
         ),
         (state) => {
           state.isLoading = false;
           state.isError = true;
+           state.isLoggedIn = false;
         }
       )
       .addMatcher(
         isAnyOf(
           register.fulfilled,
           logIn.fulfilled,
-          refreshUser.fulfilled,
+          refresh.fulfilled,
         ),
         (state) => {
           state.isLoading = false;
           state.isError = false;
+          state.isLoggedIn = true;
         }
       );
   },

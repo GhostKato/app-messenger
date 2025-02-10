@@ -27,7 +27,7 @@ const LoginForm: React.FC = () => {
       try {
         await dispatch(logIn(values));
         actions.resetForm();
-         router.push('/message');
+         router.push('/');
       } catch (error) {
         console.error(error);
       }

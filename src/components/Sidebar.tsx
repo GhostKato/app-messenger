@@ -9,32 +9,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredUsers } from '../redux/filters/selectors';
 import { AppDispatch } from '../redux/store';
 import { BASE_PHOTO_URL } from '../constants/сonstants';
-import { refreshUser } from '@/redux/auth/operations';
+import { selectIsRefreshing} from '@/redux/auth/selectors';
 
 export default function Sidebar() {
+
+  const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch<AppDispatch>(); 
   const pathname = usePathname(); 
 
   const filteredUsers = useSelector(selectFilteredUsers);
 
-
-
 useEffect(() => {
-    const refreshAndFetch = async () => {
-      try {
-        
-        await dispatch(refreshUser());
-        
-        dispatch(fetchUsers());
-      } catch (error) {
-        console.error("Помилка при рефрешу токена або запиті користувачів:", error);
-      }
-    };
-
-    refreshAndFetch(); 
-
-  }, [dispatch]);
- 
+   
+    if (!isRefreshing) {
+      dispatch(fetchUsers());
+    }
+  }, [isRefreshing, dispatch]); 
 
   if (!filteredUsers || !Array.isArray(filteredUsers)) {
     return <p>No users.</p>;

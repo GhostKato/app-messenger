@@ -109,7 +109,7 @@ export const logOut = createAsyncThunk<void, void, { rejectValue: string }>('aut
 });
 
 
-export const refreshUser = createAsyncThunk<AuthResponseRefresh['data'], void, { rejectValue: string }>(
+export const refresh = createAsyncThunk<AuthResponseRefresh['data'], void, { rejectValue: string }>(
   'auth/refresh',
   async (_, thunkAPI) => {
     const savedToken = getToken();
@@ -150,8 +150,7 @@ export const updateUser = createAsyncThunk<UserType, UpdateUserType, { rejectVal
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      });
-      console.log(data);
+      });      
       return data.user;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {

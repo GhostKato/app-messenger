@@ -28,7 +28,7 @@ const RegistrationForm: React.FC = () => {
     try {
       await dispatch(register(values));
       actions.resetForm();
-       router.push('/message');
+       router.push('/');
     } catch (error) {
       console.error(error);
     }

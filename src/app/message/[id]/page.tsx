@@ -10,14 +10,14 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMessages } from '../../../redux/messages/selectors';
 import { MessageType } from "@/types/messageTypes";
-import { refreshUser } from '@/redux/auth/operations';
-import { fetchUsers } from '@/redux/user/operations';
 import MessageUpdateForm from '@/components/MessageUpdateForm';
 import { selectModalState } from '@/redux/modal/selectors';
+import { selectIsRefreshing } from '@/redux/auth/selectors';
 
 const Message: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>(); 
   const messages = useSelector(selectMessages) as MessageType[];
+  const isRefreshing = useSelector(selectIsRefreshing);
   const router = useRouter();
   const [selectedMessage, setSelectedMessage] = useState<MessageType | null>(null);
   const isOpenMessageUpdate = useSelector((state: RootState) =>
@@ -26,23 +26,11 @@ const Message: React.FC = () => {
   const { id } = useParams();
   const toId = Array.isArray(id) ? id[0] : id;
 
-  useEffect(() => {
-    const refreshAndFetch = async () => {
-      try {
-        await dispatch(refreshUser());
-
-        if (toId) {
-          dispatch(fetchMessages(toId));
-        }
-
-        dispatch(fetchUsers());
-      } catch (error) {
-        console.error("Помилка при рефрешу токена або запиті користувачів:", error);
-      }
-    };
-
-    refreshAndFetch();
-  }, [dispatch, toId]);
+useEffect(() => {
+  if (!isRefreshing && toId) {
+    dispatch(fetchMessages(toId));
+  }
+}, [isRefreshing, toId, dispatch]);
 
   const listRef = useRef<HTMLUListElement>(null);
 
