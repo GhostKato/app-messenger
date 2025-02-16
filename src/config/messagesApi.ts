@@ -1,11 +1,11 @@
 import axios, { AxiosInstance } from "axios";
 import Cookies from 'js-cookie';
+import { BACKEND_DOMAIN } from '@/constants/сonstants';
 
 type Token = string;
 
 export const messagesApi: AxiosInstance = axios.create({
-  // baseURL: "http://localhost:3000",
-  baseURL: "https://server-messenger.onrender.com", 
+  baseURL: BACKEND_DOMAIN,   
   withCredentials: true,
 });
 
