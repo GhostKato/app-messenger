@@ -1,8 +1,7 @@
 'use client';
 import Button from '@/components/Button';
 import MessageSendForm from '@/components/MessageSendForm';
-import MessageItem from '@/components/MessageItem';
-import { fetchMessages } from '@/redux/messages/operations';
+import MessageItem from '@/components/MessageItem';  
 import { AppDispatch, RootState } from '@/redux/store';
 import { useRouter, useParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
@@ -13,6 +12,8 @@ import { MessageType } from "@/types/messageTypes";
 import MessageUpdateForm from '@/components/MessageUpdateForm';
 import { selectModalState } from '@/redux/modal/selectors';
 import { selectIsRefreshing } from '@/redux/auth/selectors';
+import { fetchMessages } from '@/redux/messages/operations';
+import useWebSocket from '@/hooks/useWebSocket';  
 
 const Message: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>(); 
@@ -21,16 +22,18 @@ const Message: React.FC = () => {
   const router = useRouter();
   const [selectedMessage, setSelectedMessage] = useState<MessageType | null>(null);
   const isOpenMessageUpdate = useSelector((state: RootState) =>
-  selectedMessage ? selectModalState(state, selectedMessage._id, 'messageUpdate') : false
-);  
+    selectedMessage ? selectModalState(state, selectedMessage._id, 'messageUpdate') : false
+  );  
   const { id } = useParams();
   const toId = Array.isArray(id) ? id[0] : id;
+  
+  useWebSocket();
 
-useEffect(() => {
-  if (!isRefreshing && toId) {
-    dispatch(fetchMessages(toId));
-  }
-}, [isRefreshing, toId, dispatch]);
+  useEffect(() => {
+    if (!isRefreshing && toId) {
+      dispatch(fetchMessages(toId));  
+    }
+  }, [isRefreshing, toId, dispatch]);
 
   const listRef = useRef<HTMLUListElement>(null);
 
@@ -74,7 +77,7 @@ useEffect(() => {
       {!isOpenMessageUpdate && selectedMessage ? (
         <MessageUpdateForm messageId={selectedMessage._id} message={selectedMessage.message} />
       ) : (
-        <MessageSendForm />
+        <MessageSendForm/>  
       )}
     </div>
   );

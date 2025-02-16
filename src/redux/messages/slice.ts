@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addMessages, deleteMessages, fetchMessages, updateMessages } from './operations';
+import { fetchMessages } from './operations';
 import { logOut } from '../auth/operations';
 import { MessageType } from "@/types/messageTypes"; 
 
@@ -18,50 +18,55 @@ const initialState: MessagesState = {
 const messagesSlice = createSlice({
   name: 'messages',
   initialState,
-  reducers: {},
+  reducers: {    
+    addMessageWS: (state, action) => {
+      const newMessage: MessageType = action.payload;
+      state.messages.push(newMessage);
+    },
+    updateMessageWS: (state, action) => {
+      const updatedMessage: MessageType = action.payload;
+      const index = state.messages.findIndex(message => message._id === updatedMessage._id);
+      if (index !== -1) {
+        state.messages[index] = updatedMessage;
+      }
+    },
+    deleteMessageWS: (state, action) => {
+      const id: string = action.payload;
+      state.messages = state.messages.filter(message => message._id !== id);
+    },   
+    fetchMessagesWS: (state, action) => {
+      const allMessages: MessageType[] = action.payload;
+      state.messages = allMessages;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchMessages.fulfilled, (state, action) => {
         if (Array.isArray(action.payload)) {
-          state.messages = action.payload; 
+          state.messages = action.payload;
         } else {
           state.messages = [];
         }
-      })
-      .addCase(addMessages.fulfilled, (state, action) => {
-        const payload: MessageType = action.payload; 
-        state.messages.push(payload);  
-      })
-      .addCase(updateMessages.fulfilled, (state, action) => {
-        const payload: MessageType = action.payload; 
-        const index = state.messages.findIndex(message => message._id === payload._id);
-        if (index !== -1) {
-          state.messages[index] = payload; 
-        }
-      })
-      .addCase(deleteMessages.fulfilled, (state, action) => {
-  const id: string = action.payload;
-  state.messages = state.messages.filter(message => message._id !== id);
-      })
+      })             
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
       .addMatcher(
-        isAnyOf(fetchMessages.pending, deleteMessages.pending, addMessages.pending, updateMessages.pending),
+        isAnyOf(fetchMessages.pending),
         state => {
           state.isLoading = true;
           state.isError = false;
         }
       )
       .addMatcher(
-        isAnyOf(fetchMessages.rejected, deleteMessages.rejected, addMessages.rejected, updateMessages.rejected),
+        isAnyOf(fetchMessages.rejected),
         state => {
           state.isLoading = false;
           state.isError = true;
         }
       )
       .addMatcher(
-        isAnyOf(fetchMessages.fulfilled, deleteMessages.fulfilled, addMessages.fulfilled, updateMessages.fulfilled),
+        isAnyOf(fetchMessages.fulfilled),
         state => {
           state.isLoading = false;
           state.isError = false;
@@ -69,5 +74,7 @@ const messagesSlice = createSlice({
       );
   },
 });
+
+export const { addMessageWS, updateMessageWS, deleteMessageWS } = messagesSlice.actions;
 
 export const messagesReducer = messagesSlice.reducer;
