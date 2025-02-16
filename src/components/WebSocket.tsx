@@ -1,28 +1,42 @@
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+'use client'
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addMessageWS, updateMessageWS, deleteMessageWS } from '@/redux/messages/slice';
 import { MessageType } from '@/types/messageTypes';
 import { SOCKET_URL } from '@/constants/сonstants';
 import { io, Socket } from 'socket.io-client';
+import { selectUser, selectIsLoggedIn } from '@/redux/auth/selectors';  
 
-const useWebSocket = () => {
+const WebSocket = () => {
   const dispatch = useDispatch();
   const socketRef = useRef<Socket | null>(null); 
-  const [error, setError] = useState<string | null>(null);
+  const user = useSelector(selectUser);   
+  const userId = user._id;
+  const isLoggedIn = useSelector(selectIsLoggedIn);  
 
   useEffect(() => {
-    if (socketRef.current) return; 
+    if (!isLoggedIn) {      
+      if (socketRef.current) {
+        socketRef.current.disconnect(); 
+      }
+      return;  
+    }
+
+    if (socketRef.current) return;  
 
     const socketIo = io(SOCKET_URL, {
       transports: ['websocket'],
       withCredentials: true,
     });
 
-    socketRef.current = socketIo; 
+    socketRef.current = socketIo;
 
     socketIo.on('connect', () => {
-      console.log('WebSocket підключено через Socket.IO');
-      setError(null);
+      console.log('WebSocket connected via Socket.IO');
+      
+      if (userId) {
+        socketIo.emit('register', userId);
+      }
     });
 
     socketIo.on('newMessage', (message: MessageType) => {
@@ -38,12 +52,11 @@ const useWebSocket = () => {
     });
 
     socketIo.on('connect_error', (err) => {
-      console.error('Socket.IO помилка:', err);
-      setError('Сталася помилка при з\'єднанні з WebSocket сервером. Спробуйте ще раз.');
+      console.error('Socket.IO error:', err);
     });
 
     socketIo.on('disconnect', () => {
-      console.log('WebSocket відключено через Socket.IO');
+      console.log('WebSocket disabled via Socket.IO');
     });
 
     return () => {
@@ -51,17 +64,9 @@ const useWebSocket = () => {
         socketIo.disconnect();
       }
     };
-  }, [dispatch]);
+  }, [dispatch, userId, isLoggedIn]);  
 
-  const sendMessage = (message: MessageType) => {
-    if (socketRef.current?.connected) {
-      socketRef.current.emit('newMessage', message);
-    } else {
-      console.error('WebSocket не відкритий для з\'єднання');
-    }
-  };
-
-  return { sendMessage, error };
+  return null;  
 };
 
-export default useWebSocket;
+export default WebSocket;

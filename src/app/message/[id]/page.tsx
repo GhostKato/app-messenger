@@ -13,7 +13,7 @@ import MessageUpdateForm from '@/components/MessageUpdateForm';
 import { selectModalState } from '@/redux/modal/selectors';
 import { selectIsRefreshing } from '@/redux/auth/selectors';
 import { fetchMessages } from '@/redux/messages/operations';
-import useWebSocket from '@/hooks/useWebSocket';  
+  
 
 const Message: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>(); 
@@ -25,10 +25,8 @@ const Message: React.FC = () => {
     selectedMessage ? selectModalState(state, selectedMessage._id, 'messageUpdate') : false
   );  
   const { id } = useParams();
-  const toId = Array.isArray(id) ? id[0] : id;
+  const toId = Array.isArray(id) ? id[0] : id; 
   
-  useWebSocket();
-
   useEffect(() => {
     if (!isRefreshing && toId) {
       dispatch(fetchMessages(toId));  

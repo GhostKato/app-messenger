@@ -5,6 +5,7 @@ import { ScreenSizeProvider } from "../contexts/screenSizeContext";
 import ReduxProvider from '@/components/ReduxProvider';
 import InstallTheme from '@/components/InstallTheme';
 import Refresh from '@/components/Refresh';
+import WebSocket from '@/components/WebSocket';
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
      <ReduxProvider>
       <ScreenSizeProvider>
+        <WebSocket/>
         <Refresh/>
         <InstallTheme/>
     <html lang="en" className={roboto.className}>
