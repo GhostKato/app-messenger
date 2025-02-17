@@ -1,59 +1,62 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchUsers} from './operations';
-import { logOut } from '../auth/operations';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchUsers } from "./operations";
 import { UserType } from "@/types/userTypes";
-
-interface FetchUsersResponse {
-  data: UserType[]; 
-}
 
 interface UsersState {
   users: UserType[];
+  userStatus: Record<string, "online" | "offline">;
   isLoading: boolean;
   isError: boolean;
 }
 
 const initialState: UsersState = {
   users: [],
+  userStatus: {}, 
   isLoading: false,
   isError: false,
 };
 
 const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
-  reducers: {}, 
-  extraReducers: builder => {
+  reducers: {
+    updateUserStatus: (
+      state,
+      action: PayloadAction<{ userId: string; status: "online" | "offline" }>
+    ) => {
+      const { userId, status } = action.payload;
+      state.userStatus[userId] = status; 
+    },
+    setAllUsersStatus: (
+      state,
+      action: PayloadAction<Record<string, "online" | "offline">>
+    ) => {
+      state.userStatus = action.payload; 
+    },
+  },
+  extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        const payload = action.payload as unknown as FetchUsersResponse;
-        state.users = payload.data || [];
-      })      
-      .addCase(logOut.fulfilled, () => {
-        return initialState; 
+        state.users = action.payload.data;
+        
+        state.userStatus = action.payload.data.reduce(
+          (acc, user) => {
+            if (user._id) {
+              acc[user._id] = "offline"; 
+            }
+            return acc;
+          },
+          {} as Record<string, "online" | "offline">
+        );
       })
-      .addMatcher(
-        isAnyOf(fetchUsers.pending),
-        state => {
-          state.isLoading = true;
-          state.isError = false;
-        }
-      )
-      .addMatcher(
-        isAnyOf(fetchUsers.rejected),
-        state => {
-          state.isLoading = false;
-          state.isError = true;
-        }
-      )
-      .addMatcher(
-        isAnyOf(fetchUsers.fulfilled),
-        state => {
-          state.isLoading = false;
-          state.isError = false;
-        }
-      );
+      .addCase(fetchUsers.rejected, (state) => {
+        state.isError = true;
+      })
+      .addCase(fetchUsers.pending, (state) => {
+        state.isLoading = true;
+      });
   },
 });
 
+export const { updateUserStatus, setAllUsersStatus } = usersSlice.actions;
 export const usersReducer = usersSlice.reducer;
