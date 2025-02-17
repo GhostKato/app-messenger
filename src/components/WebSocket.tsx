@@ -40,8 +40,12 @@ const WebSocket = () => {
     });
 
     socketIo.on('newMessage', (message: MessageType) => {
-      dispatch(addMessageWS(message)); 
-    });
+  if (userId === message.fromId || userId === message.toId) {
+    if (window.location.pathname === `/message/${message.toId}` || window.location.pathname === `/message/${message.fromId}`) {
+      dispatch(addMessageWS(message));
+    }
+  }
+});
 
     socketIo.on('updateMessage', (message: MessageType) => {
       dispatch(updateMessageWS(message)); 
