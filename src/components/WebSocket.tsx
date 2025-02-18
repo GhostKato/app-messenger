@@ -16,9 +16,8 @@ const WebSocket = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    if (!isLoggedIn || !userId) {
+    if (!isLoggedIn) {
       if (socketRef.current) {
-        socketRef.current.emit("userOffline", { userId });
         socketRef.current.disconnect();
         socketRef.current = null;
       }
@@ -34,29 +33,17 @@ const WebSocket = () => {
 
     socketRef.current = socketIo;
 
-    socketIo.on("connect", () => {
-      console.log("✅ WebSocket підключено");
-      
+    socketIo.on("connect", () => {      
       if (userId) {
         socketIo.emit("register", userId);
         socketIo.emit("userOnline", { userId });
       }
     });
-    
-    socketIo.on("allUserStatuses", (users) => {
-      
-      for (const userId in users) {
-        const status = users[userId].status;
-        dispatch(updateUserStatus({ userId, status }));
-      }
-    });
 
     socketIo.on("newMessage", (message: MessageType) => {
       if (userId === message.fromId || userId === message.toId) {
-        if (
-          window.location.pathname === `/message/${message.toId}` ||
-          window.location.pathname === `/message/${message.fromId}`
-        ) {
+        const path = window.location.pathname;
+        if (path === `/message/${message.toId}` || path === `/message/${message.fromId}`) {
           dispatch(addMessageWS(message));
         }
       }
@@ -69,24 +56,21 @@ const WebSocket = () => {
     socketIo.on("deleteMessage", (id: string) => {
       dispatch(deleteMessageWS(id));
     });
-    
+
     socketIo.on("updateUserStatus", ({ userId, status }) => {
       dispatch(updateUserStatus({ userId, status }));
     });
 
     socketIo.on("connect_error", (err) => {
-      console.error("❌ Помилка WebSocket:", err);
+      console.error("❌ WebSocket Error:", err);
     });
 
-    socketIo.on("disconnect", () => {
-      console.log("🔴 WebSocket відключено");
+    socketIo.on("disconnect", () => {      
     });
 
     return () => {
-      if (socketIo.connected) {
-        if (userId) {
-          socketIo.emit("userOffline", { userId }); 
-        }
+      if (socketIo.connected && userId) {
+        dispatch(updateUserStatus({ userId, status: "offline" }));
         socketIo.disconnect();
       }
       socketRef.current = null;

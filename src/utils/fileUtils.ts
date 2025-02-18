@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-interface HandleFileChangeProps {
+type HandleFileChangeProps = {
   event: ChangeEvent<HTMLInputElement>;
   setFieldValue: (field: string, value: File) => void;
   setPreview: (value: string | ArrayBuffer | null) => void;

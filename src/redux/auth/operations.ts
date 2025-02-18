@@ -156,7 +156,7 @@ export const updateUser = createAsyncThunk<UserType, UpdateUserType, { rejectVal
       if (error instanceof AxiosError) {
         return thunkAPI.rejectWithValue(error.message);
       }
-      return thunkAPI.rejectWithValue('Сталася невідома помилка');
+      return thunkAPI.rejectWithValue('An unknown error occurred');
     }
   }
 );

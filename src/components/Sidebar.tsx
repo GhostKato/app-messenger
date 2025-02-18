@@ -9,17 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredUsers } from '../redux/filters/selectors';
 import { AppDispatch } from '../redux/store';
 import { BASE_PHOTO_URL } from '../constants/сonstants';
-import { selectIsRefreshing } from '@/redux/auth/selectors';
-import { selectUserStatus } from '../redux/user/selectors';  
+import { selectIsRefreshing } from '@/redux/auth/selectors';  
 
 export default function Sidebar() {
   const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch<AppDispatch>(); 
   const pathname = usePathname(); 
 
-  const filteredUsers = useSelector(selectFilteredUsers);
-  
-  const userStatus = useSelector(selectUserStatus);  
+  const filteredUsers = useSelector(selectFilteredUsers);  
 
   useEffect(() => {
     if (!isRefreshing) {
@@ -37,7 +34,7 @@ export default function Sidebar() {
         <Header />
         <ul className="flex flex-col items-center gap-[13px] pl-5 pb-[10px] pr-5 pt-[10px] overflow-auto flex-grow scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-black">
           {filteredUsers.map((user) => {            
-            const status = user && user._id ? userStatus[user._id] : "offline";
+            
             return (
               <SidebarItem
                 key={user._id}
@@ -45,7 +42,7 @@ export default function Sidebar() {
                 pathname={`/message/${user._id}`}
                 src={user.photo || BASE_PHOTO_URL}
                 alt={`${user.name} icon`}
-                status={status} 
+                status={user.status} 
               >
                 {user.name}
               </SidebarItem>

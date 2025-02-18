@@ -2,16 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchUsers } from "./operations";
 import { UserType } from "@/types/userTypes";
 
-interface UsersState {
+type UsersState = {
   users: UserType[];
-  userStatus: Record<string, "online" | "offline">;
   isLoading: boolean;
   isError: boolean;
 }
 
 const initialState: UsersState = {
   users: [],
-  userStatus: {}, 
   isLoading: false,
   isError: false,
 };
@@ -25,38 +23,29 @@ const usersSlice = createSlice({
       action: PayloadAction<{ userId: string; status: "online" | "offline" }>
     ) => {
       const { userId, status } = action.payload;
-      state.userStatus[userId] = status; 
-    },
-    setAllUsersStatus: (
-      state,
-      action: PayloadAction<Record<string, "online" | "offline">>
-    ) => {
-      state.userStatus = action.payload; 
+      const user = state.users.find((user) => user._id === userId);
+      if (user) {
+        user.status = status;
+      }      
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.users = action.payload.data;
-        
-        state.userStatus = action.payload.data.reduce(
-          (acc, user) => {
-            if (user._id) {
-              acc[user._id] = "offline"; 
-            }
-            return acc;
-          },
-          {} as Record<string, "online" | "offline">
-        );
+        state.isLoading = false;
+        state.isError = false;
       })
       .addCase(fetchUsers.rejected, (state) => {
         state.isError = true;
+        state.isLoading = false;
       })
       .addCase(fetchUsers.pending, (state) => {
         state.isLoading = true;
+         state.isError = false;
       });
   },
 });
 
-export const { updateUserStatus, setAllUsersStatus } = usersSlice.actions;
+export const { updateUserStatus } = usersSlice.actions;
 export const usersReducer = usersSlice.reducer;

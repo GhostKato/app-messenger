@@ -44,7 +44,7 @@ export default function SidebarItem({
           />
         </div>
         <span className="text-xl md:text-2xl text-zinc-50">{children}</span>
-        <span className={`font-medium ${status === 'online' ? 'text-green-500' : 'text-red-100'}`}>{status}</span>
+        <span className={`font-medium ${status === 'online' ? 'text-green-700' : 'text-gray-800'}`}>{status}</span>
       </Link>
     </li>
   );

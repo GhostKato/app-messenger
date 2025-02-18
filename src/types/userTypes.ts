@@ -3,6 +3,7 @@ export type UserType = {
   email: string | null;
   photo: string | null;
   _id: string | null;
+  status: string;
 };
 
 export type UserFormType = {
