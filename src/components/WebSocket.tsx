@@ -17,6 +17,11 @@ const WebSocket = () => {
   const userId = user?._id;
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  const playMessageSound = () => {
+  const audio = new Audio("/sounds/message.mp3");
+  audio.play().catch((err) => console.error("Audio play failed:", err));
+};
+
   useEffect(() => {
     if (!isLoggedIn) {
       if (socketRef.current) {
@@ -62,6 +67,7 @@ const WebSocket = () => {
     socketIo.on("addNotification", (message: MessageType) => {
       if (userId === message.fromId || userId === message.toId) {       
         dispatch(addNotificationWS(message));
+         playMessageSound();
       }
     });
 
