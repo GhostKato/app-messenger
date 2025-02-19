@@ -1,12 +1,14 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessageWS, updateMessageWS, deleteMessageWS } from "@/redux/messages/slice";
+import { addMessageWS, updateMessageWS, deleteMessageWS, addNotificationWS, deleteNotificationWS } from "@/redux/messages/slice";
 import { updateUserStatus } from "@/redux/user/slice";
 import { MessageType } from "@/types/messageTypes";
 import { SOCKET_URL } from "@/constants/сonstants";
 import { io, Socket } from "socket.io-client";
 import { selectUser, selectIsLoggedIn } from "@/redux/auth/selectors";
+
+export const socketRef = { current: null as Socket | null };
 
 const WebSocket = () => {
   const dispatch = useDispatch();
@@ -55,6 +57,16 @@ const WebSocket = () => {
 
     socketIo.on("deleteMessage", (id: string) => {
       dispatch(deleteMessageWS(id));
+    });
+
+    socketIo.on("addNotification", (message: MessageType) => {
+      if (userId === message.fromId || userId === message.toId) {       
+        dispatch(addNotificationWS(message));
+      }
+    });
+
+socketIo.on("deleteNotification", ({ fromId }) => {
+      dispatch(deleteNotificationWS(fromId)); 
     });
 
     socketIo.on("updateUserStatus", ({ userId, status }) => {

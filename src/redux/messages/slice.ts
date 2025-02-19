@@ -4,13 +4,15 @@ import { logOut } from '../auth/operations';
 import { MessageType } from "@/types/messageTypes"; 
 
 type MessagesState = {
-  messages: MessageType[]; 
+  messages: MessageType[];
+  newMessages: MessageType[];
   isLoading: boolean;
   isError: boolean;
 }
 
 const initialState: MessagesState = {
-  messages: [], 
+  messages: [],
+  newMessages: [],
   isLoading: false,
   isError: false,
 };
@@ -37,6 +39,12 @@ const messagesSlice = createSlice({
     fetchMessagesWS: (state, action) => {
       const allMessages: MessageType[] = action.payload;
       state.messages = allMessages;
+    },
+    addNotificationWS: (state, action) => {
+      state.newMessages.push(action.payload);
+    },
+    deleteNotificationWS: (state, action) => {
+      state.newMessages = state.newMessages.filter(msg => msg.fromId !== action.payload);
     },
   },
   extraReducers: builder => {
@@ -75,6 +83,6 @@ const messagesSlice = createSlice({
   },
 });
 
-export const { addMessageWS, updateMessageWS, deleteMessageWS } = messagesSlice.actions;
+export const { addMessageWS, updateMessageWS, deleteMessageWS, addNotificationWS, deleteNotificationWS } = messagesSlice.actions;
 
 export const messagesReducer = messagesSlice.reducer;

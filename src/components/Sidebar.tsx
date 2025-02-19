@@ -38,6 +38,7 @@ export default function Sidebar() {
             return (
               <SidebarItem
                 key={user._id}
+                userId={user._id}
                 current={pathname === `/message/${user._id}`}
                 pathname={`/message/${user._id}`}
                 src={user.photo || BASE_PHOTO_URL}
