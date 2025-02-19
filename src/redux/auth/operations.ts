@@ -1,4 +1,3 @@
-'use client'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi, setToken, clearToken, getToken } from "../../config/messagesApi";
 import { AxiosError } from 'axios';
