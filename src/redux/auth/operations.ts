@@ -1,6 +1,7 @@
 'use client'
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { messagesApi, setToken, clearToken, getToken } from "../../config/messagesApi";
+import { clearToken, getToken, messagesApi, setToken } from "../../config/messagesApi";
 import { AxiosError } from 'axios';
 import { createFormData } from "../../utils/formDataUtils";
 import { UpdateUserType, UserType, UserFormType } from "@/types/userTypes";
@@ -46,12 +47,11 @@ export const register = createAsyncThunk<AuthResponse['data'], UserFormType, { r
       await messagesApi.post('/auth/register', credentials);
       const { email, password } = credentials;
       try {
-        const loginResponse: AuthResponseLogin = await messagesApi.post('/auth/login', { email, password });
+        const loginResponse: AuthResponseLogin = await messagesApi.post('/auth/login', { email, password });        
         const { accessToken } = loginResponse.data.data;
-
         if (accessToken) {
           setToken(accessToken);          
-        }
+        }        
         return loginResponse.data.data;
       } catch (loginError: unknown) {
         if ((loginError as AxiosErrorWithResponse).response) {
@@ -73,12 +73,11 @@ export const logIn = createAsyncThunk<AuthResponse['data'], UserFormType, { reje
   'auth/login',
   async (credentials: UserFormType, thunkAPI) => {
     try {
-      const { data }: AuthResponseLogin = await messagesApi.post('auth/login', credentials);
+      const { data }: AuthResponseLogin = await messagesApi.post('auth/login', credentials);      
       const { accessToken } = data.data;
-
       if (accessToken) {
         setToken(accessToken);
-      }
+      }      
       return data.data;
     } catch (err: unknown) {
       if ((err as AxiosErrorWithResponse).response) {
@@ -112,21 +111,13 @@ export const logOut = createAsyncThunk<void, void, { rejectValue: string }>('aut
 export const refresh = createAsyncThunk<AuthResponseRefresh['data'], void, { rejectValue: string }>(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const savedToken = getToken();
+         const savedToken = getToken();
     if (!savedToken) {
       return thunkAPI.rejectWithValue('Token is not exist!');
     }
     try {
-      const { data }: AuthResponseRefresh = await messagesApi.post('auth/refresh');
-      
-      const token: string = data.data.accessToken || '';       
-      
-      if (token) {
-        setToken(token); 
-      } else {
-        return thunkAPI.rejectWithValue('No accessToken in response');
-      }
-      
+      const { data }: AuthResponseRefresh = await messagesApi.post('auth/refresh');      
+                      
       return data;
     } catch (err: unknown) {
       if ((err as AxiosErrorWithResponse).response) {
