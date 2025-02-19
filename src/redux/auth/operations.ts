@@ -115,8 +115,17 @@ export const refresh = createAsyncThunk<AuthResponseRefresh['data'], void, { rej
     if (!savedToken) {
       return thunkAPI.rejectWithValue('Token is not exist!');
     }
+    setToken(savedToken);
     try {
-      const { data }: AuthResponseRefresh = await messagesApi.post('auth/refresh');      
+      const { data }: AuthResponseRefresh = await messagesApi.post('auth/refresh');
+      
+      const token: string = data.data.accessToken || '';       
+      
+      if (token) {
+        setToken(token); 
+      } else {
+        return thunkAPI.rejectWithValue('No accessToken in response');
+      }
                       
       return data;
     } catch (err: unknown) {
