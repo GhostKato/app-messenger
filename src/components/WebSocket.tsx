@@ -67,7 +67,9 @@ const WebSocket = () => {
     socketIo.on("addNotification", (message: MessageType) => {
       if (userId === message.fromId || userId === message.toId) {       
         dispatch(addNotificationWS(message));
-         playMessageSound();
+        if (userId === message.toId) {
+          playMessageSound();
+        }
       }
     });
 
