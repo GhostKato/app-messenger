@@ -40,6 +40,7 @@ export const getMessages = createAsyncThunk<
   }
 );
 
+
 export const addMessages = createAsyncThunk<
   MessageType, 
   AddMessagePayload,  
@@ -48,8 +49,7 @@ export const addMessages = createAsyncThunk<
   'message/addMessage',
   async ({ toId, message }, thunkAPI) => {  
     try {
-      const { data } = await messagesApi.post(`message/${toId}`, { message });
-      
+      const { data } = await messagesApi.post(`message/${toId}`, { message });      
       return data.data;
     } catch (error) {
       if (error instanceof Error) {
@@ -105,8 +105,7 @@ export const getNotifications = createAsyncThunk<getNotificationsResponse, void,
   'message/getNotifications', 
   async (_, thunkAPI) => {
     try {
-      const { data } = await messagesApi.get('message/notifications');
-      console.log(data);
+      const { data } = await messagesApi.get('message/notifications');      
       return data;
     } catch (error: unknown) {      
       if (error instanceof Error) {

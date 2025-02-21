@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addMessageWS, updateMessageWS, deleteMessageWS, addNotificationWS } from "@/redux/messages/slice";
+import { addMessageWS, updateMessageWS, deleteMessageWS, addNotificationWS, deleteNotificationWS } from "@/redux/messages/slice";
 import { updateUserStatus } from "@/redux/user/slice";
 import { MessageType } from "@/types/messageTypes";
 import { SOCKET_URL } from "@/constants/сonstants";
@@ -70,6 +70,11 @@ const WebSocket = () => {
           playMessageSound();
         }
       }
+    });
+
+    socketIo.on("deleteNotification", (id: string) => { 
+      console.log(id);
+      dispatch(deleteNotificationWS(id));
     });
 
     socketIo.on("updateUserStatus", ({ userId, status }) => {

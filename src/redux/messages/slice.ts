@@ -41,9 +41,9 @@ const messagesSlice = createSlice({
       state.notification.push(action.payload);
     },
     deleteNotificationWS: (state, action) => {
-      state.notification = state.notification.filter(ntf => ntf.fromId !== action.payload);
+    state.notification = state.notification.filter(ntf => ntf.messageId !== action.payload);
     },
-  },
+    },
   extraReducers: builder => {
     builder
       .addCase(getMessages.fulfilled, (state, action) => {
