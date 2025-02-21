@@ -6,3 +6,4 @@ export type MessageType = {
   createdAt: string;
   updatedAt: string;
 }
+

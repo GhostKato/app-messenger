@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { fetchUsers } from "./operations";
+import { getUsers } from "./operations";
 import { UserType } from "@/types/userTypes";
 
 type UsersState = {
@@ -31,16 +31,16 @@ const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchUsers.fulfilled, (state, action) => {
+      .addCase(getUsers.fulfilled, (state, action) => {
         state.users = action.payload.data;
         state.isLoading = false;
         state.isError = false;
       })
-      .addCase(fetchUsers.rejected, (state) => {
+      .addCase(getUsers.rejected, (state) => {
         state.isError = true;
         state.isLoading = false;
       })
-      .addCase(fetchUsers.pending, (state) => {
+      .addCase(getUsers.pending, (state) => {
         state.isLoading = true;
          state.isError = false;
       });

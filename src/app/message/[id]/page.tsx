@@ -12,7 +12,7 @@ import { MessageType } from "@/types/messageTypes";
 import MessageUpdateForm from '@/components/MessageUpdateForm';
 import { selectModalState } from '@/redux/modal/selectors';
 import { selectIsRefreshing } from '@/redux/auth/selectors';
-import { fetchMessages } from '@/redux/messages/operations';
+import { getMessages } from '@/redux/messages/operations';
   
 
 const Message: React.FC = () => {
@@ -29,7 +29,7 @@ const Message: React.FC = () => {
   
   useEffect(() => {
     if (!isRefreshing && toId) {
-      dispatch(fetchMessages(toId));  
+      dispatch(getMessages(toId));  
     }
   }, [isRefreshing, toId, dispatch]);
 

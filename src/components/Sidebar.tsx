@@ -4,12 +4,13 @@ import SidebarItem from './SidebarItem';
 import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
-import { fetchUsers } from '../redux/user/operations';
+import { getUsers } from '../redux/user/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredUsers } from '../redux/filters/selectors';
 import { AppDispatch } from '../redux/store';
 import { BASE_PHOTO_URL } from '../constants/сonstants';
 import { selectIsRefreshing } from '@/redux/auth/selectors';  
+import { getNotifications } from '@/redux/messages/operations';
 
 export default function Sidebar() {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -20,7 +21,8 @@ export default function Sidebar() {
 
   useEffect(() => {
     if (!isRefreshing) {
-      dispatch(fetchUsers());
+      dispatch(getUsers());
+      dispatch(getNotifications());
     }
   }, [isRefreshing, dispatch]); 
 

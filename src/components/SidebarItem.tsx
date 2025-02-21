@@ -3,10 +3,10 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteNotificationWS } from '@/redux/messages/slice';
 import { selectNotification } from '@/redux/messages/selectors';
-import { MessageType } from '@/types/messageTypes';
-import { socketRef } from '@/components/WebSocket'; 
+import { NotificationType } from '@/types/notificationTypes';
+import { deleteNotifications } from '@/redux/messages/operations';
+import { AppDispatch } from '@/redux/store';
 
 type SidebarItemProps = {
   userId: string | null;
@@ -28,17 +28,17 @@ export default function SidebarItem({
   status
 }: SidebarItemProps) {
 
-  const dispatch = useDispatch();
-  const newMessages = useSelector(selectNotification) as MessageType[];
-  
-  const newMessagesCount = newMessages.filter((msg) => msg.fromId === userId).length;
+  const dispatch = useDispatch<AppDispatch>();
+  const notification = useSelector(selectNotification) as NotificationType[];
+  const notificationFilter = notification.filter((ntf) => ntf.fromId === userId);  
+  const notificationIds = notificationFilter.map((ntf) => ntf._id);
+  const notificationCount = notificationFilter.length;
 
-  const handleClick = () => {
-    if (userId) {
-      dispatch(deleteNotificationWS(userId)); 
-      socketRef.current?.emit('deleteNotification', { fromId: userId }); 
-    }
-  };
+   const handleClick = () => {
+  if (notificationIds.length > 0) {      
+    dispatch(deleteNotifications({ ids: notificationIds })); 
+  }
+};
 
   return (
     <li className={clsx(
@@ -70,7 +70,7 @@ export default function SidebarItem({
   status === "online" ? "text-green-700" : "text-red-700",
   current && "bg-main border border-interaction"
 )}>
-  {newMessagesCount > 0 ? newMessagesCount : status}
+  {notificationCount > 0 ? notificationCount : status}
 </span>
       </Link>
     </li>

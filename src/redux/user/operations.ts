@@ -2,12 +2,12 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { messagesApi } from "../../config/messagesApi";
 import { UserType } from "@/types/userTypes";
 
-type FetchUsersResponse = {
+type GetUsersResponse = {
   data: UserType[]; 
 }
 
-export const fetchUsers = createAsyncThunk<FetchUsersResponse, void, { rejectValue: string }>(
-  'user/fetchUsers', 
+export const getUsers = createAsyncThunk<GetUsersResponse, void, { rejectValue: string }>(
+  'user/getUsers', 
   async (_, thunkAPI) => {
     try {
       const { data } = await messagesApi.get('user/all');

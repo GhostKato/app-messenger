@@ -1,18 +1,19 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchMessages } from './operations';
+import { deleteNotifications, getMessages, getNotifications } from './operations';
 import { logOut } from '../auth/operations';
-import { MessageType } from "@/types/messageTypes"; 
+import { MessageType } from "@/types/messageTypes";
+import { NotificationType } from "@/types/notificationTypes"; 
 
 type MessagesState = {
   messages: MessageType[];
-  newMessages: MessageType[];
+  notification: NotificationType[];
   isLoading: boolean;
   isError: boolean;
 }
 
 const initialState: MessagesState = {
   messages: [],
-  newMessages: [],
+  notification: [],
   isLoading: false,
   isError: false,
 };
@@ -35,46 +36,50 @@ const messagesSlice = createSlice({
     deleteMessageWS: (state, action) => {
       const id: string = action.payload;
       state.messages = state.messages.filter(message => message._id !== id);
-    },   
-    fetchMessagesWS: (state, action) => {
-      const allMessages: MessageType[] = action.payload;
-      state.messages = allMessages;
-    },
+    },       
     addNotificationWS: (state, action) => {
-      state.newMessages.push(action.payload);
+      state.notification.push(action.payload);
     },
     deleteNotificationWS: (state, action) => {
-      state.newMessages = state.newMessages.filter(msg => msg.fromId !== action.payload);
+      state.notification = state.notification.filter(ntf => ntf.fromId !== action.payload);
     },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchMessages.fulfilled, (state, action) => {
+      .addCase(getMessages.fulfilled, (state, action) => {
         if (Array.isArray(action.payload)) {
           state.messages = action.payload;
         } else {
           state.messages = [];
         }
-      })             
+      })
+      .addCase(getNotifications.fulfilled, (state, action) => {
+              state.notification = action.payload.data;              
+      })
+      .addCase(deleteNotifications.fulfilled, (state, action) => {  
+       state.notification = state.notification.filter(ntf => 
+      !action.payload.includes(ntf._id) 
+       );
+       })
       .addCase(logOut.fulfilled, () => {
         return initialState;
       })
       .addMatcher(
-        isAnyOf(fetchMessages.pending),
+        isAnyOf(getMessages.pending, getNotifications.pending),
         state => {
           state.isLoading = true;
           state.isError = false;
         }
       )
       .addMatcher(
-        isAnyOf(fetchMessages.rejected),
+        isAnyOf(getMessages.rejected, getNotifications.rejected),
         state => {
           state.isLoading = false;
           state.isError = true;
         }
       )
       .addMatcher(
-        isAnyOf(fetchMessages.fulfilled),
+        isAnyOf(getMessages.fulfilled, getNotifications.fulfilled),
         state => {
           state.isLoading = false;
           state.isError = false;
