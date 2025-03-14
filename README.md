@@ -51,15 +51,9 @@ The app messenger is a digital communication tool that allows you to always be i
 
    - The application is optimized for various devices such as smartphones, tablets and desktops. Thanks to the adaptive design, users can comfortably use the application on any screen, while maintaining convenience and functionality.
 
-![Registration-variant](/public/readme/registration-variant.jpg)
-
-6. **Authorization through Google:**
-
-   - Users can log in to the app via Google, which facilitates the authorization and registration process. This saves time because you do not need to create a new account manually.
-
 ---
 
-![Login-variant](/public/readme/login-variant.jpg)
+![Registration-variant](/public/readme/registration-variant.jpg)
 
 ### Stages of implementation:
 
@@ -67,7 +61,7 @@ The app messenger is a digital communication tool that allows you to always be i
 
    - Developing interface layouts, choosing colors and fonts, creating a convenient menu and navigation.
 
-![Sidebar](/public/readme/sidebar.jpg)
+![Login-variant](/public/readme/login-variant.jpg)
 
 2. **Development of functionality:**
 
@@ -77,19 +71,19 @@ The app messenger is a digital communication tool that allows you to always be i
    - New message counter to track unread messages.
    - Personalization of the app’s appearance, including color schemes and background images.
 
-![Themes](/public/readme/themes.jpg)
+![Sidebar](/public/readme/sidebar.jpg)
 
 3. **Testing:**
 
    - Conducting tests to ensure stable operation of the application on different devices.
 
-![Modal](/public/readme/modal.jpg)
+![Themes](/public/readme/themes.jpg)
 
 4. **Launch and support:**
 
    - Publish the application and then update to improve functionality based on user feedback.
 
-![Message1](/public/readme/message1.jpg)
+![Modal](/public/readme/modal.jpg)
 
 ---
 
@@ -103,6 +97,8 @@ The app messenger is a digital communication tool that allows you to always be i
 - Real-time updates with WebSocket.
 - Sound notifications for incoming messages.
 - Visual indication of online users and new message counter.
+
+![Message1](/public/readme/message1.jpg)
 
 ---
 
@@ -131,8 +127,6 @@ The app messenger is a digital communication tool that allows you to always be i
 
 5. **Safety:**
 
-   - **OAuth 2.0**
-   - **JWT**
    - **HTTPS**
      **bcrypt**
 
@@ -149,6 +143,6 @@ The app messenger is a digital communication tool that allows you to always be i
 
 ---
 
-The project involves the creation of a convenient and secure tool for storing communication with the ability to add photos, edit and quickly access chats. The program provides high security through encryption and authorization through Google, as well as adaptive design for various devices. The project includes stages of interface development, functionality, testing, and support, along with personalization options and user status features to enhance the user experience.
+The project involves the creation of a convenient and secure tool for storing communication with the ability to add photos, edit and quickly access chats. The program provides high security through encryption, as well as adaptive design for various devices. The project includes stages of interface development, functionality, testing, and support, along with personalization options and user status features to enhance the user experience.
 
 With WebSocket integration, users will experience real-time updates, online status visibility, and an unread message counter, along with sound notifications for new messages, making the messenger more interactive and responsive.
