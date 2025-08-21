@@ -14,7 +14,7 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  title: 'App messenger',
+  title: 'Messenger',
   description: 'This is an application for communication.',
   icons: {
     icon: '/favicon.png',
@@ -23,9 +23,9 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.example.com/',
-    title: 'App messenger',
+    title: 'Messenger',
     description: 'This is an application for communication.',
-    site_name: 'App messenger',
+    site_name: 'Messenger',
   },
 };
 
