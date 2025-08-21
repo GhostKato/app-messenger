@@ -1,8 +1,8 @@
-# Individual project: app messenger
+# Individual project: messenger
 
 ### Description:
 
-The app messenger is a digital communication tool that allows you to always be in touch. This project aims to create a convenient, intuitive application for quick access to the messages of important people in your life or business.
+The a messenger is a digital communication tool that allows you to always be in touch. This project aims to create a convenient, intuitive application for quick access to the messages of important people in your life or business.
 
 ![Welcome](/public/readme/welcome.jpg)
 
