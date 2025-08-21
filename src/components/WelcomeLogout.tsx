@@ -18,7 +18,7 @@ const WelcomeLogout: React.FC = () => {
 
   return (    
       <div className='flex flex-col justify-center items-center gap-10  rounded-[20px] p-10 bg-form shadow-custom'>
-        <h1 className='text-[30px] md:text-[50px]'>App messenger</h1>
+        <h1 className='text-[30px] md:text-[50px]'>Messenger</h1>
         <div className='flex justify-center items-center rounded-full overflow-hidden w-[250px] h-[136px] md:w-[450px] md:h-[248px] xl:w-[500px] xl:h-[276px] border-4 border-interaction shadow-custom'>
           <Slider/>
         </div>  
